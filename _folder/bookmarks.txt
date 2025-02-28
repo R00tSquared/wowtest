@@ -1,0 +1,10 @@
+@!path_crash - navmesh crashes
+@!tanks_boost - boosting warrior rage and pal manareg
+@!legendary_weapon
+@!leg_vendor
+@!research
+@!newbie_quest
+@!spell_mechanics - custom spell mechanics like not destealth if melee attack doesn't hit target
+@!bg_balancer
+@petspeed @pet_updates
+@lowrate_tweaks

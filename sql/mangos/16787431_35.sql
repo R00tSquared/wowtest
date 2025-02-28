@@ -1,0 +1,93 @@
+-- SELECT
+	-- b.guid,
+	-- a.entry,
+	-- a.NAME,
+	-- b.spawntimesecs,
+	-- c.s,
+	-- count(*),
+	-- d.entry 
+-- FROM
+	-- gameobject_template a
+	-- INNER JOIN gameobject b ON a.entry = b.id
+	-- LEFT JOIN ( SELECT id, max( spawntimesecsmin ) AS s FROM mangos_tbc.gameobject GROUP BY id ) c ON c.id = a.entry
+	-- LEFT JOIN (
+	-- SELECT
+		-- entry 
+	-- FROM
+		-- gameobject_template 
+	-- WHERE
+	-- data1 IN ( SELECT entry FROM gameobject_loot_template WHERE ChanceOrQuestChance < 0 )) d ON d.entry = a.entry 
+-- WHERE
+	-- b.map NOT IN ( 0, 1, 530 ) 
+	-- AND a.type = 3 
+	-- AND b.spawntimesecs != c.s 
+	-- AND data4 = 0 
+	-- AND d.entry IS NULL 
+	-- AND s > spawntimesecs 
+-- GROUP BY
+	-- a.entry 
+-- ORDER BY
+	-- s
+
+-- backup	
+-- 1027869	175886	Roughshod Pike	25	180	3	
+-- 194585	181085	Stratholme Supply Crate	25	180	1	
+-- 43120	160836	Relic Coffer	600	7200	12	
+-- 42059	176309	Supply Crate	180	10800	10	
+-- 35836	176307	Supply Crate	180	10800	9	
+-- 27872	176248	Premium Siabi Tobacco	180	10800	1	
+-- 20959	176224	Supply Crate	180	10800	25	
+-- 35849	176308	Supply Crate	180	10800	10	
+-- 29659	176304	Supply Crate	180	10800	6	
+-- 6990	184941	Solid Adamantite Chest	43200	86400	3	
+-- 40692	131978	Large Mithril Bound Chest	3600	86400	2	
+-- 33282	3707	Food Crate	180	86400	5	
+-- 32607	19018	Giant Clam	180	86400	12	
+-- 27123	141596	Witch Doctor's Chest	7200	86400	1	
+-- 43141	184934	Bound Fel Iron Chest	180	86400	1	
+-- 25830	184940	Bound Adamantite Chest	2700	86400	5	
+-- 43117	173234	Blacksmithing Plans	600	86400	1	
+-- 13822	184937	Solid Adamantite Chest	43200	86400	2	
+-- 15501747	183385	Sanguine Hibiscus	600	86400	15	
+-- 26190	19019	Box of Assorted Parts	43200	86400	7	
+-- 43118	173232	Blacksmithing Plans	600	86400	1	
+-- 42888	176325	Blacksmithing Plans	180	86400	1	
+-- 32632	184935	Solid Fel Iron Chest	43200	86400	1	
+-- 26198	75293	Large Battered Chest	5200	86400	10	
+-- 42959	176327	Blacksmithing Plans	180	86400	1	
+-- 1026411	187021	Harkor's Satchel	237000	604800	1	
+-- 1026414	186667	Kraz's Package	237000	604800	1	
+-- 1026424	186672	Ashli's Bag	237000	604800	1	
+-- 1026408	186648	Tanzar's Trunk	237000	604800	1	
+-- 21612	181287	Frozen Rune	6380	604800	34	
+
+-- update gameobject set spawntimesecs=180 where id=175886;
+-- update gameobject set spawntimesecs=180 where id=181085;
+-- update gameobject set spawntimesecs=7200 where id=160836;
+-- update gameobject set spawntimesecs=10800 where id=176309;
+-- update gameobject set spawntimesecs=10800 where id=176307;
+-- update gameobject set spawntimesecs=10800 where id=176248;
+-- update gameobject set spawntimesecs=10800 where id=176224;
+-- update gameobject set spawntimesecs=10800 where id=176308;
+-- update gameobject set spawntimesecs=10800 where id=176304;
+-- update gameobject set spawntimesecs=86400 where id=184941;
+-- update gameobject set spawntimesecs=86400 where id=131978;
+-- update gameobject set spawntimesecs=86400 where id=3707;
+-- update gameobject set spawntimesecs=86400 where id=19018;
+-- update gameobject set spawntimesecs=86400 where id=141596;
+-- update gameobject set spawntimesecs=86400 where id=184934;
+-- update gameobject set spawntimesecs=86400 where id=184940;
+-- update gameobject set spawntimesecs=86400 where id=173234;
+-- update gameobject set spawntimesecs=86400 where id=184937;
+-- update gameobject set spawntimesecs=86400 where id=183385;
+-- update gameobject set spawntimesecs=86400 where id=19019;
+-- update gameobject set spawntimesecs=86400 where id=173232;
+-- update gameobject set spawntimesecs=86400 where id=176325;
+-- update gameobject set spawntimesecs=86400 where id=184935;
+-- update gameobject set spawntimesecs=86400 where id=75293;
+-- update gameobject set spawntimesecs=86400 where id=176327;
+-- update gameobject set spawntimesecs=604800 where id=187021;
+-- update gameobject set spawntimesecs=604800 where id=186667;
+-- update gameobject set spawntimesecs=604800 where id=186672;
+-- update gameobject set spawntimesecs=604800 where id=186648;
+-- update gameobject set spawntimesecs=604800 where id=181287;

@@ -1,0 +1,1 @@
+UPDATE `quest_template` SET `QuestLevel` = 4 WHERE `entry` = 1536;

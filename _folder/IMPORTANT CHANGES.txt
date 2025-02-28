@@ -1,0 +1,1 @@
+11.01.22 getTileAndPolyByRefUnsafe to getTileAndPolyByRef (https://github.com/wowmw/core/commit/b5b199fd1c84e8a4ab007f20253899dfd36f8418)

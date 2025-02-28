@@ -1,0 +1,11 @@
+freezing at random cases, idk
+
+every crashlog starting with:
+
+Program received signal SIGINT, Interrupt.
+0x00007ffff5c9049b in pthread_join (threadid=140735877740288, thread_return=0x0) at pthread_join.c:92
+
+and has changes only at backtrace
+
+you can find whem with
+grep -lr "SIGINT, Interrupt" /server/core3/logs/crash | xargs grep -r pthread_join | grep '* 1' | grep -v "_04"

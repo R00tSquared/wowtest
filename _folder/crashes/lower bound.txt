@@ -1,0 +1,32 @@
+#0  _M_lower_bound (this=0x7fffba7fbdf8, __k=..., __y=<optimized out>, __x=0xef8948fffffe44e9) at /usr/include/c++/4.9/bits/stl_tree.h:1277
+#1  std::_Rb_tree<std::pair<unsigned int, unsigned char>, std::pair<std::pair<unsigned int, unsigned char> const, Aura*>, std::_Select1st<std::pair<std::pair<unsigned int, unsigned char> const, Aura*> >, std::less<std::pair<unsigned int, unsigned char> >, std::allocator<std::pair<std::pair<unsigned int, unsigned char> const, Aura*> > >::find (this=this@entry=0x7fffba7fbdf8, __k=...) at /usr/include/c++/4.9/bits/stl_tree.h:1926
+#2  0x000000000071e7ae in find (__x=..., this=0x7fffba7fbdf8) at /usr/include/c++/4.9/bits/stl_multimap.h:785
+#3  Unit::HasAura (this=this@entry=0x7fffba7fbab0, spellId=spellId@entry=9454) at /server/src/dsc_live/src/game/Unit.cpp:5248
+#4  0x000000000099a3ef in ChatHandler::HandleGolem (this=0x7fffba7fbab0, args=0x7fffb834e7ef "testcrash") at /server/src/dsc_live/src/game/Level0.cpp:1919
+#5  0x000000000063b3d0 in ChatHandler::ExecuteCommandInTable (this=this@entry=0x7fffba7fbab0, table=0xfc3740 <ChatHandler::getCommandTable()::commandTable>, text=<optimized out>, text@entry=0x7fffb834e7e9 "golem testcrash", fullcmd="golem") at /server/src/dsc_live/src/game/Chat.cpp:1135
+
+- I summon golem when entering dungeon, then
+
+			golem->setDeathState(JUST_DIED);
+			golem->Respawn();
+			
+now it's fine, but at second call it causes crash
+I guess it's because a copy is still exist and then we call to died exemplar
+
+but I found a fix:
+	Creature* golem;
+- crashes
+
+	Creature* golem = nullptr;
+- don't
+
+
+
+
+
+
+
+
+
+g++ optimization appears to cause my program to crash
+https://ubuntuforums.org/archive/index.php/t-2107384.html

@@ -1,0 +1,1 @@
+UPDATE `quest_template` SET `RequiredRaces` = 690 WHERE `entry` = 9492

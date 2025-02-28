@@ -1,0 +1,869 @@
+Thread 14 "core_dev" received signal SIGSEGV, Segmentation fault.
+[Switching to Thread 0x7fffc17fa700 (LWP 1614030)]
+0x000055555582fb8a in Map::getNGrid (y=4294959414, x=32, this=0x7fffcb550280) at /server/src/dsc_live/src/game/Map.h:313
+313	            return i_grids[x][y];
+
+------------- CRASHLOG BEGIN -------------
+y = 4294959414
+x = 32
+this = 0x7fffcb550280
+
+------------- BACKTRACE -------------
+	Using the running image of child Thread 0x7fffc17fa700 (LWP 1614030).
+Program stopped at 0x55555582fb8a.
+It stopped with signal SIGSEGV, Segmentation fault.
+
+------------- BACKTRACE -------------
+#0  0x000055555582fb8a in Map::getNGrid (y=4294959414, x=32, this=0x7fffcb550280) at /server/src/dsc_live/src/game/Map.h:313
+#1  Map::RemoveFromActive (this=this@entry=0x7fffcb550280, obj=obj@entry=0x7fffca6810c0) at /server/src/dsc_live/src/game/Map.cpp:1341
+#2  0x00005555558439df in Map::Remove<Creature> (this=this@entry=0x7fffcb550280, obj=obj@entry=0x7fffca6810c0, remove=remove@entry=true) at /server/src/dsc_live/src/game/Map.cpp:733
+#3  0x0000555555835db2 in Map::RemoveAllObjectsInRemoveList (this=this@entry=0x7fffcb550280) at /server/src/dsc_live/src/game/Map.cpp:1204
+#4  0x0000555555835eca in Map::DelayedUpdate (this=0x7fffcb550280, t_diff=<optimized out>) at /server/src/dsc_live/src/game/Map.cpp:1119
+#5  0x000055555584fb81 in MapManager::Update (this=0x7fffcb4ee988, diff=50) at /server/src/dsc_live/src/game/MapManager.cpp:387
+#6  0x0000555555b23731 in World::Update (this=0x7ffff697c108, diff=<optimized out>, diff@entry=50) at /server/src/dsc_live/src/game/World.cpp:2072
+#7  0x00005555556cae9f in WorldRunnable::run (this=<optimized out>) at /server/src/dsc_live/src/hellgroundcore/WorldRunnable.cpp:60
+#8  0x0000555555ccf7da in ACE_Based::Thread::ThreadTask (param=0x7fffcc4f5400) at /server/src/dsc_live/src/shared/Threading.cpp:186
+#9  0x00007ffff6e89ea7 in start_thread (arg=<optimized out>) at pthread_create.c:477
+#10 0x00007ffff6db7def in clone () at ../sysdeps/unix/sysv/linux/x86_64/clone.S:95
+
+------------- BACKTRACE FULL -------------
+#0  0x000055555582fb8a in Map::getNGrid (y=4294959414, x=32, this=0x7fffcb550280) at /server/src/dsc_live/src/game/Map.h:313
+No locals.
+#1  Map::RemoveFromActive (this=this@entry=0x7fffcb550280, obj=obj@entry=0x7fffca6810c0) at /server/src/dsc_live/src/game/Map.cpp:1341
+        x = 4.59163468e-41
+        y = -4220952
+        z = 4.59163468e-41
+        p = {x_coord = 32, y_coord = 4294959414}
+        c = 0x7fffca6810c0
+#2  0x00005555558439df in Map::Remove<Creature> (this=this@entry=0x7fffcb550280, obj=obj@entry=0x7fffca6810c0, remove=remove@entry=true) at /server/src/dsc_live/src/game/Map.cpp:733
+        p = {x_coord = <optimized out>, y_coord = <optimized out>}
+        cell = {data = {Part = {grid_x = 31, grid_y = 33, cell_x = 14, cell_y = 0, nocreate = 0, reserved = 0}, All = 59487}}
+        grid = 0x7fffcb7ac3c0
+#3  0x0000555555835db2 in Map::RemoveAllObjectsInRemoveList (this=this@entry=0x7fffcb550280) at /server/src/dsc_live/src/game/Map.cpp:1204
+        itr = 0x7fffca6810c0
+        obj = 0x7fffca6810c0
+#4  0x0000555555835eca in Map::DelayedUpdate (this=0x7fffcb550280, t_diff=<optimized out>) at /server/src/dsc_live/src/game/Map.cpp:1119
+No locals.
+#5  0x000055555584fb81 in MapManager::Update (this=0x7fffcb4ee988, diff=50) at /server/src/dsc_live/src/game/MapManager.cpp:387
+        iter = {first = 0x7fffcb550280, second = 100}
+        diffRecorder = {ownerName = "Update", _startTime = 306484, _diffTresholdForFile = 100}
+        __FUNCTION__ = {<optimized out>, <optimized out>, <optimized out>, <optimized out>, <optimized out>, <optimized out>, <optimized out>}
+        delayedUpdate = std::__cxx11::list = {[0] = {first = 0x7fffcb550280, second = 100}}
+#6  0x0000555555b23731 in World::Update (this=0x7ffff697c108, diff=<optimized out>, diff@entry=50) at /server/src/dsc_live/src/game/World.cpp:2072
+        accumulateMapDiff = true
+        diffRecorder = {ownerName = "Update", _startTime = 306484, _diffTresholdForFile = 100}
+        __FUNCTION__ = {<optimized out>, <optimized out>, <optimized out>, <optimized out>, <optimized out>, <optimized out>, <optimized out>}
+        mapDiff = <optimized out>
+#7  0x00005555556cae9f in WorldRunnable::run (this=<optimized out>) at /server/src/dsc_live/src/hellgroundcore/WorldRunnable.cpp:60
+        diff = 50
+#8  0x0000555555ccf7da in ACE_Based::Thread::ThreadTask (param=0x7fffcc4f5400) at /server/src/dsc_live/src/shared/Threading.cpp:186
+        _task = 0x7fffcc4f5400
+#9  0x00007ffff6e89ea7 in start_thread (arg=<optimized out>) at pthread_create.c:477
+        ret = <optimized out>
+        pd = <optimized out>
+        unwind_buf = {cancel_jmp_buf = {{jmp_buf = {140736439756544, -2831991111329809726, 140737488348046, 140737488348047, 140736439754688, 8396800, 2831987813839239874, 2832010757594774210}, mask_was_saved = 0}}, priv = {pad = {0x0, 0x0, 0x0, 0x0}, data = {prev = 0x0, cleanup = 0x0, canceltype = 0}}}
+        not_first_call = 0
+#10 0x00007ffff6db7def in clone () at ../sysdeps/unix/sysv/linux/x86_64/clone.S:95
+No locals.
+
+------------- THREADS -------------
+  Id   Target Id                                      Frame 
+  1    Thread 0x7ffff6a1eb80 (LWP 1613568) "core_dev" __pthread_clockjoin_ex (threadid=140735877740288, thread_return=0x0, clockid=<optimized out>, abstime=<optimized out>, block=<optimized out>) at pthread_join_common.c:145
+  3    Thread 0x7ffff63c7700 (LWP 1613573) "core_dev" 0x00007ffff6d7fc61 in __GI___clock_nanosleep (clock_id=clock_id@entry=0, flags=flags@entry=0, req=req@entry=0x7ffff63c6e60, rem=rem@entry=0x0) at ../sysdeps/unix/sysv/linux/clock_nanosleep.c:48
+  4    Thread 0x7ffff5bb2700 (LWP 1613574) "core_dev" 0x00007ffff6d7fc61 in __GI___clock_nanosleep (clock_id=clock_id@entry=0, flags=flags@entry=0, req=req@entry=0x7ffff5bb1e60, rem=rem@entry=0x0) at ../sysdeps/unix/sysv/linux/clock_nanosleep.c:48
+  5    Thread 0x7ffff53b1700 (LWP 1613579) "core_dev" 0x00007ffff6d7fc61 in __GI___clock_nanosleep (clock_id=clock_id@entry=0, flags=flags@entry=0, req=req@entry=0x7ffff53b0e60, rem=rem@entry=0x0) at ../sysdeps/unix/sysv/linux/clock_nanosleep.c:48
+  6    Thread 0x7fffc9ad6700 (LWP 1614021) "core_dev" futex_wait_cancelable (private=0, expected=0, futex_word=0x7fffcb415db0) at ../sysdeps/nptl/futex-internal.h:186
+  7    Thread 0x7fffc92d5700 (LWP 1614022) "core_dev" futex_wait_cancelable (private=0, expected=0, futex_word=0x7fffcb415db4) at ../sysdeps/nptl/futex-internal.h:186
+  8    Thread 0x7fffc8ad4700 (LWP 1614023) "core_dev" futex_wait_cancelable (private=0, expected=0, futex_word=0x7fffcb415db0) at ../sysdeps/nptl/futex-internal.h:186
+  9    Thread 0x7fffc3fff700 (LWP 1614024) "core_dev" futex_wait_cancelable (private=0, expected=0, futex_word=0x7fffcb415db4) at ../sysdeps/nptl/futex-internal.h:186
+  10   Thread 0x7fffc37fe700 (LWP 1614025) "core_dev" futex_wait_cancelable (private=0, expected=0, futex_word=0x7fffcb415db0) at ../sysdeps/nptl/futex-internal.h:186
+  11   Thread 0x7fffc2ffd700 (LWP 1614026) "core_dev" futex_wait_cancelable (private=0, expected=0, futex_word=0x7fffcb415db4) at ../sysdeps/nptl/futex-internal.h:186
+  12   Thread 0x7fffc27fc700 (LWP 1614027) "core_dev" futex_wait_cancelable (private=0, expected=0, futex_word=0x7fffcb415db4) at ../sysdeps/nptl/futex-internal.h:186
+  13   Thread 0x7fffc1ffb700 (LWP 1614028) "core_dev" futex_wait_cancelable (private=0, expected=0, futex_word=0x7fffcb415db0) at ../sysdeps/nptl/futex-internal.h:186
+* 14   Thread 0x7fffc17fa700 (LWP 1614030) "core_dev" 0x000055555582fb8a in Map::getNGrid (y=4294959414, x=32, this=0x7fffcb550280) at /server/src/dsc_live/src/game/Map.h:313
+  15   Thread 0x7fffc0ff9700 (LWP 1614031) "core_dev" __libc_read (nbytes=1, buf=0x7fffc0ff8dd7, fd=0) at ../sysdeps/unix/sysv/linux/read.c:26
+  16   Thread 0x7fff9ffff700 (LWP 1614032) "core_dev" 0x00007ffff6db8116 in epoll_wait (epfd=67, events=0x7fffcb4156d0, maxevents=1, timeout=10) at ../sysdeps/unix/sysv/linux/epoll_wait.c:30
+  17   Thread 0x7fff9f7fe700 (LWP 1614033) "core_dev" 0x00007ffff6db8116 in epoll_wait (epfd=70, events=0x7fffcb415590, maxevents=1, timeout=10) at ../sysdeps/unix/sysv/linux/epoll_wait.c:30
+
+------------- THREADS BACKTRACE -------------
+
+Thread 17 (Thread 0x7fff9f7fe700 (LWP 1614033) "core_dev"):
+#0  0x00007ffff6db8116 in epoll_wait (epfd=70, events=0x7fffcb415590, maxevents=1, timeout=10) at ../sysdeps/unix/sysv/linux/epoll_wait.c:30
+No locals.
+#1  0x00007ffff7edef70 in ACE_Dev_Poll_Reactor::work_pending_i(ACE_Time_Value*) () from /lib/x86_64-linux-gnu/libACE-6.5.12.so
+No symbol table info available.
+#2  0x00007ffff7ee026b in ACE_Dev_Poll_Reactor::handle_events_i(ACE_Time_Value*, ACE_Dev_Poll_Reactor::Token_Guard&) () from /lib/x86_64-linux-gnu/libACE-6.5.12.so
+No symbol table info available.
+#3  0x00007ffff7ee161b in ACE_Dev_Poll_Reactor::handle_events(ACE_Time_Value*) () from /lib/x86_64-linux-gnu/libACE-6.5.12.so
+No symbol table info available.
+#4  0x00007ffff7f2bf82 in ACE_Reactor::run_reactor_event_loop(ACE_Time_Value&, int (*)(ACE_Reactor*)) () from /lib/x86_64-linux-gnu/libACE-6.5.12.so
+No symbol table info available.
+#5  0x0000555555b3bfaf in ReactorRunnable::svc (this=0x7fffcb4ec540) at /server/src/dsc_live/src/game/WorldSocketMgr.cpp:169
+        interval = <incomplete type>
+        i = Python Exception <class 'gdb.error'> value has been optimized out: 
+
+        t = Python Exception <class 'gdb.error'> value has been optimized out: 
+
+#6  0x00007ffff7f47de5 in ACE_Task_Base::svc_run(void*) () from /lib/x86_64-linux-gnu/libACE-6.5.12.so
+No symbol table info available.
+#7  0x00007ffff7f48bfd in ACE_Thread_Adapter::invoke() () from /lib/x86_64-linux-gnu/libACE-6.5.12.so
+No symbol table info available.
+#8  0x00007ffff6e89ea7 in start_thread (arg=<optimized out>) at pthread_create.c:477
+        ret = <optimized out>
+        pd = <optimized out>
+        unwind_buf = {cancel_jmp_buf = {{jmp_buf = {140735869347584, -2831991111329809726, 140737488347358, 140737488347359, 140735869345728, 8396800, 2832062578482444994, 2832010757594774210}, mask_was_saved = 0}}, priv = {pad = {0x0, 0x0, 0x0, 0x0}, data = {prev = 0x0, cleanup = 0x0, canceltype = 0}}}
+        not_first_call = 0
+#9  0x00007ffff6db7def in clone () at ../sysdeps/unix/sysv/linux/x86_64/clone.S:95
+No locals.
+
+Thread 16 (Thread 0x7fff9ffff700 (LWP 1614032) "core_dev"):
+#0  0x00007ffff6db8116 in epoll_wait (epfd=67, events=0x7fffcb4156d0, maxevents=1, timeout=10) at ../sysdeps/unix/sysv/linux/epoll_wait.c:30
+No locals.
+#1  0x00007ffff7edef70 in ACE_Dev_Poll_Reactor::work_pending_i(ACE_Time_Value*) () from /lib/x86_64-linux-gnu/libACE-6.5.12.so
+No symbol table info available.
+#2  0x00007ffff7ee026b in ACE_Dev_Poll_Reactor::handle_events_i(ACE_Time_Value*, ACE_Dev_Poll_Reactor::Token_Guard&) () from /lib/x86_64-linux-gnu/libACE-6.5.12.so
+No symbol table info available.
+#3  0x00007ffff7ee161b in ACE_Dev_Poll_Reactor::handle_events(ACE_Time_Value*) () from /lib/x86_64-linux-gnu/libACE-6.5.12.so
+No symbol table info available.
+#4  0x00007ffff7f2bf82 in ACE_Reactor::run_reactor_event_loop(ACE_Time_Value&, int (*)(ACE_Reactor*)) () from /lib/x86_64-linux-gnu/libACE-6.5.12.so
+No symbol table info available.
+#5  0x0000555555b3bfaf in ReactorRunnable::svc (this=0x7fffcb4ec408) at /server/src/dsc_live/src/game/WorldSocketMgr.cpp:169
+        interval = <incomplete type>
+        i = Python Exception <class 'gdb.error'> value has been optimized out: 
+
+        t = Python Exception <class 'gdb.error'> value has been optimized out: 
+
+#6  0x00007ffff7f47de5 in ACE_Task_Base::svc_run(void*) () from /lib/x86_64-linux-gnu/libACE-6.5.12.so
+No symbol table info available.
+#7  0x00007ffff7f48bfd in ACE_Thread_Adapter::invoke() () from /lib/x86_64-linux-gnu/libACE-6.5.12.so
+No symbol table info available.
+#8  0x00007ffff6e89ea7 in start_thread (arg=<optimized out>) at pthread_create.c:477
+        ret = <optimized out>
+        pd = <optimized out>
+        unwind_buf = {cancel_jmp_buf = {{jmp_buf = {140735877740288, -2831991111329809726, 140737488347358, 140737488347359, 140735877738432, 8396800, 2832061480581429954, 2832010757594774210}, mask_was_saved = 0}}, priv = {pad = {0x0, 0x0, 0x0, 0x0}, data = {prev = 0x0, cleanup = 0x0, canceltype = 0}}}
+        not_first_call = 0
+#9  0x00007ffff6db7def in clone () at ../sysdeps/unix/sysv/linux/x86_64/clone.S:95
+No locals.
+
+Thread 15 (Thread 0x7fffc0ff9700 (LWP 1614031) "core_dev"):
+#0  __libc_read (nbytes=1, buf=0x7fffc0ff8dd7, fd=0) at ../sysdeps/unix/sysv/linux/read.c:26
+        resultvar = 18446744073709551104
+        sc_cancel_oldtype = 0
+        __arg3 = <optimized out>
+        _a2 = <optimized out>
+        sc_ret = <optimized out>
+        __value = <optimized out>
+        __arg1 = <optimized out>
+        _a3 = <optimized out>
+        resultvar = <optimized out>
+        resultvar = <optimized out>
+        __arg2 = <optimized out>
+        _a1 = <optimized out>
+#1  __libc_read (fd=0, buf=0x7fffc0ff8dd7, nbytes=1) at ../sysdeps/unix/sysv/linux/read.c:24
+No locals.
+#2  0x00007ffff7bffb7d in rl_getc () from /lib/x86_64-linux-gnu/libreadline.so.6
+No symbol table info available.
+#3  0x00007ffff7c00447 in rl_read_key () from /lib/x86_64-linux-gnu/libreadline.so.6
+No symbol table info available.
+#4  0x00007ffff7be9c4c in readline_internal_char () from /lib/x86_64-linux-gnu/libreadline.so.6
+No symbol table info available.
+#5  0x00007ffff7bea3c5 in readline () from /lib/x86_64-linux-gnu/libreadline.so.6
+No symbol table info available.
+#6  0x00005555556c7ca5 in CliRunnable::run (this=<optimized out>) at /server/src/dsc_live/src/hellgroundcore/CliRunnable.cpp:466
+        command_str = <optimized out>
+        commandbuf = {<optimized out> <repeats 256 times>}
+        canflush = true
+#7  0x0000555555ccf7da in ACE_Based::Thread::ThreadTask (param=0x7fffcc4f53f0) at /server/src/dsc_live/src/shared/Threading.cpp:186
+        _task = 0x7fffcc4f53f0
+#8  0x00007ffff6e89ea7 in start_thread (arg=<optimized out>) at pthread_create.c:477
+        ret = <optimized out>
+        pd = <optimized out>
+        unwind_buf = {cancel_jmp_buf = {{jmp_buf = {140736431363840, -2831991111329809726, 140737488348046, 140737488348047, 140736431361984, 8396800, 2831988913887738562, 2832010757594774210}, mask_was_saved = 0}}, priv = {pad = {0x0, 0x0, 0x0, 0x0}, data = {prev = 0x0, cleanup = 0x0, canceltype = 0}}}
+        not_first_call = 0
+#9  0x00007ffff6db7def in clone () at ../sysdeps/unix/sysv/linux/x86_64/clone.S:95
+No locals.
+
+Thread 14 (Thread 0x7fffc17fa700 (LWP 1614030) "core_dev"):
+#0  0x000055555582fb8a in Map::getNGrid (y=4294959414, x=32, this=0x7fffcb550280) at /server/src/dsc_live/src/game/Map.h:313
+No locals.
+#1  Map::RemoveFromActive (this=this@entry=0x7fffcb550280, obj=obj@entry=0x7fffca6810c0) at /server/src/dsc_live/src/game/Map.cpp:1341
+        x = 4.59163468e-41
+        y = -4220952
+        z = 4.59163468e-41
+        p = {x_coord = 32, y_coord = 4294959414}
+        c = 0x7fffca6810c0
+#2  0x00005555558439df in Map::Remove<Creature> (this=this@entry=0x7fffcb550280, obj=obj@entry=0x7fffca6810c0, remove=remove@entry=true) at /server/src/dsc_live/src/game/Map.cpp:733
+        p = {x_coord = <optimized out>, y_coord = <optimized out>}
+        cell = {data = {Part = {grid_x = 31, grid_y = 33, cell_x = 14, cell_y = 0, nocreate = 0, reserved = 0}, All = 59487}}
+        grid = 0x7fffcb7ac3c0
+#3  0x0000555555835db2 in Map::RemoveAllObjectsInRemoveList (this=this@entry=0x7fffcb550280) at /server/src/dsc_live/src/game/Map.cpp:1204
+        itr = 0x7fffca6810c0
+        obj = 0x7fffca6810c0
+#4  0x0000555555835eca in Map::DelayedUpdate (this=0x7fffcb550280, t_diff=<optimized out>) at /server/src/dsc_live/src/game/Map.cpp:1119
+No locals.
+#5  0x000055555584fb81 in MapManager::Update (this=0x7fffcb4ee988, diff=50) at /server/src/dsc_live/src/game/MapManager.cpp:387
+        iter = {first = 0x7fffcb550280, second = 100}
+        diffRecorder = {ownerName = "Update", _startTime = 306484, _diffTresholdForFile = 100}
+        __FUNCTION__ = {<optimized out>, <optimized out>, <optimized out>, <optimized out>, <optimized out>, <optimized out>, <optimized out>}
+        delayedUpdate = std::__cxx11::list = {[0] = {first = 0x7fffcb550280, second = 100}}
+#6  0x0000555555b23731 in World::Update (this=0x7ffff697c108, diff=<optimized out>, diff@entry=50) at /server/src/dsc_live/src/game/World.cpp:2072
+        accumulateMapDiff = true
+        diffRecorder = {ownerName = "Update", _startTime = 306484, _diffTresholdForFile = 100}
+        __FUNCTION__ = {<optimized out>, <optimized out>, <optimized out>, <optimized out>, <optimized out>, <optimized out>, <optimized out>}
+        mapDiff = <optimized out>
+#7  0x00005555556cae9f in WorldRunnable::run (this=<optimized out>) at /server/src/dsc_live/src/hellgroundcore/WorldRunnable.cpp:60
+        diff = 50
+#8  0x0000555555ccf7da in ACE_Based::Thread::ThreadTask (param=0x7fffcc4f5400) at /server/src/dsc_live/src/shared/Threading.cpp:186
+        _task = 0x7fffcc4f5400
+#9  0x00007ffff6e89ea7 in start_thread (arg=<optimized out>) at pthread_create.c:477
+        ret = <optimized out>
+        pd = <optimized out>
+        unwind_buf = {cancel_jmp_buf = {{jmp_buf = {140736439756544, -2831991111329809726, 140737488348046, 140737488348047, 140736439754688, 8396800, 2831987813839239874, 2832010757594774210}, mask_was_saved = 0}}, priv = {pad = {0x0, 0x0, 0x0, 0x0}, data = {prev = 0x0, cleanup = 0x0, canceltype = 0}}}
+        not_first_call = 0
+#10 0x00007ffff6db7def in clone () at ../sysdeps/unix/sysv/linux/x86_64/clone.S:95
+No locals.
+
+Thread 13 (Thread 0x7fffc1ffb700 (LWP 1614028) "core_dev"):
+#0  futex_wait_cancelable (private=0, expected=0, futex_word=0x7fffcb415db0) at ../sysdeps/nptl/futex-internal.h:186
+        __ret = -512
+        oldtype = 0
+        err = <optimized out>
+        oldtype = <optimized out>
+        err = <optimized out>
+        __ret = <optimized out>
+        resultvar = <optimized out>
+        __arg4 = <optimized out>
+        __arg3 = <optimized out>
+        __arg2 = <optimized out>
+        __arg1 = <optimized out>
+        _a4 = <optimized out>
+        _a3 = <optimized out>
+        _a2 = <optimized out>
+        _a1 = <optimized out>
+#1  __pthread_cond_wait_common (abstime=0x0, clockid=0, mutex=0x7fffcb415d50, cond=0x7fffcb415d88) at pthread_cond_wait.c:508
+        spin = 0
+        buffer = {__routine = 0x7ffff6e90540 <__condvar_cleanup_waiting>, __arg = 0x7fffc1ffadb0, __canceltype = -884020656, __prev = 0x0}
+        cbuffer = {wseq = 23646, cond = 0x7fffcb415d88, mutex = 0x7fffcb415d50, private = 0}
+        err = <optimized out>
+        g = 3254758800
+        flags = <optimized out>
+        g1_start = <optimized out>
+        maxspin = 0
+        signals = <optimized out>
+        result = 0
+        wseq = 23646
+        seq = 11823
+        private = 0
+        maxspin = <optimized out>
+        err = <optimized out>
+        result = <optimized out>
+        wseq = <optimized out>
+        g = <optimized out>
+        seq = <optimized out>
+        flags = <optimized out>
+        private = <optimized out>
+        signals = <optimized out>
+        done = <optimized out>
+        g1_start = <optimized out>
+        spin = <optimized out>
+        buffer = {__routine = <optimized out>, __arg = <optimized out>, __canceltype = <optimized out>, __prev = <optimized out>}
+        cbuffer = {wseq = <optimized out>, cond = <optimized out>, mutex = <optimized out>, private = <optimized out>}
+        s = <optimized out>
+#2  __pthread_cond_wait (cond=0x7fffcb415d88, mutex=0x7fffcb415d50) at pthread_cond_wait.c:638
+No locals.
+#3  0x00007ffff7ed143d in ACE_Condition<ACE_Thread_Mutex>::wait(ACE_Thread_Mutex&, ACE_Time_Value const*) () from /lib/x86_64-linux-gnu/libACE-6.5.12.so
+No symbol table info available.
+#4  0x00007ffff7eb3f92 in ACE_Activation_Queue::dequeue(ACE_Time_Value*) () from /lib/x86_64-linux-gnu/libACE-6.5.12.so
+No symbol table info available.
+#5  0x0000555555ccae05 in DelayExecutor::svc (this=0x7fffcb4eea80) at /server/src/dsc_live/src/shared/DelayExecutor.cpp:78
+        rq = <optimized out>
+#6  0x00007ffff7f47de5 in ACE_Task_Base::svc_run(void*) () from /lib/x86_64-linux-gnu/libACE-6.5.12.so
+No symbol table info available.
+#7  0x00007ffff7f48bfd in ACE_Thread_Adapter::invoke() () from /lib/x86_64-linux-gnu/libACE-6.5.12.so
+No symbol table info available.
+#8  0x00007ffff6e89ea7 in start_thread (arg=<optimized out>) at pthread_create.c:477
+        ret = <optimized out>
+        pd = <optimized out>
+        unwind_buf = {cancel_jmp_buf = {{jmp_buf = {140736448149248, -2831991111329809726, 140737488347326, 140737488347327, 140736448147392, 8396800, 2831986715938224834, 2832010757594774210}, mask_was_saved = 0}}, priv = {pad = {0x0, 0x0, 0x0, 0x0}, data = {prev = 0x0, cleanup = 0x0, canceltype = 0}}}
+        not_first_call = 0
+#9  0x00007ffff6db7def in clone () at ../sysdeps/unix/sysv/linux/x86_64/clone.S:95
+No locals.
+
+Thread 12 (Thread 0x7fffc27fc700 (LWP 1614027) "core_dev"):
+#0  futex_wait_cancelable (private=0, expected=0, futex_word=0x7fffcb415db4) at ../sysdeps/nptl/futex-internal.h:186
+        __ret = -512
+        oldtype = 0
+        err = <optimized out>
+        oldtype = <optimized out>
+        err = <optimized out>
+        __ret = <optimized out>
+        resultvar = <optimized out>
+        __arg4 = <optimized out>
+        __arg3 = <optimized out>
+        __arg2 = <optimized out>
+        __arg1 = <optimized out>
+        _a4 = <optimized out>
+        _a3 = <optimized out>
+        _a2 = <optimized out>
+        _a1 = <optimized out>
+#1  __pthread_cond_wait_common (abstime=0x0, clockid=0, mutex=0x7fffcb415d50, cond=0x7fffcb415d88) at pthread_cond_wait.c:508
+        spin = 0
+        buffer = {__routine = 0x7ffff6e90540 <__condvar_cleanup_waiting>, __arg = 0x7fffc27fbdb0, __canceltype = -884020656, __prev = 0x0}
+        cbuffer = {wseq = 23639, cond = 0x7fffcb415d88, mutex = 0x7fffcb415d50, private = 0}
+        err = <optimized out>
+        g = 3263151504
+        flags = <optimized out>
+        g1_start = <optimized out>
+        maxspin = 0
+        signals = <optimized out>
+        result = 0
+        wseq = 23639
+        seq = 11819
+        private = 0
+        maxspin = <optimized out>
+        err = <optimized out>
+        result = <optimized out>
+        wseq = <optimized out>
+        g = <optimized out>
+        seq = <optimized out>
+        flags = <optimized out>
+        private = <optimized out>
+        signals = <optimized out>
+        done = <optimized out>
+        g1_start = <optimized out>
+        spin = <optimized out>
+        buffer = {__routine = <optimized out>, __arg = <optimized out>, __canceltype = <optimized out>, __prev = <optimized out>}
+        cbuffer = {wseq = <optimized out>, cond = <optimized out>, mutex = <optimized out>, private = <optimized out>}
+        s = <optimized out>
+#2  __pthread_cond_wait (cond=0x7fffcb415d88, mutex=0x7fffcb415d50) at pthread_cond_wait.c:638
+No locals.
+#3  0x00007ffff7ed143d in ACE_Condition<ACE_Thread_Mutex>::wait(ACE_Thread_Mutex&, ACE_Time_Value const*) () from /lib/x86_64-linux-gnu/libACE-6.5.12.so
+No symbol table info available.
+#4  0x00007ffff7eb3f92 in ACE_Activation_Queue::dequeue(ACE_Time_Value*) () from /lib/x86_64-linux-gnu/libACE-6.5.12.so
+No symbol table info available.
+#5  0x0000555555ccae05 in DelayExecutor::svc (this=0x7fffcb4eea80) at /server/src/dsc_live/src/shared/DelayExecutor.cpp:78
+        rq = <optimized out>
+#6  0x00007ffff7f47de5 in ACE_Task_Base::svc_run(void*) () from /lib/x86_64-linux-gnu/libACE-6.5.12.so
+No symbol table info available.
+#7  0x00007ffff7f48bfd in ACE_Thread_Adapter::invoke() () from /lib/x86_64-linux-gnu/libACE-6.5.12.so
+No symbol table info available.
+#8  0x00007ffff6e89ea7 in start_thread (arg=<optimized out>) at pthread_create.c:477
+        ret = <optimized out>
+        pd = <optimized out>
+        unwind_buf = {cancel_jmp_buf = {{jmp_buf = {140736456541952, -2831991111329809726, 140737488347326, 140737488347327, 140736456540096, 8396800, 2831985615889726146, 2832010757594774210}, mask_was_saved = 0}}, priv = {pad = {0x0, 0x0, 0x0, 0x0}, data = {prev = 0x0, cleanup = 0x0, canceltype = 0}}}
+        not_first_call = 0
+#9  0x00007ffff6db7def in clone () at ../sysdeps/unix/sysv/linux/x86_64/clone.S:95
+No locals.
+
+Thread 11 (Thread 0x7fffc2ffd700 (LWP 1614026) "core_dev"):
+#0  futex_wait_cancelable (private=0, expected=0, futex_word=0x7fffcb415db4) at ../sysdeps/nptl/futex-internal.h:186
+        __ret = -512
+        oldtype = 0
+        err = <optimized out>
+        oldtype = <optimized out>
+        err = <optimized out>
+        __ret = <optimized out>
+        resultvar = <optimized out>
+        __arg4 = <optimized out>
+        __arg3 = <optimized out>
+        __arg2 = <optimized out>
+        __arg1 = <optimized out>
+        _a4 = <optimized out>
+        _a3 = <optimized out>
+        _a2 = <optimized out>
+        _a1 = <optimized out>
+#1  __pthread_cond_wait_common (abstime=0x0, clockid=0, mutex=0x7fffcb415d50, cond=0x7fffcb415d88) at pthread_cond_wait.c:508
+        spin = 0
+        buffer = {__routine = 0x7ffff6e90540 <__condvar_cleanup_waiting>, __arg = 0x7fffc2ffcdb0, __canceltype = -884020656, __prev = 0x0}
+        cbuffer = {wseq = 23643, cond = 0x7fffcb415d88, mutex = 0x7fffcb415d50, private = 0}
+        err = <optimized out>
+        g = 3271544208
+        flags = <optimized out>
+        g1_start = <optimized out>
+        maxspin = 0
+        signals = <optimized out>
+        result = 0
+        wseq = 23643
+        seq = 11821
+        private = 0
+        maxspin = <optimized out>
+        err = <optimized out>
+        result = <optimized out>
+        wseq = <optimized out>
+        g = <optimized out>
+        seq = <optimized out>
+        flags = <optimized out>
+        private = <optimized out>
+        signals = <optimized out>
+        done = <optimized out>
+        g1_start = <optimized out>
+        spin = <optimized out>
+        buffer = {__routine = <optimized out>, __arg = <optimized out>, __canceltype = <optimized out>, __prev = <optimized out>}
+        cbuffer = {wseq = <optimized out>, cond = <optimized out>, mutex = <optimized out>, private = <optimized out>}
+        s = <optimized out>
+#2  __pthread_cond_wait (cond=0x7fffcb415d88, mutex=0x7fffcb415d50) at pthread_cond_wait.c:638
+No locals.
+#3  0x00007ffff7ed143d in ACE_Condition<ACE_Thread_Mutex>::wait(ACE_Thread_Mutex&, ACE_Time_Value const*) () from /lib/x86_64-linux-gnu/libACE-6.5.12.so
+No symbol table info available.
+#4  0x00007ffff7eb3f92 in ACE_Activation_Queue::dequeue(ACE_Time_Value*) () from /lib/x86_64-linux-gnu/libACE-6.5.12.so
+No symbol table info available.
+#5  0x0000555555ccae05 in DelayExecutor::svc (this=0x7fffcb4eea80) at /server/src/dsc_live/src/shared/DelayExecutor.cpp:78
+        rq = <optimized out>
+#6  0x00007ffff7f47de5 in ACE_Task_Base::svc_run(void*) () from /lib/x86_64-linux-gnu/libACE-6.5.12.so
+No symbol table info available.
+#7  0x00007ffff7f48bfd in ACE_Thread_Adapter::invoke() () from /lib/x86_64-linux-gnu/libACE-6.5.12.so
+No symbol table info available.
+#8  0x00007ffff6e89ea7 in start_thread (arg=<optimized out>) at pthread_create.c:477
+        ret = <optimized out>
+        pd = <optimized out>
+        unwind_buf = {cancel_jmp_buf = {{jmp_buf = {140736464934656, -2831991111329809726, 140737488347326, 140737488347327, 140736464932800, 8396800, 2831984513693743810, 2832010757594774210}, mask_was_saved = 0}}, priv = {pad = {0x0, 0x0, 0x0, 0x0}, data = {prev = 0x0, cleanup = 0x0, canceltype = 0}}}
+        not_first_call = 0
+#9  0x00007ffff6db7def in clone () at ../sysdeps/unix/sysv/linux/x86_64/clone.S:95
+No locals.
+
+Thread 10 (Thread 0x7fffc37fe700 (LWP 1614025) "core_dev"):
+#0  futex_wait_cancelable (private=0, expected=0, futex_word=0x7fffcb415db0) at ../sysdeps/nptl/futex-internal.h:186
+        __ret = -512
+        oldtype = 0
+        err = <optimized out>
+        oldtype = <optimized out>
+        err = <optimized out>
+        __ret = <optimized out>
+        resultvar = <optimized out>
+        __arg4 = <optimized out>
+        __arg3 = <optimized out>
+        __arg2 = <optimized out>
+        __arg1 = <optimized out>
+        _a4 = <optimized out>
+        _a3 = <optimized out>
+        _a2 = <optimized out>
+        _a1 = <optimized out>
+#1  __pthread_cond_wait_common (abstime=0x0, clockid=0, mutex=0x7fffcb415d50, cond=0x7fffcb415d88) at pthread_cond_wait.c:508
+        spin = 0
+        buffer = {__routine = 0x7ffff6e90540 <__condvar_cleanup_waiting>, __arg = 0x7fffc37fddb0, __canceltype = -884020656, __prev = 0x0}
+        cbuffer = {wseq = 23648, cond = 0x7fffcb415d88, mutex = 0x7fffcb415d50, private = 0}
+        err = <optimized out>
+        g = 3279936912
+        flags = <optimized out>
+        g1_start = <optimized out>
+        maxspin = 0
+        signals = <optimized out>
+        result = 0
+        wseq = 23648
+        seq = 11824
+        private = 0
+        maxspin = <optimized out>
+        err = <optimized out>
+        result = <optimized out>
+        wseq = <optimized out>
+        g = <optimized out>
+        seq = <optimized out>
+        flags = <optimized out>
+        private = <optimized out>
+        signals = <optimized out>
+        done = <optimized out>
+        g1_start = <optimized out>
+        spin = <optimized out>
+        buffer = {__routine = <optimized out>, __arg = <optimized out>, __canceltype = <optimized out>, __prev = <optimized out>}
+        cbuffer = {wseq = <optimized out>, cond = <optimized out>, mutex = <optimized out>, private = <optimized out>}
+        s = <optimized out>
+#2  __pthread_cond_wait (cond=0x7fffcb415d88, mutex=0x7fffcb415d50) at pthread_cond_wait.c:638
+No locals.
+#3  0x00007ffff7ed143d in ACE_Condition<ACE_Thread_Mutex>::wait(ACE_Thread_Mutex&, ACE_Time_Value const*) () from /lib/x86_64-linux-gnu/libACE-6.5.12.so
+No symbol table info available.
+#4  0x00007ffff7eb3f92 in ACE_Activation_Queue::dequeue(ACE_Time_Value*) () from /lib/x86_64-linux-gnu/libACE-6.5.12.so
+No symbol table info available.
+#5  0x0000555555ccae05 in DelayExecutor::svc (this=0x7fffcb4eea80) at /server/src/dsc_live/src/shared/DelayExecutor.cpp:78
+        rq = <optimized out>
+#6  0x00007ffff7f47de5 in ACE_Task_Base::svc_run(void*) () from /lib/x86_64-linux-gnu/libACE-6.5.12.so
+No symbol table info available.
+#7  0x00007ffff7f48bfd in ACE_Thread_Adapter::invoke() () from /lib/x86_64-linux-gnu/libACE-6.5.12.so
+No symbol table info available.
+#8  0x00007ffff6e89ea7 in start_thread (arg=<optimized out>) at pthread_create.c:477
+        ret = <optimized out>
+        pd = <optimized out>
+        unwind_buf = {cancel_jmp_buf = {{jmp_buf = {140736473327360, -2831991111329809726, 140737488347326, 140737488347327, 140736473325504, 8396800, 2831983413645245122, 2832010757594774210}, mask_was_saved = 0}}, priv = {pad = {0x0, 0x0, 0x0, 0x0}, data = {prev = 0x0, cleanup = 0x0, canceltype = 0}}}
+        not_first_call = 0
+#9  0x00007ffff6db7def in clone () at ../sysdeps/unix/sysv/linux/x86_64/clone.S:95
+No locals.
+
+Thread 9 (Thread 0x7fffc3fff700 (LWP 1614024) "core_dev"):
+#0  futex_wait_cancelable (private=0, expected=0, futex_word=0x7fffcb415db4) at ../sysdeps/nptl/futex-internal.h:186
+        __ret = -512
+        oldtype = 0
+        err = <optimized out>
+        oldtype = <optimized out>
+        err = <optimized out>
+        __ret = <optimized out>
+        resultvar = <optimized out>
+        __arg4 = <optimized out>
+        __arg3 = <optimized out>
+        __arg2 = <optimized out>
+        __arg1 = <optimized out>
+        _a4 = <optimized out>
+        _a3 = <optimized out>
+        _a2 = <optimized out>
+        _a1 = <optimized out>
+#1  __pthread_cond_wait_common (abstime=0x0, clockid=0, mutex=0x7fffcb415d50, cond=0x7fffcb415d88) at pthread_cond_wait.c:508
+        spin = 0
+        buffer = {__routine = 0x7ffff6e90540 <__condvar_cleanup_waiting>, __arg = 0x7fffc3ffedb0, __canceltype = -884020656, __prev = 0x0}
+        cbuffer = {wseq = 23641, cond = 0x7fffcb415d88, mutex = 0x7fffcb415d50, private = 0}
+        err = <optimized out>
+        g = 3288329616
+        flags = <optimized out>
+        g1_start = <optimized out>
+        maxspin = 0
+        signals = <optimized out>
+        result = 0
+        wseq = 23641
+        seq = 11820
+        private = 0
+        maxspin = <optimized out>
+        err = <optimized out>
+        result = <optimized out>
+        wseq = <optimized out>
+        g = <optimized out>
+        seq = <optimized out>
+        flags = <optimized out>
+        private = <optimized out>
+        signals = <optimized out>
+        done = <optimized out>
+        g1_start = <optimized out>
+        spin = <optimized out>
+        buffer = {__routine = <optimized out>, __arg = <optimized out>, __canceltype = <optimized out>, __prev = <optimized out>}
+        cbuffer = {wseq = <optimized out>, cond = <optimized out>, mutex = <optimized out>, private = <optimized out>}
+        s = <optimized out>
+#2  __pthread_cond_wait (cond=0x7fffcb415d88, mutex=0x7fffcb415d50) at pthread_cond_wait.c:638
+No locals.
+#3  0x00007ffff7ed143d in ACE_Condition<ACE_Thread_Mutex>::wait(ACE_Thread_Mutex&, ACE_Time_Value const*) () from /lib/x86_64-linux-gnu/libACE-6.5.12.so
+No symbol table info available.
+#4  0x00007ffff7eb3f92 in ACE_Activation_Queue::dequeue(ACE_Time_Value*) () from /lib/x86_64-linux-gnu/libACE-6.5.12.so
+No symbol table info available.
+#5  0x0000555555ccae05 in DelayExecutor::svc (this=0x7fffcb4eea80) at /server/src/dsc_live/src/shared/DelayExecutor.cpp:78
+        rq = <optimized out>
+#6  0x00007ffff7f47de5 in ACE_Task_Base::svc_run(void*) () from /lib/x86_64-linux-gnu/libACE-6.5.12.so
+No symbol table info available.
+#7  0x00007ffff7f48bfd in ACE_Thread_Adapter::invoke() () from /lib/x86_64-linux-gnu/libACE-6.5.12.so
+No symbol table info available.
+#8  0x00007ffff6e89ea7 in start_thread (arg=<optimized out>) at pthread_create.c:477
+        ret = <optimized out>
+        pd = <optimized out>
+        unwind_buf = {cancel_jmp_buf = {{jmp_buf = {140736481720064, -2831991111329809726, 140737488347326, 140737488347327, 140736481718208, 8396800, 2831982315744230082, 2832010757594774210}, mask_was_saved = 0}}, priv = {pad = {0x0, 0x0, 0x0, 0x0}, data = {prev = 0x0, cleanup = 0x0, canceltype = 0}}}
+        not_first_call = 0
+#9  0x00007ffff6db7def in clone () at ../sysdeps/unix/sysv/linux/x86_64/clone.S:95
+No locals.
+
+Thread 8 (Thread 0x7fffc8ad4700 (LWP 1614023) "core_dev"):
+#0  futex_wait_cancelable (private=0, expected=0, futex_word=0x7fffcb415db0) at ../sysdeps/nptl/futex-internal.h:186
+        __ret = -512
+        oldtype = 0
+        err = <optimized out>
+        oldtype = <optimized out>
+        err = <optimized out>
+        __ret = <optimized out>
+        resultvar = <optimized out>
+        __arg4 = <optimized out>
+        __arg3 = <optimized out>
+        __arg2 = <optimized out>
+        __arg1 = <optimized out>
+        _a4 = <optimized out>
+        _a3 = <optimized out>
+        _a2 = <optimized out>
+        _a1 = <optimized out>
+#1  __pthread_cond_wait_common (abstime=0x0, clockid=0, mutex=0x7fffcb415d50, cond=0x7fffcb415d88) at pthread_cond_wait.c:508
+        spin = 0
+        buffer = {__routine = 0x7ffff6e90540 <__condvar_cleanup_waiting>, __arg = 0x7fffc8ad3db0, __canceltype = -884020656, __prev = 0x0}
+        cbuffer = {wseq = 23644, cond = 0x7fffcb415d88, mutex = 0x7fffcb415d50, private = 0}
+        err = <optimized out>
+        g = 3366796688
+        flags = <optimized out>
+        g1_start = <optimized out>
+        maxspin = 0
+        signals = <optimized out>
+        result = 0
+        wseq = 23644
+        seq = 11822
+        private = 0
+        maxspin = <optimized out>
+        err = <optimized out>
+        result = <optimized out>
+        wseq = <optimized out>
+        g = <optimized out>
+        seq = <optimized out>
+        flags = <optimized out>
+        private = <optimized out>
+        signals = <optimized out>
+        done = <optimized out>
+        g1_start = <optimized out>
+        spin = <optimized out>
+        buffer = {__routine = <optimized out>, __arg = <optimized out>, __canceltype = <optimized out>, __prev = <optimized out>}
+        cbuffer = {wseq = <optimized out>, cond = <optimized out>, mutex = <optimized out>, private = <optimized out>}
+        s = <optimized out>
+#2  __pthread_cond_wait (cond=0x7fffcb415d88, mutex=0x7fffcb415d50) at pthread_cond_wait.c:638
+No locals.
+#3  0x00007ffff7ed143d in ACE_Condition<ACE_Thread_Mutex>::wait(ACE_Thread_Mutex&, ACE_Time_Value const*) () from /lib/x86_64-linux-gnu/libACE-6.5.12.so
+No symbol table info available.
+#4  0x00007ffff7eb3f92 in ACE_Activation_Queue::dequeue(ACE_Time_Value*) () from /lib/x86_64-linux-gnu/libACE-6.5.12.so
+No symbol table info available.
+#5  0x0000555555ccae05 in DelayExecutor::svc (this=0x7fffcb4eea80) at /server/src/dsc_live/src/shared/DelayExecutor.cpp:78
+        rq = <optimized out>
+#6  0x00007ffff7f47de5 in ACE_Task_Base::svc_run(void*) () from /lib/x86_64-linux-gnu/libACE-6.5.12.so
+No symbol table info available.
+#7  0x00007ffff7f48bfd in ACE_Thread_Adapter::invoke() () from /lib/x86_64-linux-gnu/libACE-6.5.12.so
+No symbol table info available.
+#8  0x00007ffff6e89ea7 in start_thread (arg=<optimized out>) at pthread_create.c:477
+        ret = <optimized out>
+        pd = <optimized out>
+        unwind_buf = {cancel_jmp_buf = {{jmp_buf = {140736560187136, -2831991111329809726, 140737488347326, 140737488347327, 140736560185280, 8396800, 2831970647928699586, 2832010757594774210}, mask_was_saved = 0}}, priv = {pad = {0x0, 0x0, 0x0, 0x0}, data = {prev = 0x0, cleanup = 0x0, canceltype = 0}}}
+        not_first_call = 0
+#9  0x00007ffff6db7def in clone () at ../sysdeps/unix/sysv/linux/x86_64/clone.S:95
+No locals.
+
+Thread 7 (Thread 0x7fffc92d5700 (LWP 1614022) "core_dev"):
+#0  futex_wait_cancelable (private=0, expected=0, futex_word=0x7fffcb415db4) at ../sysdeps/nptl/futex-internal.h:186
+        __ret = -512
+        oldtype = 0
+        err = <optimized out>
+        oldtype = <optimized out>
+        err = <optimized out>
+        __ret = <optimized out>
+        resultvar = <optimized out>
+        __arg4 = <optimized out>
+        __arg3 = <optimized out>
+        __arg2 = <optimized out>
+        __arg1 = <optimized out>
+        _a4 = <optimized out>
+        _a3 = <optimized out>
+        _a2 = <optimized out>
+        _a1 = <optimized out>
+#1  __pthread_cond_wait_common (abstime=0x0, clockid=0, mutex=0x7fffcb415d50, cond=0x7fffcb415d88) at pthread_cond_wait.c:508
+        spin = 0
+        buffer = {__routine = 0x7ffff6e90540 <__condvar_cleanup_waiting>, __arg = 0x7fffc92d4db0, __canceltype = -884020656, __prev = 0x0}
+        cbuffer = {wseq = 23637, cond = 0x7fffcb415d88, mutex = 0x7fffcb415d50, private = 0}
+        err = <optimized out>
+        g = 3375189392
+        flags = <optimized out>
+        g1_start = <optimized out>
+        maxspin = 0
+        signals = <optimized out>
+        result = 0
+        wseq = 23637
+        seq = 11818
+        private = 0
+        maxspin = <optimized out>
+        err = <optimized out>
+        result = <optimized out>
+        wseq = <optimized out>
+        g = <optimized out>
+        seq = <optimized out>
+        flags = <optimized out>
+        private = <optimized out>
+        signals = <optimized out>
+        done = <optimized out>
+        g1_start = <optimized out>
+        spin = <optimized out>
+        buffer = {__routine = <optimized out>, __arg = <optimized out>, __canceltype = <optimized out>, __prev = <optimized out>}
+        cbuffer = {wseq = <optimized out>, cond = <optimized out>, mutex = <optimized out>, private = <optimized out>}
+        s = <optimized out>
+#2  __pthread_cond_wait (cond=0x7fffcb415d88, mutex=0x7fffcb415d50) at pthread_cond_wait.c:638
+No locals.
+#3  0x00007ffff7ed143d in ACE_Condition<ACE_Thread_Mutex>::wait(ACE_Thread_Mutex&, ACE_Time_Value const*) () from /lib/x86_64-linux-gnu/libACE-6.5.12.so
+No symbol table info available.
+#4  0x00007ffff7eb3f92 in ACE_Activation_Queue::dequeue(ACE_Time_Value*) () from /lib/x86_64-linux-gnu/libACE-6.5.12.so
+No symbol table info available.
+#5  0x0000555555ccae05 in DelayExecutor::svc (this=0x7fffcb4eea80) at /server/src/dsc_live/src/shared/DelayExecutor.cpp:78
+        rq = <optimized out>
+#6  0x00007ffff7f47de5 in ACE_Task_Base::svc_run(void*) () from /lib/x86_64-linux-gnu/libACE-6.5.12.so
+No symbol table info available.
+#7  0x00007ffff7f48bfd in ACE_Thread_Adapter::invoke() () from /lib/x86_64-linux-gnu/libACE-6.5.12.so
+No symbol table info available.
+#8  0x00007ffff6e89ea7 in start_thread (arg=<optimized out>) at pthread_create.c:477
+        ret = <optimized out>
+        pd = <optimized out>
+        unwind_buf = {cancel_jmp_buf = {{jmp_buf = {140736568579840, -2831991111329809726, 140737488347326, 140737488347327, 140736568577984, 8396800, 2831969545732717250, 2832010757594774210}, mask_was_saved = 0}}, priv = {pad = {0x0, 0x0, 0x0, 0x0}, data = {prev = 0x0, cleanup = 0x0, canceltype = 0}}}
+        not_first_call = 0
+#9  0x00007ffff6db7def in clone () at ../sysdeps/unix/sysv/linux/x86_64/clone.S:95
+No locals.
+
+Thread 6 (Thread 0x7fffc9ad6700 (LWP 1614021) "core_dev"):
+#0  futex_wait_cancelable (private=0, expected=0, futex_word=0x7fffcb415db0) at ../sysdeps/nptl/futex-internal.h:186
+        __ret = -512
+        oldtype = 0
+        err = <optimized out>
+        oldtype = <optimized out>
+        err = <optimized out>
+        __ret = <optimized out>
+        resultvar = <optimized out>
+        __arg4 = <optimized out>
+        __arg3 = <optimized out>
+        __arg2 = <optimized out>
+        __arg1 = <optimized out>
+        _a4 = <optimized out>
+        _a3 = <optimized out>
+        _a2 = <optimized out>
+        _a1 = <optimized out>
+#1  __pthread_cond_wait_common (abstime=0x0, clockid=0, mutex=0x7fffcb415d50, cond=0x7fffcb415d88) at pthread_cond_wait.c:508
+        spin = 0
+        buffer = {__routine = 0x7ffff6e90540 <__condvar_cleanup_waiting>, __arg = 0x7fffc9ad5db0, __canceltype = -884020656, __prev = 0x0}
+        cbuffer = {wseq = 23650, cond = 0x7fffcb415d88, mutex = 0x7fffcb415d50, private = 0}
+        err = <optimized out>
+        g = 3383582096
+        flags = <optimized out>
+        g1_start = <optimized out>
+        maxspin = 0
+        signals = <optimized out>
+        result = 0
+        wseq = 23650
+        seq = 11825
+        private = 0
+        maxspin = <optimized out>
+        err = <optimized out>
+        result = <optimized out>
+        wseq = <optimized out>
+        g = <optimized out>
+        seq = <optimized out>
+        flags = <optimized out>
+        private = <optimized out>
+        signals = <optimized out>
+        done = <optimized out>
+        g1_start = <optimized out>
+        spin = <optimized out>
+        buffer = {__routine = <optimized out>, __arg = <optimized out>, __canceltype = <optimized out>, __prev = <optimized out>}
+        cbuffer = {wseq = <optimized out>, cond = <optimized out>, mutex = <optimized out>, private = <optimized out>}
+        s = <optimized out>
+#2  __pthread_cond_wait (cond=0x7fffcb415d88, mutex=0x7fffcb415d50) at pthread_cond_wait.c:638
+No locals.
+#3  0x00007ffff7ed143d in ACE_Condition<ACE_Thread_Mutex>::wait(ACE_Thread_Mutex&, ACE_Time_Value const*) () from /lib/x86_64-linux-gnu/libACE-6.5.12.so
+No symbol table info available.
+#4  0x00007ffff7eb3f92 in ACE_Activation_Queue::dequeue(ACE_Time_Value*) () from /lib/x86_64-linux-gnu/libACE-6.5.12.so
+No symbol table info available.
+#5  0x0000555555ccae05 in DelayExecutor::svc (this=0x7fffcb4eea80) at /server/src/dsc_live/src/shared/DelayExecutor.cpp:78
+        rq = <optimized out>
+#6  0x00007ffff7f47de5 in ACE_Task_Base::svc_run(void*) () from /lib/x86_64-linux-gnu/libACE-6.5.12.so
+No symbol table info available.
+#7  0x00007ffff7f48bfd in ACE_Thread_Adapter::invoke() () from /lib/x86_64-linux-gnu/libACE-6.5.12.so
+No symbol table info available.
+#8  0x00007ffff6e89ea7 in start_thread (arg=<optimized out>) at pthread_create.c:477
+        ret = <optimized out>
+        pd = <optimized out>
+        unwind_buf = {cancel_jmp_buf = {{jmp_buf = {140736576972544, -2831991111329809726, 140737488347326, 140737488347327, 140736576970688, 8396800, 2831968445684218562, 2832010757594774210}, mask_was_saved = 0}}, priv = {pad = {0x0, 0x0, 0x0, 0x0}, data = {prev = 0x0, cleanup = 0x0, canceltype = 0}}}
+        not_first_call = 0
+#9  0x00007ffff6db7def in clone () at ../sysdeps/unix/sysv/linux/x86_64/clone.S:95
+No locals.
+
+Thread 5 (Thread 0x7ffff53b1700 (LWP 1613579) "core_dev"):
+#0  0x00007ffff6d7fc61 in __GI___clock_nanosleep (clock_id=clock_id@entry=0, flags=flags@entry=0, req=req@entry=0x7ffff53b0e60, rem=rem@entry=0x0) at ../sysdeps/unix/sysv/linux/clock_nanosleep.c:48
+        sc_cancel_oldtype = 0
+        sc_ret = <optimized out>
+        r = <optimized out>
+#1  0x00007ffff6d85443 in __GI___nanosleep (requested_time=requested_time@entry=0x7ffff53b0e60, remaining=remaining@entry=0x0) at nanosleep.c:27
+        ret = <optimized out>
+#2  0x0000555555ccfd68 in ACE_OS::sleep (tv=...) at /usr/include/ace/OS_NS_unistd.inl:1007
+        rqtp = {tv_sec = 0, tv_nsec = 10000000}
+#3  ACE_Based::Thread::Sleep (msecs=msecs@entry=10) at /server/src/dsc_live/src/shared/Threading.cpp:234
+No locals.
+#4  0x0000555555cc6bbb in SqlDelayThread::run (this=0x7ffff6973dc0) at /server/src/dsc_live/src/shared/Database/SqlDelayThread.cpp:54
+        loopSleepms = 10
+        pingEveryLoop = 3000
+        lastPing = 303144
+        loopCounter = <optimized out>
+#5  0x0000555555ccf7da in ACE_Based::Thread::ThreadTask (param=0x7ffff6973dc0) at /server/src/dsc_live/src/shared/Threading.cpp:186
+        _task = 0x7ffff6973dc0
+#6  0x00007ffff6e89ea7 in start_thread (arg=<optimized out>) at pthread_create.c:477
+        ret = <optimized out>
+        pd = <optimized out>
+        unwind_buf = {cancel_jmp_buf = {{jmp_buf = {140737307678464, -2831991111329809726, 140737488347790, 140737488347791, 140737307676608, 8396800, 2832013614244657858, 2832010757594774210}, mask_was_saved = 0}}, priv = {pad = {0x0, 0x0, 0x0, 0x0}, data = {prev = 0x0, cleanup = 0x0, canceltype = 0}}}
+        not_first_call = 0
+#7  0x00007ffff6db7def in clone () at ../sysdeps/unix/sysv/linux/x86_64/clone.S:95
+No locals.
+
+Thread 4 (Thread 0x7ffff5bb2700 (LWP 1613574) "core_dev"):
+#0  0x00007ffff6d7fc61 in __GI___clock_nanosleep (clock_id=clock_id@entry=0, flags=flags@entry=0, req=req@entry=0x7ffff5bb1e60, rem=rem@entry=0x0) at ../sysdeps/unix/sysv/linux/clock_nanosleep.c:48
+        sc_cancel_oldtype = 0
+        sc_ret = <optimized out>
+        r = <optimized out>
+#1  0x00007ffff6d85443 in __GI___nanosleep (requested_time=requested_time@entry=0x7ffff5bb1e60, remaining=remaining@entry=0x0) at nanosleep.c:27
+        ret = <optimized out>
+#2  0x0000555555ccfd68 in ACE_OS::sleep (tv=...) at /usr/include/ace/OS_NS_unistd.inl:1007
+        rqtp = {tv_sec = 0, tv_nsec = 10000000}
+#3  ACE_Based::Thread::Sleep (msecs=msecs@entry=10) at /server/src/dsc_live/src/shared/Threading.cpp:234
+No locals.
+#4  0x0000555555cc6b98 in SqlDelayThread::run (this=0x7ffff6973e80) at /server/src/dsc_live/src/shared/Database/SqlDelayThread.cpp:54
+        loopSleepms = 10
+        pingEveryLoop = 3000
+        lastPing = 303144
+        loopCounter = <optimized out>
+#5  0x0000555555ccf7da in ACE_Based::Thread::ThreadTask (param=0x7ffff6973e80) at /server/src/dsc_live/src/shared/Threading.cpp:186
+        _task = 0x7ffff6973e80
+#6  0x00007ffff6e89ea7 in start_thread (arg=<optimized out>) at pthread_create.c:477
+        ret = <optimized out>
+        pd = <optimized out>
+        unwind_buf = {cancel_jmp_buf = {{jmp_buf = {140737316071168, -2831991111329809726, 140737488347790, 140737488347791, 140737316069312, 8396800, 2832012514196159170, 2832010757594774210}, mask_was_saved = 0}}, priv = {pad = {0x0, 0x0, 0x0, 0x0}, data = {prev = 0x0, cleanup = 0x0, canceltype = 0}}}
+        not_first_call = 0
+#7  0x00007ffff6db7def in clone () at ../sysdeps/unix/sysv/linux/x86_64/clone.S:95
+No locals.
+
+Thread 3 (Thread 0x7ffff63c7700 (LWP 1613573) "core_dev"):
+#0  0x00007ffff6d7fc61 in __GI___clock_nanosleep (clock_id=clock_id@entry=0, flags=flags@entry=0, req=req@entry=0x7ffff63c6e60, rem=rem@entry=0x0) at ../sysdeps/unix/sysv/linux/clock_nanosleep.c:48
+        sc_cancel_oldtype = 0
+        sc_ret = <optimized out>
+        r = <optimized out>
+#1  0x00007ffff6d85443 in __GI___nanosleep (requested_time=requested_time@entry=0x7ffff63c6e60, remaining=remaining@entry=0x0) at nanosleep.c:27
+        ret = <optimized out>
+#2  0x0000555555ccfd68 in ACE_OS::sleep (tv=...) at /usr/include/ace/OS_NS_unistd.inl:1007
+        rqtp = {tv_sec = 0, tv_nsec = 10000000}
+#3  ACE_Based::Thread::Sleep (msecs=msecs@entry=10) at /server/src/dsc_live/src/shared/Threading.cpp:234
+No locals.
+#4  0x0000555555cc6b98 in SqlDelayThread::run (this=0x7ffff6973f40) at /server/src/dsc_live/src/shared/Database/SqlDelayThread.cpp:54
+        loopSleepms = 10
+        pingEveryLoop = 3000
+        lastPing = 303144
+        loopCounter = <optimized out>
+#5  0x0000555555ccf7da in ACE_Based::Thread::ThreadTask (param=0x7ffff6973f40) at /server/src/dsc_live/src/shared/Threading.cpp:186
+        _task = 0x7ffff6973f40
+#6  0x00007ffff6e89ea7 in start_thread (arg=<optimized out>) at pthread_create.c:477
+        ret = <optimized out>
+        pd = <optimized out>
+        unwind_buf = {cancel_jmp_buf = {{jmp_buf = {140737324545792, -2831991111329809726, 140737488347790, 140737488347791, 140737324543936, 93825002698256, 2832011474277202626, 2832010757594774210}, mask_was_saved = 0}}, priv = {pad = {0x0, 0x0, 0x0, 0x0}, data = {prev = 0x0, cleanup = 0x0, canceltype = 0}}}
+        not_first_call = 0
+#7  0x00007ffff6db7def in clone () at ../sysdeps/unix/sysv/linux/x86_64/clone.S:95
+No locals.
+
+Thread 1 (Thread 0x7ffff6a1eb80 (LWP 1613568) "core_dev"):
+#0  __pthread_clockjoin_ex (threadid=140735877740288, thread_return=0x0, clockid=<optimized out>, abstime=<optimized out>, block=<optimized out>) at pthread_join_common.c:145
+        __oldtype = 0
+        __err = <optimized out>
+        tid = 1614032
+        _buffer = {__routine = 0x7ffff6e8b250 <cleanup>, __arg = 0x7fff9ffffd28, __canceltype = 0, __prev = 0x0}
+        pd = 0x7fff9ffff700
+        self = <optimized out>
+        result = 0
+        pd_result = <optimized out>
+#1  0x00007ffff7f4d0ca in ACE_Thread_Manager::wait_task(ACE_Task_Base*) () from /lib/x86_64-linux-gnu/libACE-6.5.12.so
+No symbol table info available.
+#2  0x0000555555b3a394 in ReactorRunnable::Wait (this=<optimized out>) at /server/src/dsc_live/src/game/WorldSocketMgr.cpp:105
+No locals.
+#3  WorldSocketMgr::Wait (this=0x7fffcb410e28) at /server/src/dsc_live/src/game/WorldSocketMgr.cpp:314
+        i = 0
+        num_threads = 2
+#4  0x00005555556ca043 in Master::Run (this=0x7ffff69b3e18) at /server/src/dsc_live/src/hellgroundcore/Master.cpp:277
+        pidfile = ""
+        action = {__sigaction_handler = {sa_handler = 0x5555556c9250 <Master::_OnSignal(int)>, sa_sigaction = 0x5555556c9250 <Master::_OnSignal(int)>}, sa_mask = {__val = {0 <repeats 16 times>}}, sa_flags = 0, sa_restorer = 0x7fffffffe650}
+        world_thread = {m_iThreadId = 140736439756544, m_hThreadHandle = 140736439756544, m_task = 0x7fffcc4f5400, static m_ThreadStorage = {<ACE_Copy_Disabled> = {<No data fields>}, _vptr.ACE_TSS = 0x555555efdcf8 <vtable for ACE_TSS<ACE_Based::Thread>+16>, keylock_ = {lock_ = {__data = {__lock = 0, __count = 0, __owner = 0, __nusers = 0, __kind = 0, __spins = 0, __elision = 0, __list = {__prev = 0x0, __next = 0x0}}, __size = '\000' <repeats 39 times>, __align = 0}, removed_ = false}, once_ = false, key_ = 0}, static m_TpEnum = {m_priority = {0, 0, 0, 0, 0, 0, 0}}}
+        realCurrTime = <optimized out>
+        realPrevTime = <optimized out>
+        freeze_thread = 0x0
+        freeze_delay = 0
+        wsport = 8087
+        bind_ip = "0.0.0.0"
+#5  0x00005555556be0b4 in main (argc=<optimized out>, argv=0x7fffffffe928) at /server/src/dsc_live/src/hellgroundcore/Main.cpp:239
+        cfg_file = <optimized out>
+        options = 0x555555d9b6eb ":a:c:s:p:i:"
+        process = <optimized out>
+        process_id = <optimized out>
+        cmd_opts = {argc_ = 3, argv_ = 0x7fffffffe928, optind = 3, opterr = 0, optarg = 0x0, optstring_ = 0x7ffff69af5b0, long_only_ = 0, has_colon_ = 1, last_option_ = 0x7ffff69af580, nextchar_ = 0x0, optopt_ = 99, ordering_ = 2, nonopt_start_ = 3, nonopt_end_ = 3, long_option_ = 0x0, long_opts_ = {<ACE_Array_Base<ACE_Get_Opt::ACE_Get_Opt_Long_Option*>> = {max_size_ = 1, cur_size_ = 1, array_ = 0x7ffff69a3ff0, allocator_ = 0x7ffff7fbb758}, <No data fields>}}
+        serviceDaemonMode = <optimized out>
+        option = <optimized out>
+        vmapProcesses = 4
+        vmapCluster = false
+        confVersion = <optimized out>

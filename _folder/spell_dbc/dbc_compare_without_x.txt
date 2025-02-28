@@ -1,0 +1,173 @@
+n   uint32    Id;                                            
+i   uint32    Category;
+i   uint32    Dispel;                                      
+i   uint32    Mechanic;                                    
+i   uint32    Attributes;                                  
+i   uint32    AttributesEx;                                
+i   uint32    AttributesEx2;                               
+i   uint32    AttributesEx3;                               
+i   uint32    AttributesEx4;                               
+i   uint32    AttributesEx5;                               
+i   uint32    AttributesEx6;                               
+i   uint32    Stances;                                     
+i   uint32    StancesNot;                                  
+i   uint32    Targets;                                     
+i   uint32    TargetCreatureType;                          
+i   uint32    RequiresSpellFocus;                          
+i   uint32    FacingCasterFlags;                           
+i   uint32    CasterAuraState;                              
+i   uint32    TargetAuraState;                             
+i   uint32    CasterAuraStateNot;                          
+i   uint32    TargetAuraStateNot;                          
+i   uint32    CastingTimeIndex;                            
+i   uint32    RecoveryTime;                                
+i   uint32    CategoryRecoveryTime;                        
+i   uint32    InterruptFlags;                              
+i   uint32    AuraInterruptFlags;                          
+i   uint32    ChannelInterruptFlags;                       
+i   uint32    procFlags;                                   
+i   uint32    procChance;                                  
+i   uint32    procCharges;                                 
+i   uint32    maxLevel;                                    
+i   uint32    baseLevel;                                   
+i   uint32    spellLevel;                                  
+i   uint32    DurationIndex;                               
+i   uint32    powerType;                                   
+i   uint32    manaCost;                                    
+i   uint32    manaCostPerlevel;                            
+i   uint32    manaPerSecond;                               
+i   uint32    manaPerSecondPerLevel;                       
+i   uint32    rangeIndex;                                  
+f   float     speed;                                          
+i   uint32    StackAmount;                                 
+i   uint32    Totem[2];                                  
+i           
+i   int32     Reagent[8];                                
+i      
+i      
+i      
+i      
+i      
+i      
+i        
+i   uint32    ReagentCount[8];                           
+i      
+i      
+i      
+i      
+i      
+i      
+i        
+i    int32     EquippedItemClass;                          
+i    int32     EquippedItemSubClassMask;                   
+i    int32     EquippedItemInventoryTypeMask;              
+i    uint32    Effect[3];                                
+i              
+i                
+i    int32     EffectDieSides[3];                        
+i             
+i               
+i    uint32    EffectBaseDice[3];                        
+i          
+i            
+f    float     EffectDicePerLevel[3];                      
+f               
+f               
+f    float     EffectRealPointsPerLevel[3];                
+f         
+f         
+i    int32     EffectBasePoints[3];                        
+i           
+i           
+i    uint32    EffectMechanic[3];                          
+i               
+i               
+i    uint32    EffectImplicitTargetA[3];                   
+i              
+i              
+i    uint32    EffectImplicitTargetB[3];                  
+i                
+i                
+i    uint32    EffectRadiusIndex[3];                      
+i               
+i               
+i    uint32    EffectApplyAuraName[3];                    
+i              
+i              
+i    uint32    EffectAmplitude[3];                        
+i                
+i                
+f    float     EffectMultipleValue[3];                   
+f              
+f             
+i    uint32    EffectChainTarget[3];                   
+i             
+i             
+i    uint32    EffectItemType[3];                    
+i       
+i      
+i    int32     EffectMiscValue[3];                  
+i     
+i     
+i    int32     EffectMiscValueB[3];                
+i        
+i        
+i    uint32    EffectTriggerSpell[3];              
+i      
+i      
+f    float     EffectPointsPerComboPoint[3];     
+f             
+f             
+i    uint32    SpellVisual;                                 
+i    uint32    SpellIconID;                      
+i    uint32    activeIconID;                       
+s    char*     SpellName[16];            
+s              
+s              
+s              
+s              
+s              
+s             
+s             
+s             
+s             
+s             
+s             
+s             
+s             
+s       
+s                     
+s    char*     Rank[16];     
+s     
+s     
+s     
+s     
+s     
+s     
+s     
+s     
+s     
+s     
+s     
+s     
+s     
+s    
+s    
+i     uint32    ToolTipFlags;
+i     uint32    ManaCostPercentage;     
+i     uint32    StartRecoveryCategory;  
+i     uint32    StartRecoveryTime;      
+i     uint32    MaxTargetLevel;         
+i     uint32    SpellFamilyName;        
+L     uint64    SpellFamilyFlags;      
+i     uint32    MaxAffectedTargets;     
+i     uint32    DmgClass;               
+i     uint32    PreventionType;                  
+f     float     DmgMultiplier[3];  
+f                    
+f     
+i     uint32    AttributesCu;          
+i      uint32    TotemCategory[2]; 
+i      
+i      uint32    AreaId;           
+i      uint32    SchoolMask;

@@ -1,0 +1,27 @@
+F1 - definition (implementation)
+F2 - references (declaration or usages)
+F3 - 
+F4 - DEBUG RESTART
+
+F5 - START/CONTINUE
+F6 - step out
+F7 - step into
+F8 - step over
+
+F9 - toggle brakepoint
+
+ALT+A - MOVE BACKWARD
+ALT+D - MOVE FORWARD
+
+ALT+Q - prevoius bookmark
+ALT+W - toggle bookmark
+ALT+E - next bookmark
+
+ALT+Z - prev error
+ALT+X - error list
+ALT+C - next error
+
+--------
+PYCHARM DEFAULTS
+F2 - next warning
+F3 - fast search

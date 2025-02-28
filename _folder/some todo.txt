@@ -1,0 +1,2 @@
+https://github.com/The-Cataclysm-Preservation-Project/TrinityCore/commit/4430863a1e9a787a3a702b58adaf4c7bb639fa29
+- spellqueue from cata, can it be used?

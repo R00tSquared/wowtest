@@ -1,0 +1,1135 @@
+.go seth
+.go xyz -62.69 94.724 0.01300
+
+there's a creature 2380142 moving by path, so we guess this is a problem?
+just remove it
+
+update creature set movementtype=0 where guid in (2380146,2380145,2380144,2380143,2380142,2380128);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Thread 13 "core_live" received signal SIGSEGV, Segmentation fault.
+[Switching to Thread 0x7fffbaffd700 (LWP 2567675)]
+0x0000555555d9894f in dtNavMeshQuery::getPortalPoints (this=<optimized out>, from=76561200107750467, fromPoly=0x7fff15372fa8, fromTile=<optimized out>, to=9007199254742112, toPoly=0x7ffdd5ca500c, toTile=0x7ffe5af6b3c0, left=0x7fffbaffc688, right=0x7fffbaffc694) at /server/src/dsc_live/dep/recastnavigation/Detour/Source/DetourNavMeshQuery.cpp:1574
+1574				if (toTile->links[i].ref == from)
+
+------------- CRASHLOG BEGIN -------------
+	Using the running image of child Thread 0x7fffbaffd700 (LWP 2567675).
+Program stopped at 0x555555d9894f.
+It stopped with signal SIGSEGV, Segmentation fault.
+
+------------- BACKTRACE -------------
+#0  0x0000555555d9894f in dtNavMeshQuery::getPortalPoints (this=<optimized out>, from=76561200107750467, fromPoly=0x7fff15372fa8, fromTile=<optimized out>, to=9007199254742112, toPoly=0x7ffdd5ca500c, toTile=0x7ffe5af6b3c0, left=0x7fffbaffc688, right=0x7fffbaffc694) at /server/src/dsc_live/dep/recastnavigation/Detour/Source/DetourNavMeshQuery.cpp:1574
+#1  0x0000555555d9a9e0 in dtNavMeshQuery::getEdgeMidPoint (mid=0x7ffec97d4d80, toTile=<optimized out>, toPoly=<optimized out>, to=9007199254742112, fromTile=<optimized out>, fromPoly=<optimized out>, from=76561200107750467, this=0x7ffe27e275f0) at /server/src/dsc_live/dep/recastnavigation/Detour/Source/DetourNavMeshQuery.cpp:1631
+#2  dtNavMeshQuery::findPath (this=0x7ffe27e275f0, startRef=startRef@entry=76561200107750467, endRef=endRef@entry=76561200107750614, startPos=startPos@entry=0x7fffbaffc72c, endPos=endPos@entry=0x7fffbaffc738, filter=filter@entry=0x7fffbaffcb18, path=<optimized out>, pathCount=<optimized out>, maxPath=<optimized out>) at /server/src/dsc_live/dep/recastnavigation/Detour/Source/DetourNavMeshQuery.cpp:660
+#3  0x0000555555b4db15 in PathFinder::BuildPolyPath (this=this@entry=0x7fffbaffc860, startPos=..., endPos=...) at /server/src/dsc_live/src/game/movemap/PathFinder.cpp:364
+#4  0x0000555555b4e76a in PathFinder::calculate (this=this@entry=0x7fffbaffc860, destX=destX@entry=-62.6980019, destY=destY@entry=94.7249985, destZ=destZ@entry=0.0130000003, forceDestForIncomplete=forceDestForIncomplete@entry=false) at /server/src/dsc_live/src/game/movemap/PathFinder.cpp:112
+#5  0x0000555555b0ced1 in Movement::MoveSplineInit::MoveTo (forceDestination=false, generatePath=true, dest=<synthetic pointer>..., this=0x7fffbaffc820) at /server/src/dsc_live/src/game/movement/MoveSplineInit.h:117
+#6  Movement::MoveSplineInit::MoveTo (forceDestination=false, generatePath=true, z=0.0130000003, y=94.7249985, x=-62.6980019, this=0x7fffbaffc820) at /server/src/dsc_live/src/game/movement/MoveSplineInit.h:109
+#7  WaypointMovementGenerator<Creature>::tryToMove (this=<optimized out>, creature=...) at /server/src/dsc_live/src/game/WaypointMovementGenerator.cpp:175
+#8  0x0000555555a83289 in ActionInfo::Update (diff=<optimized out>, mgr=0x7ffdd7ccf6b0, this=0x7ffe72839220) at /server/src/dsc_live/src/game/StateMgr.cpp:652
+#9  UnitStateMgr::Update (this=this@entry=0x7ffdd7ccf6b0, diff=diff@entry=100) at /server/src/dsc_live/src/game/StateMgr.cpp:403
+#10 0x0000555555addc0f in Unit::Update (p_time=100, update_diff=100, this=0x7ffdd7ccf040) at /server/src/dsc_live/src/game/Unit.cpp:478
+#11 0x0000555555c1213a in Creature::Update (this=this@entry=0x7ffdd7ccf040, update_diff=100, diff=diff@entry=100) at /server/src/dsc_live/src/game/Creature.cpp:575
+#12 0x000055555583eff4 in WorldObject::UpdateHelper::Update (time_diff=100, this=<synthetic pointer>) at /server/src/dsc_live/src/game/Object.h:390
+#13 Hellground::ObjectUpdater::Visit (m=..., this=0x7fffbaffcd50) at /server/src/dsc_live/src/game/GridNotifiersImpl.h:152
+#14 VisitorHelper<Hellground::ObjectUpdater, Creature> (c=..., v=...) at /server/src/dsc_live/src/framework/GameSystem/TypeContainerVisitor.h:49
+#15 VisitorHelper<Hellground::ObjectUpdater, Creature, TypeList<DynamicObject, TypeList<Corpse, TypeNull> > > (c=..., v=...) at /server/src/dsc_live/src/framework/GameSystem/TypeContainerVisitor.h:55
+#16 VisitorHelper<Hellground::ObjectUpdater, GameObject, TypeList<Creature, TypeList<DynamicObject, TypeList<Corpse, TypeNull> > > > (c=..., v=...) at /server/src/dsc_live/src/framework/GameSystem/TypeContainerVisitor.h:56
+#17 VisitorHelper<Hellground::ObjectUpdater, TypeList<GameObject, TypeList<Creature, TypeList<DynamicObject, TypeList<Corpse, TypeNull> > > > > (c=..., v=...) at /server/src/dsc_live/src/framework/GameSystem/TypeContainerVisitor.h:62
+#18 TypeContainerVisitor<Hellground::ObjectUpdater, TypeMapContainer<TypeList<GameObject, TypeList<Creature, TypeList<DynamicObject, TypeList<Corpse, TypeNull> > > > > >::Visit (c=..., this=<synthetic pointer>) at /server/src/dsc_live/src/framework/GameSystem/TypeContainerVisitor.h:73
+#19 Grid<Player, TypeList<Player, TypeList<Creature, TypeList<Corpse, TypeList<Camera, TypeNull> > > >, TypeList<GameObject, TypeList<Creature, TypeList<DynamicObject, TypeList<Corpse, TypeNull> > > > >::Visit<Hellground::ObjectUpdater> (visitor=<synthetic pointer>..., this=0x7ffe59def238) at /server/src/dsc_live/src/framework/GameSystem/Grid.h:92
+#20 NGrid<16u, Player, TypeList<Player, TypeList<Creature, TypeList<Corpse, TypeList<Camera, TypeNull> > > >, TypeList<GameObject, TypeList<Creature, TypeList<DynamicObject, TypeList<Corpse, TypeNull> > > > >::Visit<Hellground::ObjectUpdater, TypeList<GameObject, TypeList<Creature, TypeList<DynamicObject, TypeList<Corpse, TypeNull> > > > > (visitor=<synthetic pointer>..., y=<synthetic pointer>: 2, x=<synthetic pointer>: <optimized out>, this=<optimized out>) at /server/src/dsc_live/src/framework/GameSystem/NGrid.h:147
+#21 Map::Visit<Hellground::ObjectUpdater, TypeMapContainer<TypeList<GameObject, TypeList<Creature, TypeList<DynamicObject, TypeList<Corpse, TypeNull> > > > > > (visitor=<synthetic pointer>..., cell=..., this=0x7ffe1e37c4c0) at /server/src/dsc_live/src/game/Map.h:482
+#22 Map::Update (this=0x7ffe1e37c4c0, t_diff=<optimized out>) at /server/src/dsc_live/src/game/Map.cpp:574
+#23 0x0000555555840271 in InstanceMap::Update (this=0x7ffe1e37c4c0, t_diff=@0x7ffe45ca06c0: 100) at /server/src/dsc_live/src/game/Map.cpp:2837
+#24 0x0000555555853886 in MapUpdateRequest::call (this=0x7ffe45ca06a0) at /server/src/dsc_live/src/game/MapUpdater.cpp:76
+#25 0x0000555555ccf141 in DelayExecutor::svc (this=0x7fffcbf93c00) at /server/src/dsc_live/src/shared/DelayExecutor.cpp:83
+#26 0x00007ffff7f47de5 in ACE_Task_Base::svc_run(void*) () from /lib/x86_64-linux-gnu/libACE-6.5.12.so
+#27 0x00007ffff7f48bfd in ACE_Thread_Adapter::invoke() () from /lib/x86_64-linux-gnu/libACE-6.5.12.so
+#28 0x00007ffff6e89ea7 in start_thread (arg=<optimized out>) at pthread_create.c:477
+#29 0x00007ffff6db7def in clone () at ../sysdeps/unix/sysv/linux/x86_64/clone.S:95
+
+------------- BACKTRACE FULL -------------
+#0  0x0000555555d9894f in dtNavMeshQuery::getPortalPoints (this=<optimized out>, from=76561200107750467, fromPoly=0x7fff15372fa8, fromTile=<optimized out>, to=9007199254742112, toPoly=0x7ffdd5ca500c, toTile=0x7ffe5af6b3c0, left=0x7fffbaffc688, right=0x7fffbaffc694) at /server/src/dsc_live/dep/recastnavigation/Detour/Source/DetourNavMeshQuery.cpp:1574
+        i = <optimized out>
+        link = 0x7fff1537fc98
+        v0 = <optimized out>
+        v1 = <optimized out>
+#1  0x0000555555d9a9e0 in dtNavMeshQuery::getEdgeMidPoint (mid=0x7ffec97d4d80, toTile=<optimized out>, toPoly=<optimized out>, to=9007199254742112, fromTile=<optimized out>, fromPoly=<optimized out>, from=76561200107750467, this=0x7ffe27e275f0) at /server/src/dsc_live/dep/recastnavigation/Detour/Source/DetourNavMeshQuery.cpp:1631
+        left = {86.3997803, 0.168878853, -71.4678116}
+        right = {87.9997787, 0.168878853, -70.4011459}
+        left = {<optimized out>, <optimized out>, <optimized out>}
+        right = {<optimized out>, <optimized out>, <optimized out>}
+#2  dtNavMeshQuery::findPath (this=0x7ffe27e275f0, startRef=startRef@entry=76561200107750467, endRef=endRef@entry=76561200107750614, startPos=startPos@entry=0x7fffbaffc72c, endPos=endPos@entry=0x7fffbaffc738, filter=filter@entry=0x7fffbaffcb18, path=<optimized out>, pathCount=<optimized out>, maxPath=<optimized out>) at /server/src/dsc_live/dep/recastnavigation/Detour/Source/DetourNavMeshQuery.cpp:660
+        neighbourRef = 9007199254742112
+        neighbourTile = 0x7ffe5af6b3c0
+        neighbourPoly = 0x7ffdd5ca500c
+        neighbourNode = 0x7ffec97d4d80
+        cost = <optimized out>
+        heuristic = <optimized out>
+        total = <optimized out>
+        i = <optimized out>
+        bestNode = 0x7ffec97d4cc0
+        bestRef = 140736330712704
+        bestTile = 0x7ffe5af6b4f8
+        bestPoly = 0x7fff15372fa8
+        parentRef = <optimized out>
+        parentTile = 0x0
+        parentPoly = 0x0
+        startNode = <optimized out>
+        lastBestNode = 0x7ffec97d4d00
+        lastBestNodeCost = 10.4124565
+        prev = <optimized out>
+        node = <optimized out>
+        n = <optimized out>
+#3  0x0000555555b4db15 in PathFinder::BuildPolyPath (this=this@entry=0x7fffbaffc860, startPos=..., endPos=...) at /server/src/dsc_live/src/game/movemap/PathFinder.cpp:364
+        dtResult = <optimized out>
+        distToStartPoly = 0.435031384
+        distToEndPoly = 0.639717817
+        startPoint = {90.2839966, 0.00720489025, -70.9940033}
+        endPoint = {94.7249985, 0.0130000003, -62.6980019}
+        startPoly = 76561200107750467
+        endPoly = 76561200107750614
+        farFromPoly = <optimized out>
+        startPolyFound = <optimized out>
+        endPolyFound = <optimized out>
+        pathStartIndex = <optimized out>
+        pathEndIndex = <optimized out>
+#4  0x0000555555b4e76a in PathFinder::calculate (this=this@entry=0x7fffbaffc860, destX=destX@entry=-62.6980019, destY=destY@entry=94.7249985, destZ=destZ@entry=0.0130000003, forceDestForIncomplete=forceDestForIncomplete@entry=false) at /server/src/dsc_live/src/game/movemap/PathFinder.cpp:112
+        x = <optimized out>
+        y = <optimized out>
+        z = <optimized out>
+        dest = {x = -62.6980019, y = 94.7249985, z = 0.0130000003}
+        start = {x = -70.9940033, y = 90.2839966, z = 0.00720489025}
+#5  0x0000555555b0ced1 in Movement::MoveSplineInit::MoveTo (forceDestination=false, generatePath=true, dest=<synthetic pointer>..., this=0x7fffbaffc820) at /server/src/dsc_live/src/game/movement/MoveSplineInit.h:117
+        path = {m_pathPolyRefs = {567777, 140736330713328, 140736330713448, 140735281099008, 140735281099008, 0, 93825001270412, 93824998359801, 140733907137281, 140737353058444, 5082244565000688704, 140736330713872, 140735478285952, 93824998395006, 14060085757503078400, 140737339339551, 140735478285952, 140737353135847, 0, 20621, 140736330713728, 140729226268912, 140730399309952, 140736330713736, 1, 93824995244825, 140729226268912, 93825000124921, 133143986207, 93824996031434, 140730948902976, 140730948909840, 140736330713712, 31, 502, 1, 140732192829824, 4, 31, 1, 140732192829824, 93824995330520, 31, 140737330828800, 140729226266224, 140737339340846, 93825001043793, 230932, 0, 0, 140736330713712, 140737353943145, 4503601774856141, 93824995318109, 93825002390656, 140736330714560, 140736330713680, 93825000109047, 93825002390656, 140737353943145, 828357, 140736330713872, 93825002390656, 0, 140736330713744, 93825000109047, 93825002390656, 1673964808, 828408, 0, 93825002390656, 43929, 567828, 93824998387620}, m_polyLength = 0, m_pathPoints = std::vector of length 0, capacity 0, m_type = PATHFIND_BLANK, m_useStraightPath = false, m_forceDestinationForIncomplete = false, m_pointPathLimit = 74, m_startPosition = {x = -70.9940033, y = 90.2839966, z = 0.00720489025}, m_endPosition = {x = -62.6980019, y = 94.7249985, z = 0.0130000003}, m_actualEndPosition = {x = -62.6980019, y = 94.7249985, z = 0.0130000003}, m_sourceUnit = 0x7ffdd7ccf040, m_navMesh = 0x7ffe2a022470, m_navMeshQuery = 0x7ffe27e275f0, m_filter = {m_areaCost = {1 <repeats 64 times>}, m_includeFlags = 15, m_excludeFlags = 0}, startEndDiffTerrain = false}
+        result = <optimized out>
+#6  Movement::MoveSplineInit::MoveTo (forceDestination=false, generatePath=true, z=0.0130000003, y=94.7249985, x=-62.6980019, this=0x7fffbaffc820) at /server/src/dsc_live/src/game/movement/MoveSplineInit.h:109
+        v = {x = <optimized out>, y = <optimized out>, z = <optimized out>}
+        v = {x = <optimized out>, y = <optimized out>, z = <optimized out>}
+#7  WaypointMovementGenerator<Creature>::tryToMove (this=<optimized out>, creature=...) at /server/src/dsc_live/src/game/WaypointMovementGenerator.cpp:175
+        init = {args = {path = std::vector of length 0, capacity 16, facing = {f = {x = 7.32984708e+21, y = 0, z = 1.16077539e-39}, target = 1673964808, angle = 7.32984708e+21}, flags = {done = false, falling = false, unknown3 = false, unknown4 = false, unknown5 = false, unknown6 = false, unknown7 = false, unknown8 = false, runmode = false, flying = false, no_spline = false, unknown12 = false, unknown13 = false, unknown14 = false, unknown15 = false, unknown16 = false, final_point = false, final_target = false, final_angle = false, unknown19 = false, cyclic = false, enter_cycle = false, frozen = false, unknown23 = false, unknown24 = false, unknown25 = false, unknown26 = false, unknown27 = false, unknown28 = false, unknown29 = false, unknown30 = false, unknown31 = false}, path_Idx_offset = 0, velocity = 0, splineId = 0}, unit = @0x7ffdd7ccf040}
+        node = 0x7fffcc4e3a90
+#8  0x0000555555a83289 in ActionInfo::Update (diff=<optimized out>, mgr=0x7ffdd7ccf6b0, this=0x7ffe72839220) at /server/src/dsc_live/src/game/StateMgr.cpp:652
+No locals.
+#9  UnitStateMgr::Update (this=this@entry=0x7ffdd7ccf6b0, diff=diff@entry=100) at /server/src/dsc_live/src/game/StateMgr.cpp:403
+        state = 0x7ffe72839220
+#10 0x0000555555addc0f in Unit::Update (p_time=100, update_diff=100, this=0x7ffdd7ccf040) at /server/src/dsc_live/src/game/Unit.cpp:478
+No locals.
+#11 0x0000555555c1213a in Creature::Update (this=this@entry=0x7ffdd7ccf040, update_diff=100, diff=diff@entry=100) at /server/src/dsc_live/src/game/Creature.cpp:575
+No locals.
+#12 0x000055555583eff4 in WorldObject::UpdateHelper::Update (time_diff=100, this=<synthetic pointer>) at /server/src/dsc_live/src/game/Object.h:390
+No locals.
+#13 Hellground::ObjectUpdater::Visit (m=..., this=0x7fffbaffcd50) at /server/src/dsc_live/src/game/GridNotifiersImpl.h:152
+        helper = {m_obj = <optimized out>}
+        it = 0x7ffdd7ccf040
+        updateList = std::__cxx11::list = {[0] = 0x7ffdd7ccf040, [1] = 0x7ffdd7ccd0c0, [2] = 0x7ffdd7cce080, [3] = 0x7ffdd5b8c100}
+        maxListSize = <optimized out>
+        updateList = std::__cxx11::list
+        maxListSize = <optimized out>
+        iter = {_Ptr = <optimized out>}
+        it = 
+        helper = {m_obj = <optimized out>}
+#14 VisitorHelper<Hellground::ObjectUpdater, Creature> (c=..., v=...) at /server/src/dsc_live/src/framework/GameSystem/TypeContainerVisitor.h:49
+No locals.
+#15 VisitorHelper<Hellground::ObjectUpdater, Creature, TypeList<DynamicObject, TypeList<Corpse, TypeNull> > > (c=..., v=...) at /server/src/dsc_live/src/framework/GameSystem/TypeContainerVisitor.h:55
+No locals.
+#16 VisitorHelper<Hellground::ObjectUpdater, GameObject, TypeList<Creature, TypeList<DynamicObject, TypeList<Corpse, TypeNull> > > > (c=..., v=...) at /server/src/dsc_live/src/framework/GameSystem/TypeContainerVisitor.h:56
+No locals.
+#17 VisitorHelper<Hellground::ObjectUpdater, TypeList<GameObject, TypeList<Creature, TypeList<DynamicObject, TypeList<Corpse, TypeNull> > > > > (c=..., v=...) at /server/src/dsc_live/src/framework/GameSystem/TypeContainerVisitor.h:62
+No locals.
+#18 TypeContainerVisitor<Hellground::ObjectUpdater, TypeMapContainer<TypeList<GameObject, TypeList<Creature, TypeList<DynamicObject, TypeList<Corpse, TypeNull> > > > > >::Visit (c=..., this=<synthetic pointer>) at /server/src/dsc_live/src/framework/GameSystem/TypeContainerVisitor.h:73
+No locals.
+#19 Grid<Player, TypeList<Player, TypeList<Creature, TypeList<Corpse, TypeList<Camera, TypeNull> > > >, TypeList<GameObject, TypeList<Creature, TypeList<DynamicObject, TypeList<Corpse, TypeNull> > > > >::Visit<Hellground::ObjectUpdater> (visitor=<synthetic pointer>..., this=0x7ffe59def238) at /server/src/dsc_live/src/framework/GameSystem/Grid.h:92
+No locals.
+#20 NGrid<16u, Player, TypeList<Player, TypeList<Creature, TypeList<Corpse, TypeList<Camera, TypeNull> > > >, TypeList<GameObject, TypeList<Creature, TypeList<DynamicObject, TypeList<Corpse, TypeNull> > > > >::Visit<Hellground::ObjectUpdater, TypeList<GameObject, TypeList<Creature, TypeList<DynamicObject, TypeList<Corpse, TypeNull> > > > > (visitor=<synthetic pointer>..., y=<synthetic pointer>: 2, x=<synthetic pointer>: <optimized out>, this=<optimized out>) at /server/src/dsc_live/src/framework/GameSystem/NGrid.h:147
+No locals.
+#21 Map::Visit<Hellground::ObjectUpdater, TypeMapContainer<TypeList<GameObject, TypeList<Creature, TypeList<DynamicObject, TypeList<Corpse, TypeNull> > > > > > (visitor=<synthetic pointer>..., cell=..., this=0x7ffe1e37c4c0) at /server/src/dsc_live/src/game/Map.h:482
+        x = <optimized out>
+        y = <optimized out>
+        cell_x = <optimized out>
+        cell_y = 2
+        x = <optimized out>
+        y = <optimized out>
+        cell_x = <optimized out>
+        cell_y = <optimized out>
+#22 Map::Update (this=0x7ffe1e37c4c0, t_diff=<optimized out>) at /server/src/dsc_live/src/game/Map.cpp:574
+        pair = {x_coord = <optimized out>, y_coord = 514}
+        cell = {data = {Part = {grid_x = 31, grid_y = 32, cell_x = 13, cell_y = 2, nocreate = 1, reserved = 0}, All = 17356831}}
+        cell_id = 526845
+        y = 514
+        x = 509
+        plr = <optimized out>
+        area = {low_bound = {x_coord = 507, y_coord = 507}, high_bound = {x_coord = 516, y_coord = 516}}
+        debug_map_id = 556
+        diff = {ownerName = "", _startTime = 43929567, _diffTresholdForFile = 0}
+        updater = {i_timeDiff = 100}
+        grid_object_update = {i_visitor = <optimized out>}
+        world_object_update = {i_visitor = <optimized out>}
+        lowestY = 507
+        highestY = 516
+#23 0x0000555555840271 in InstanceMap::Update (this=0x7ffe1e37c4c0, t_diff=@0x7ffe45ca06c0: 100) at /server/src/dsc_live/src/game/Map.cpp:2837
+No locals.
+#24 0x0000555555853886 in MapUpdateRequest::call (this=0x7ffe45ca06a0) at /server/src/dsc_live/src/game/MapUpdater.cpp:76
+No locals.
+#25 0x0000555555ccf141 in DelayExecutor::svc (this=0x7fffcbf93c00) at /server/src/dsc_live/src/shared/DelayExecutor.cpp:83
+        rq = 0x7ffe45ca06a0
+#26 0x00007ffff7f47de5 in ACE_Task_Base::svc_run(void*) () from /lib/x86_64-linux-gnu/libACE-6.5.12.so
+No symbol table info available.
+#27 0x00007ffff7f48bfd in ACE_Thread_Adapter::invoke() () from /lib/x86_64-linux-gnu/libACE-6.5.12.so
+No symbol table info available.
+#28 0x00007ffff6e89ea7 in start_thread (arg=<optimized out>) at pthread_create.c:477
+        ret = <optimized out>
+        pd = <optimized out>
+        unwind_buf = {cancel_jmp_buf = {{jmp_buf = {140736330716928, -2664302304790573240, 140737488345790, 140737488345791, 140736330715072, 8396800, 2664172564019154760, 2664322258082598728}, mask_was_saved = 0}}, priv = {pad = {0x0, 0x0, 0x0, 0x0}, data = {prev = 0x0, cleanup = 0x0, canceltype = 0}}}
+        not_first_call = 0
+#29 0x00007ffff6db7def in clone () at ../sysdeps/unix/sysv/linux/x86_64/clone.S:95
+No locals.
+
+------------- THREADS -------------
+  Id   Target Id                                       Frame 
+  1    Thread 0x7ffff6a1eb80 (LWP 2567270) "core_live" __pthread_clockjoin_ex (threadid=140736305538816, thread_return=0x0, clockid=<optimized out>, abstime=<optimized out>, block=<optimized out>) at pthread_join_common.c:145
+  3    Thread 0x7ffff63c7700 (LWP 2567310) "core_live" 0x00007ffff6d7fc61 in __GI___clock_nanosleep (clock_id=clock_id@entry=0, flags=flags@entry=0, req=req@entry=0x7ffff63c6e60, rem=rem@entry=0x0) at ../sysdeps/unix/sysv/linux/clock_nanosleep.c:48
+  4    Thread 0x7ffff5bb2700 (LWP 2567311) "core_live" 0x00007ffff6d7fc61 in __GI___clock_nanosleep (clock_id=clock_id@entry=0, flags=flags@entry=0, req=req@entry=0x7ffff5bb1e60, rem=rem@entry=0x0) at ../sysdeps/unix/sysv/linux/clock_nanosleep.c:48
+  5    Thread 0x7ffff53b1700 (LWP 2567313) "core_live" 0x00007ffff6d7fc61 in __GI___clock_nanosleep (clock_id=clock_id@entry=0, flags=flags@entry=0, req=req@entry=0x7ffff53b0e60, rem=rem@entry=0x0) at ../sysdeps/unix/sysv/linux/clock_nanosleep.c:48
+  6    Thread 0x7fffcae54700 (LWP 2567668) "core_live" futex_wait_cancelable (private=0, expected=0, futex_word=0x7fffcbf7a674) at ../sysdeps/nptl/futex-internal.h:186
+  7    Thread 0x7fffca653700 (LWP 2567669) "core_live" futex_wait_cancelable (private=0, expected=0, futex_word=0x7fffcbf7a674) at ../sysdeps/nptl/futex-internal.h:186
+  8    Thread 0x7fffc9e52700 (LWP 2567670) "core_live" futex_wait_cancelable (private=0, expected=0, futex_word=0x7fffcbf7a674) at ../sysdeps/nptl/futex-internal.h:186
+  9    Thread 0x7fffc9651700 (LWP 2567671) "core_live" futex_wait_cancelable (private=0, expected=0, futex_word=0x7fffcbf7a674) at ../sysdeps/nptl/futex-internal.h:186
+  10   Thread 0x7fffc8e50700 (LWP 2567672) "core_live" 0x00005555559d4f2b in Spell::IsAliveUnitPresentInTargetList (this=this@entry=0x7ffe87506480) at /server/src/dsc_live/src/game/Spell.cpp:1372
+  11   Thread 0x7fffbbfff700 (LWP 2567673) "core_live" futex_wait_cancelable (private=0, expected=0, futex_word=0x7fffcbf7a674) at ../sysdeps/nptl/futex-internal.h:186
+  12   Thread 0x7fffbb7fe700 (LWP 2567674) "core_live" futex_wait_cancelable (private=0, expected=0, futex_word=0x7fffcbf7a674) at ../sysdeps/nptl/futex-internal.h:186
+* 13   Thread 0x7fffbaffd700 (LWP 2567675) "core_live" 0x0000555555d9894f in dtNavMeshQuery::getPortalPoints (this=<optimized out>, from=76561200107750467, fromPoly=0x7fff15372fa8, fromTile=<optimized out>, to=9007199254742112, toPoly=0x7ffdd5ca500c, toTile=0x7ffe5af6b3c0, left=0x7fffbaffc688, right=0x7fffbaffc694) at /server/src/dsc_live/dep/recastnavigation/Detour/Source/DetourNavMeshQuery.cpp:1574
+  14   Thread 0x7fffba7fc700 (LWP 2567676) "core_live" futex_wait_cancelable (private=0, expected=0, futex_word=0x7fffcbf93cfc) at ../sysdeps/nptl/futex-internal.h:186
+  15   Thread 0x7fffb9ffb700 (LWP 2567677) "core_live" __libc_read (nbytes=1, buf=0x7fffb9ffadd7, fd=0) at ../sysdeps/unix/sysv/linux/read.c:26
+  16   Thread 0x7fffb97fa700 (LWP 2567678) "core_live" 0x00007ffff6db8116 in epoll_wait (epfd=71, events=0x7fffcbf79f90, maxevents=1, timeout=10) at ../sysdeps/unix/sysv/linux/epoll_wait.c:30
+  17   Thread 0x7fffb8ff9700 (LWP 2567679) "core_live" 0x00007ffff6db8116 in epoll_wait (epfd=74, events=0x7fffcbf79e50, maxevents=1, timeout=9) at ../sysdeps/unix/sysv/linux/epoll_wait.c:30
+
+------------- THREADS BACKTRACE -------------
+
+Thread 17 (Thread 0x7fffb8ff9700 (LWP 2567679) "core_live"):
+#0  0x00007ffff6db8116 in epoll_wait (epfd=74, events=0x7fffcbf79e50, maxevents=1, timeout=9) at ../sysdeps/unix/sysv/linux/epoll_wait.c:30
+No locals.
+#1  0x00007ffff7edef70 in ACE_Dev_Poll_Reactor::work_pending_i(ACE_Time_Value*) () from /lib/x86_64-linux-gnu/libACE-6.5.12.so
+No symbol table info available.
+#2  0x00007ffff7ee026b in ACE_Dev_Poll_Reactor::handle_events_i(ACE_Time_Value*, ACE_Dev_Poll_Reactor::Token_Guard&) () from /lib/x86_64-linux-gnu/libACE-6.5.12.so
+No symbol table info available.
+#3  0x00007ffff7ee161b in ACE_Dev_Poll_Reactor::handle_events(ACE_Time_Value*) () from /lib/x86_64-linux-gnu/libACE-6.5.12.so
+No symbol table info available.
+#4  0x00007ffff7f2bf82 in ACE_Reactor::run_reactor_event_loop(ACE_Time_Value&, int (*)(ACE_Reactor*)) () from /lib/x86_64-linux-gnu/libACE-6.5.12.so
+No symbol table info available.
+#5  0x0000555555b3f48f in ReactorRunnable::svc (this=0x7fffcbf92fc0) at /server/src/dsc_live/src/game/WorldSocketMgr.cpp:169
+        interval = <incomplete type>
+        i = Python Exception <class 'gdb.error'> value has been optimized out: 
+
+        t = Python Exception <class 'gdb.error'> value has been optimized out: 
+
+#6  0x00007ffff7f47de5 in ACE_Task_Base::svc_run(void*) () from /lib/x86_64-linux-gnu/libACE-6.5.12.so
+No symbol table info available.
+#7  0x00007ffff7f48bfd in ACE_Thread_Adapter::invoke() () from /lib/x86_64-linux-gnu/libACE-6.5.12.so
+No symbol table info available.
+#8  0x00007ffff6e89ea7 in start_thread (arg=<optimized out>) at pthread_create.c:477
+        ret = <optimized out>
+        pd = <optimized out>
+        unwind_buf = {cancel_jmp_buf = {{jmp_buf = {140736297146112, -2664302304790573240, 140737488345822, 140737488345823, 140736297144256, 8396800, 2664176959918182216, 2664322258082598728}, mask_was_saved = 0}}, priv = {pad = {0x0, 0x0, 0x0, 0x0}, data = {prev = 0x0, cleanup = 0x0, canceltype = 0}}}
+        not_first_call = 0
+#9  0x00007ffff6db7def in clone () at ../sysdeps/unix/sysv/linux/x86_64/clone.S:95
+No locals.
+
+Thread 16 (Thread 0x7fffb97fa700 (LWP 2567678) "core_live"):
+#0  0x00007ffff6db8116 in epoll_wait (epfd=71, events=0x7fffcbf79f90, maxevents=1, timeout=10) at ../sysdeps/unix/sysv/linux/epoll_wait.c:30
+No locals.
+#1  0x00007ffff7edef70 in ACE_Dev_Poll_Reactor::work_pending_i(ACE_Time_Value*) () from /lib/x86_64-linux-gnu/libACE-6.5.12.so
+No symbol table info available.
+#2  0x00007ffff7ee026b in ACE_Dev_Poll_Reactor::handle_events_i(ACE_Time_Value*, ACE_Dev_Poll_Reactor::Token_Guard&) () from /lib/x86_64-linux-gnu/libACE-6.5.12.so
+No symbol table info available.
+#3  0x00007ffff7ee161b in ACE_Dev_Poll_Reactor::handle_events(ACE_Time_Value*) () from /lib/x86_64-linux-gnu/libACE-6.5.12.so
+No symbol table info available.
+#4  0x00007ffff7f2bf82 in ACE_Reactor::run_reactor_event_loop(ACE_Time_Value&, int (*)(ACE_Reactor*)) () from /lib/x86_64-linux-gnu/libACE-6.5.12.so
+No symbol table info available.
+#5  0x0000555555b3f48f in ReactorRunnable::svc (this=0x7fffcbf92e88) at /server/src/dsc_live/src/game/WorldSocketMgr.cpp:169
+        interval = <incomplete type>
+        i = Python Exception <class 'gdb.error'> value has been optimized out: 
+
+        t = Python Exception <class 'gdb.error'> value has been optimized out: 
+
+#6  0x00007ffff7f47de5 in ACE_Task_Base::svc_run(void*) () from /lib/x86_64-linux-gnu/libACE-6.5.12.so
+No symbol table info available.
+#7  0x00007ffff7f48bfd in ACE_Thread_Adapter::invoke() () from /lib/x86_64-linux-gnu/libACE-6.5.12.so
+No symbol table info available.
+#8  0x00007ffff6e89ea7 in start_thread (arg=<optimized out>) at pthread_create.c:477
+        ret = <optimized out>
+        pd = <optimized out>
+        unwind_buf = {cancel_jmp_buf = {{jmp_buf = {140736305538816, -2664302304790573240, 140737488345822, 140737488345823, 140736305536960, 8396800, 2664175859869683528, 2664322258082598728}, mask_was_saved = 0}}, priv = {pad = {0x0, 0x0, 0x0, 0x0}, data = {prev = 0x0, cleanup = 0x0, canceltype = 0}}}
+        not_first_call = 0
+#9  0x00007ffff6db7def in clone () at ../sysdeps/unix/sysv/linux/x86_64/clone.S:95
+No locals.
+
+Thread 15 (Thread 0x7fffb9ffb700 (LWP 2567677) "core_live"):
+#0  __libc_read (nbytes=1, buf=0x7fffb9ffadd7, fd=0) at ../sysdeps/unix/sysv/linux/read.c:26
+        resultvar = 18446744073709551104
+        sc_cancel_oldtype = 0
+        __arg3 = <optimized out>
+        _a2 = <optimized out>
+        sc_ret = <optimized out>
+        __value = <optimized out>
+        __arg1 = <optimized out>
+        _a3 = <optimized out>
+        resultvar = <optimized out>
+        resultvar = <optimized out>
+        __arg2 = <optimized out>
+        _a1 = <optimized out>
+#1  __libc_read (fd=0, buf=0x7fffb9ffadd7, nbytes=1) at ../sysdeps/unix/sysv/linux/read.c:24
+No locals.
+#2  0x00007ffff7bffb7d in rl_getc () from /lib/x86_64-linux-gnu/libreadline.so.6
+No symbol table info available.
+#3  0x00007ffff7c00447 in rl_read_key () from /lib/x86_64-linux-gnu/libreadline.so.6
+No symbol table info available.
+#4  0x00007ffff7be9c4c in readline_internal_char () from /lib/x86_64-linux-gnu/libreadline.so.6
+No symbol table info available.
+#5  0x00007ffff7bea3c5 in readline () from /lib/x86_64-linux-gnu/libreadline.so.6
+No symbol table info available.
+#6  0x00005555556c7c05 in CliRunnable::run (this=<optimized out>) at /server/src/dsc_live/src/hellgroundcore/CliRunnable.cpp:466
+        command_str = <optimized out>
+        commandbuf = {<optimized out> <repeats 256 times>}
+        canflush = true
+#7  0x0000555555cd3b2a in ACE_Based::Thread::ThreadTask (param=0x7fffcbc68580) at /server/src/dsc_live/src/shared/Threading.cpp:186
+        _task = 0x7fffcbc68580
+#8  0x00007ffff6e89ea7 in start_thread (arg=<optimized out>) at pthread_create.c:477
+        ret = <optimized out>
+        pd = <optimized out>
+        unwind_buf = {cancel_jmp_buf = {{jmp_buf = {140736313931520, -2664302304790573240, 140737488346510, 140737488346511, 140736313929664, 8396800, 2664174759821184840, 2664322258082598728}, mask_was_saved = 0}}, priv = {pad = {0x0, 0x0, 0x0, 0x0}, data = {prev = 0x0, cleanup = 0x0, canceltype = 0}}}
+        not_first_call = 0
+#9  0x00007ffff6db7def in clone () at ../sysdeps/unix/sysv/linux/x86_64/clone.S:95
+No locals.
+
+Thread 14 (Thread 0x7fffba7fc700 (LWP 2567676) "core_live"):
+#0  futex_wait_cancelable (private=0, expected=0, futex_word=0x7fffcbf93cfc) at ../sysdeps/nptl/futex-internal.h:186
+        __ret = -512
+        oldtype = 0
+        err = <optimized out>
+        oldtype = <optimized out>
+        err = <optimized out>
+        __ret = <optimized out>
+        resultvar = <optimized out>
+        __arg4 = <optimized out>
+        __arg3 = <optimized out>
+        __arg2 = <optimized out>
+        __arg1 = <optimized out>
+        _a4 = <optimized out>
+        _a3 = <optimized out>
+        _a2 = <optimized out>
+        _a1 = <optimized out>
+#1  __pthread_cond_wait_common (abstime=0x0, clockid=0, mutex=0x7fffcbf93d10, cond=0x7fffcbf93cd0) at pthread_cond_wait.c:508
+        spin = 0
+        buffer = {__routine = 0x7ffff6e90540 <__condvar_cleanup_waiting>, __arg = 0x7fffba7fbc70, __canceltype = -558053248, __prev = 0x0}
+        cbuffer = {wseq = 12624051, cond = 0x7fffcbf93cd0, mutex = 0x7fffcbf93d10, private = 0}
+        err = <optimized out>
+        g = 3128933456
+        flags = <optimized out>
+        g1_start = <optimized out>
+        maxspin = 0
+        signals = <optimized out>
+        result = 0
+        wseq = 12624051
+        seq = 6312025
+        private = 0
+        maxspin = <optimized out>
+        err = <optimized out>
+        result = <optimized out>
+        wseq = <optimized out>
+        g = <optimized out>
+        seq = <optimized out>
+        flags = <optimized out>
+        private = <optimized out>
+        signals = <optimized out>
+        done = <optimized out>
+        g1_start = <optimized out>
+        spin = <optimized out>
+        buffer = {__routine = <optimized out>, __arg = <optimized out>, __canceltype = <optimized out>, __prev = <optimized out>}
+        cbuffer = {wseq = <optimized out>, cond = <optimized out>, mutex = <optimized out>, private = <optimized out>}
+        s = <optimized out>
+#2  __pthread_cond_wait (cond=0x7fffcbf93cd0, mutex=0x7fffcbf93d10) at pthread_cond_wait.c:638
+No locals.
+#3  0x00007ffff7ed135b in ACE_Condition<ACE_Thread_Mutex>::wait() () from /lib/x86_64-linux-gnu/libACE-6.5.12.so
+No symbol table info available.
+#4  0x0000555555852d50 in MapUpdater::wait (this=this@entry=0x7fffcbf93bc0) at /server/src/dsc_live/src/game/MapUpdater.cpp:113
+        guard = {lock_ = 0x7fffcbf93d10, owner_ = <optimized out>}
+#5  0x000055555585126b in MapManager::Update (this=0x7fffcbf93b08, diff=50) at /server/src/dsc_live/src/game/MapManager.cpp:382
+        diffRecorder = {ownerName = "Update", _startTime = 43929562, _diffTresholdForFile = 200}
+        __FUNCTION__ = {<optimized out>, <optimized out>, <optimized out>, <optimized out>, <optimized out>, <optimized out>, <optimized out>}
+        delayedUpdate = std::__cxx11::list = {[0] = {first = 0x7fffd4cd41c0, second = 100}, [1] = {first = 0x7fffd4d0a240, second = 100}, [2] = {first = 0x7fff89375140, second = 100}, [3] = {first = 0x7fff432111c0, second = 100}, [4] = {first = 0x7fff831eb4c0, second = 100}, [5] = {first = 0x7ffe1e3b23c0, second = 100}, [6] = {first = 0x7fffe7eb72c0, second = 100}, [7] = {first = 0x7ffec3f0c180, second = 100}, [8] = {first = 0x7ffe94d574c0, second = 100}, [9] = {first = 0x7ffe33a693c0, second = 100}, [10] = {first = 0x7fff187f8300, second = 100}, [11] = {first = 0x7ffe59f68200, second = 100}, [12] = {first = 0x7ffe07754480, second = 100}, [13] = {first = 0x7ffe77ebb140, second = 100}, [14] = {first = 0x7fff020a3240, second = 100}, [15] = {first = 0x7ffe0808a340, second = 100}, [16] = {first = 0x7ffe85f960c0, second = 100}, [17] = {first = 0x7ffe338d3480, second = 100}, [18] = {first = 0x7ffeb1913280, second = 100}, [19] = {first = 0x7fff513723c0, second = 100}, [20] = {first = 0x7fff22712480, second = 100}, [21] = {first = 0x7ffe33d46440, second = 100}, [22] = {first = 0x7fff12054480, second = 100}, [23] = {first = 0x7ffe5ff4a440, second = 100}, [24] = {first = 0x7fff056fa0c0, second = 100}, [25] = {first = 0x7fff2b51c440, second = 100}, [26] = {first = 0x7ffe60b91200, second = 100}, [27] = {first = 0x7fffd4d402c0, second = 100}, [28] = {first = 0x7ffec991c400, second = 100}, [29] = {first = 0x7ffe339db440, second = 100}, [30] = {first = 0x7ffe600c3300, second = 100}, [31] = {first = 0x7fff4dea52c0, second = 100}, [32] = {first = 0x7fff70ee02c0, second = 100}, [33] = {first = 0x7ffe603ca3c0, second = 100}, [34] = {first = 0x7ffe6039b4c0, second = 100}, [35] = {first = 0x7fff76150480, second = 100}, [36] = {first = 0x7ffe9736d4c0, second = 100}, [37] = {first = 0x7fff2aded3c0, second = 100}, [38] = {first = 0x7ffeffee4140, second = 100}, [39] = {first = 0x7ffe1e2e00c0, second = 100}, [40] = {first = 0x7ffe605e2140, second = 100}, [41] = {first = 0x7ffe5a79c240, second = 100}, [42] = {first = 0x7fff8a072340, second = 100}, [43] = {first = 0x7ffe951b62c0, second = 100}, [44] = {first = 0x7ffe59f1a380, second = 100}, [45] = {first = 0x7fff83dad240, second = 100}, [46] = {first = 0x7ffe85f6c4c0, second = 100}, [47] = {first = 0x7fff7968e1c0, second = 100}, [48] = {first = 0x7ffe607d50c0, second = 100}, [49] = {first = 0x7ffe0772a340, second = 100}, [50] = {first = 0x7ffe3481a440, second = 100}, [51] = {first = 0x7ffec45cb180, second = 100}, [52] = {first = 0x7ffe5a395280, second = 100}, [53] = {first = 0x7fff00345440, second = 100}, [54] = {first = 0x7ffe33d88280, second = 100}, [55] = {first = 0x7ffe9761f300, second = 100}, [56] = {first = 0x7ffe9503e340, second = 100}, [57] = {first = 0x7ffe1e37c4c0, second = 100}, [58] = {first = 0x7ffe8ccc3280, second = 100}}
+#6  0x0000555555b269b2 in World::Update (this=0x7ffff697c108, diff=<optimized out>, diff@entry=50) at /server/src/dsc_live/src/game/World.cpp:2078
+        accumulateMapDiff = true
+        diffRecorder = {ownerName = "Update", _startTime = 43929562, _diffTresholdForFile = 200}
+        __FUNCTION__ = {<optimized out>, <optimized out>, <optimized out>, <optimized out>, <optimized out>, <optimized out>, <optimized out>}
+        mapDiff = <optimized out>
+#7  0x00005555556cadff in WorldRunnable::run (this=<optimized out>) at /server/src/dsc_live/src/hellgroundcore/WorldRunnable.cpp:60
+        diff = 50
+#8  0x0000555555cd3b2a in ACE_Based::Thread::ThreadTask (param=0x7fffcbc68590) at /server/src/dsc_live/src/shared/Threading.cpp:186
+        _task = 0x7fffcbc68590
+#9  0x00007ffff6e89ea7 in start_thread (arg=<optimized out>) at pthread_create.c:477
+        ret = <optimized out>
+        pd = <optimized out>
+        unwind_buf = {cancel_jmp_buf = {{jmp_buf = {140736322324224, -2664302304790573240, 140737488346510, 140737488346511, 140736322322368, 8396800, 2664173659772686152, 2664322258082598728}, mask_was_saved = 0}}, priv = {pad = {0x0, 0x0, 0x0, 0x0}, data = {prev = 0x0, cleanup = 0x0, canceltype = 0}}}
+        not_first_call = 0
+#10 0x00007ffff6db7def in clone () at ../sysdeps/unix/sysv/linux/x86_64/clone.S:95
+No locals.
+
+Thread 13 (Thread 0x7fffbaffd700 (LWP 2567675) "core_live"):
+#0  0x0000555555d9894f in dtNavMeshQuery::getPortalPoints (this=<optimized out>, from=76561200107750467, fromPoly=0x7fff15372fa8, fromTile=<optimized out>, to=9007199254742112, toPoly=0x7ffdd5ca500c, toTile=0x7ffe5af6b3c0, left=0x7fffbaffc688, right=0x7fffbaffc694) at /server/src/dsc_live/dep/recastnavigation/Detour/Source/DetourNavMeshQuery.cpp:1574
+        i = <optimized out>
+        link = 0x7fff1537fc98
+        v0 = <optimized out>
+        v1 = <optimized out>
+#1  0x0000555555d9a9e0 in dtNavMeshQuery::getEdgeMidPoint (mid=0x7ffec97d4d80, toTile=<optimized out>, toPoly=<optimized out>, to=9007199254742112, fromTile=<optimized out>, fromPoly=<optimized out>, from=76561200107750467, this=0x7ffe27e275f0) at /server/src/dsc_live/dep/recastnavigation/Detour/Source/DetourNavMeshQuery.cpp:1631
+        left = {86.3997803, 0.168878853, -71.4678116}
+        right = {87.9997787, 0.168878853, -70.4011459}
+        left = {<optimized out>, <optimized out>, <optimized out>}
+        right = {<optimized out>, <optimized out>, <optimized out>}
+#2  dtNavMeshQuery::findPath (this=0x7ffe27e275f0, startRef=startRef@entry=76561200107750467, endRef=endRef@entry=76561200107750614, startPos=startPos@entry=0x7fffbaffc72c, endPos=endPos@entry=0x7fffbaffc738, filter=filter@entry=0x7fffbaffcb18, path=<optimized out>, pathCount=<optimized out>, maxPath=<optimized out>) at /server/src/dsc_live/dep/recastnavigation/Detour/Source/DetourNavMeshQuery.cpp:660
+        neighbourRef = 9007199254742112
+        neighbourTile = 0x7ffe5af6b3c0
+        neighbourPoly = 0x7ffdd5ca500c
+        neighbourNode = 0x7ffec97d4d80
+        cost = <optimized out>
+        heuristic = <optimized out>
+        total = <optimized out>
+        i = <optimized out>
+        bestNode = 0x7ffec97d4cc0
+        bestRef = 140736330712704
+        bestTile = 0x7ffe5af6b4f8
+        bestPoly = 0x7fff15372fa8
+        parentRef = <optimized out>
+        parentTile = 0x0
+        parentPoly = 0x0
+        startNode = <optimized out>
+        lastBestNode = 0x7ffec97d4d00
+        lastBestNodeCost = 10.4124565
+        prev = <optimized out>
+        node = <optimized out>
+        n = <optimized out>
+#3  0x0000555555b4db15 in PathFinder::BuildPolyPath (this=this@entry=0x7fffbaffc860, startPos=..., endPos=...) at /server/src/dsc_live/src/game/movemap/PathFinder.cpp:364
+        dtResult = <optimized out>
+        distToStartPoly = 0.435031384
+        distToEndPoly = 0.639717817
+        startPoint = {90.2839966, 0.00720489025, -70.9940033}
+        endPoint = {94.7249985, 0.0130000003, -62.6980019}
+        startPoly = 76561200107750467
+        endPoly = 76561200107750614
+        farFromPoly = <optimized out>
+        startPolyFound = <optimized out>
+        endPolyFound = <optimized out>
+        pathStartIndex = <optimized out>
+        pathEndIndex = <optimized out>
+#4  0x0000555555b4e76a in PathFinder::calculate (this=this@entry=0x7fffbaffc860, destX=destX@entry=-62.6980019, destY=destY@entry=94.7249985, destZ=destZ@entry=0.0130000003, forceDestForIncomplete=forceDestForIncomplete@entry=false) at /server/src/dsc_live/src/game/movemap/PathFinder.cpp:112
+        x = <optimized out>
+        y = <optimized out>
+        z = <optimized out>
+        dest = {x = -62.6980019, y = 94.7249985, z = 0.0130000003}
+        start = {x = -70.9940033, y = 90.2839966, z = 0.00720489025}
+#5  0x0000555555b0ced1 in Movement::MoveSplineInit::MoveTo (forceDestination=false, generatePath=true, dest=<synthetic pointer>..., this=0x7fffbaffc820) at /server/src/dsc_live/src/game/movement/MoveSplineInit.h:117
+        path = {m_pathPolyRefs = {567777, 140736330713328, 140736330713448, 140735281099008, 140735281099008, 0, 93825001270412, 93824998359801, 140733907137281, 140737353058444, 5082244565000688704, 140736330713872, 140735478285952, 93824998395006, 14060085757503078400, 140737339339551, 140735478285952, 140737353135847, 0, 20621, 140736330713728, 140729226268912, 140730399309952, 140736330713736, 1, 93824995244825, 140729226268912, 93825000124921, 133143986207, 93824996031434, 140730948902976, 140730948909840, 140736330713712, 31, 502, 1, 140732192829824, 4, 31, 1, 140732192829824, 93824995330520, 31, 140737330828800, 140729226266224, 140737339340846, 93825001043793, 230932, 0, 0, 140736330713712, 140737353943145, 4503601774856141, 93824995318109, 93825002390656, 140736330714560, 140736330713680, 93825000109047, 93825002390656, 140737353943145, 828357, 140736330713872, 93825002390656, 0, 140736330713744, 93825000109047, 93825002390656, 1673964808, 828408, 0, 93825002390656, 43929, 567828, 93824998387620}, m_polyLength = 0, m_pathPoints = std::vector of length 0, capacity 0, m_type = PATHFIND_BLANK, m_useStraightPath = false, m_forceDestinationForIncomplete = false, m_pointPathLimit = 74, m_startPosition = {x = -70.9940033, y = 90.2839966, z = 0.00720489025}, m_endPosition = {x = -62.6980019, y = 94.7249985, z = 0.0130000003}, m_actualEndPosition = {x = -62.6980019, y = 94.7249985, z = 0.0130000003}, m_sourceUnit = 0x7ffdd7ccf040, m_navMesh = 0x7ffe2a022470, m_navMeshQuery = 0x7ffe27e275f0, m_filter = {m_areaCost = {1 <repeats 64 times>}, m_includeFlags = 15, m_excludeFlags = 0}, startEndDiffTerrain = false}
+        result = <optimized out>
+#6  Movement::MoveSplineInit::MoveTo (forceDestination=false, generatePath=true, z=0.0130000003, y=94.7249985, x=-62.6980019, this=0x7fffbaffc820) at /server/src/dsc_live/src/game/movement/MoveSplineInit.h:109
+        v = {x = <optimized out>, y = <optimized out>, z = <optimized out>}
+        v = {x = <optimized out>, y = <optimized out>, z = <optimized out>}
+#7  WaypointMovementGenerator<Creature>::tryToMove (this=<optimized out>, creature=...) at /server/src/dsc_live/src/game/WaypointMovementGenerator.cpp:175
+        init = {args = {path = std::vector of length 0, capacity 16, facing = {f = {x = 7.32984708e+21, y = 0, z = 1.16077539e-39}, target = 1673964808, angle = 7.32984708e+21}, flags = {done = false, falling = false, unknown3 = false, unknown4 = false, unknown5 = false, unknown6 = false, unknown7 = false, unknown8 = false, runmode = false, flying = false, no_spline = false, unknown12 = false, unknown13 = false, unknown14 = false, unknown15 = false, unknown16 = false, final_point = false, final_target = false, final_angle = false, unknown19 = false, cyclic = false, enter_cycle = false, frozen = false, unknown23 = false, unknown24 = false, unknown25 = false, unknown26 = false, unknown27 = false, unknown28 = false, unknown29 = false, unknown30 = false, unknown31 = false}, path_Idx_offset = 0, velocity = 0, splineId = 0}, unit = @0x7ffdd7ccf040}
+        node = 0x7fffcc4e3a90
+#8  0x0000555555a83289 in ActionInfo::Update (diff=<optimized out>, mgr=0x7ffdd7ccf6b0, this=0x7ffe72839220) at /server/src/dsc_live/src/game/StateMgr.cpp:652
+No locals.
+#9  UnitStateMgr::Update (this=this@entry=0x7ffdd7ccf6b0, diff=diff@entry=100) at /server/src/dsc_live/src/game/StateMgr.cpp:403
+        state = 0x7ffe72839220
+#10 0x0000555555addc0f in Unit::Update (p_time=100, update_diff=100, this=0x7ffdd7ccf040) at /server/src/dsc_live/src/game/Unit.cpp:478
+No locals.
+#11 0x0000555555c1213a in Creature::Update (this=this@entry=0x7ffdd7ccf040, update_diff=100, diff=diff@entry=100) at /server/src/dsc_live/src/game/Creature.cpp:575
+No locals.
+#12 0x000055555583eff4 in WorldObject::UpdateHelper::Update (time_diff=100, this=<synthetic pointer>) at /server/src/dsc_live/src/game/Object.h:390
+No locals.
+#13 Hellground::ObjectUpdater::Visit (m=..., this=0x7fffbaffcd50) at /server/src/dsc_live/src/game/GridNotifiersImpl.h:152
+        helper = {m_obj = <optimized out>}
+        it = 0x7ffdd7ccf040
+        updateList = std::__cxx11::list = {[0] = 0x7ffdd7ccf040, [1] = 0x7ffdd7ccd0c0, [2] = 0x7ffdd7cce080, [3] = 0x7ffdd5b8c100}
+        maxListSize = <optimized out>
+        updateList = std::__cxx11::listPython Exception <class 'gdb.error'> value has been optimized out: 
+
+        maxListSize = <optimized out>
+        iter = {_Ptr = <optimized out>}
+        it = Python Exception <class 'gdb.error'> value has been optimized out: 
+
+        helper = {m_obj = <optimized out>}
+#14 VisitorHelper<Hellground::ObjectUpdater, Creature> (c=..., v=...) at /server/src/dsc_live/src/framework/GameSystem/TypeContainerVisitor.h:49
+No locals.
+#15 VisitorHelper<Hellground::ObjectUpdater, Creature, TypeList<DynamicObject, TypeList<Corpse, TypeNull> > > (c=..., v=...) at /server/src/dsc_live/src/framework/GameSystem/TypeContainerVisitor.h:55
+No locals.
+#16 VisitorHelper<Hellground::ObjectUpdater, GameObject, TypeList<Creature, TypeList<DynamicObject, TypeList<Corpse, TypeNull> > > > (c=..., v=...) at /server/src/dsc_live/src/framework/GameSystem/TypeContainerVisitor.h:56
+No locals.
+#17 VisitorHelper<Hellground::ObjectUpdater, TypeList<GameObject, TypeList<Creature, TypeList<DynamicObject, TypeList<Corpse, TypeNull> > > > > (c=..., v=...) at /server/src/dsc_live/src/framework/GameSystem/TypeContainerVisitor.h:62
+No locals.
+#18 TypeContainerVisitor<Hellground::ObjectUpdater, TypeMapContainer<TypeList<GameObject, TypeList<Creature, TypeList<DynamicObject, TypeList<Corpse, TypeNull> > > > > >::Visit (c=..., this=<synthetic pointer>) at /server/src/dsc_live/src/framework/GameSystem/TypeContainerVisitor.h:73
+No locals.
+#19 Grid<Player, TypeList<Player, TypeList<Creature, TypeList<Corpse, TypeList<Camera, TypeNull> > > >, TypeList<GameObject, TypeList<Creature, TypeList<DynamicObject, TypeList<Corpse, TypeNull> > > > >::Visit<Hellground::ObjectUpdater> (visitor=<synthetic pointer>..., this=0x7ffe59def238) at /server/src/dsc_live/src/framework/GameSystem/Grid.h:92
+No locals.
+#20 NGrid<16u, Player, TypeList<Player, TypeList<Creature, TypeList<Corpse, TypeList<Camera, TypeNull> > > >, TypeList<GameObject, TypeList<Creature, TypeList<DynamicObject, TypeList<Corpse, TypeNull> > > > >::Visit<Hellground::ObjectUpdater, TypeList<GameObject, TypeList<Creature, TypeList<DynamicObject, TypeList<Corpse, TypeNull> > > > > (visitor=<synthetic pointer>..., y=<synthetic pointer>: 2, x=<synthetic pointer>: <optimized out>, this=<optimized out>) at /server/src/dsc_live/src/framework/GameSystem/NGrid.h:147
+No locals.
+#21 Map::Visit<Hellground::ObjectUpdater, TypeMapContainer<TypeList<GameObject, TypeList<Creature, TypeList<DynamicObject, TypeList<Corpse, TypeNull> > > > > > (visitor=<synthetic pointer>..., cell=..., this=0x7ffe1e37c4c0) at /server/src/dsc_live/src/game/Map.h:482
+        x = <optimized out>
+        y = <optimized out>
+        cell_x = <optimized out>
+        cell_y = 2
+        x = <optimized out>
+        y = <optimized out>
+        cell_x = <optimized out>
+        cell_y = <optimized out>
+#22 Map::Update (this=0x7ffe1e37c4c0, t_diff=<optimized out>) at /server/src/dsc_live/src/game/Map.cpp:574
+        pair = {x_coord = <optimized out>, y_coord = 514}
+        cell = {data = {Part = {grid_x = 31, grid_y = 32, cell_x = 13, cell_y = 2, nocreate = 1, reserved = 0}, All = 17356831}}
+        cell_id = 526845
+        y = 514
+        x = 509
+        plr = <optimized out>
+        area = {low_bound = {x_coord = 507, y_coord = 507}, high_bound = {x_coord = 516, y_coord = 516}}
+        debug_map_id = 556
+        diff = {ownerName = "", _startTime = 43929567, _diffTresholdForFile = 0}
+        updater = {i_timeDiff = 100}
+        grid_object_update = {i_visitor = <optimized out>}
+        world_object_update = {i_visitor = <optimized out>}
+        lowestY = 507
+        highestY = 516
+#23 0x0000555555840271 in InstanceMap::Update (this=0x7ffe1e37c4c0, t_diff=@0x7ffe45ca06c0: 100) at /server/src/dsc_live/src/game/Map.cpp:2837
+No locals.
+#24 0x0000555555853886 in MapUpdateRequest::call (this=0x7ffe45ca06a0) at /server/src/dsc_live/src/game/MapUpdater.cpp:76
+No locals.
+#25 0x0000555555ccf141 in DelayExecutor::svc (this=0x7fffcbf93c00) at /server/src/dsc_live/src/shared/DelayExecutor.cpp:83
+        rq = 0x7ffe45ca06a0
+#26 0x00007ffff7f47de5 in ACE_Task_Base::svc_run(void*) () from /lib/x86_64-linux-gnu/libACE-6.5.12.so
+No symbol table info available.
+#27 0x00007ffff7f48bfd in ACE_Thread_Adapter::invoke() () from /lib/x86_64-linux-gnu/libACE-6.5.12.so
+No symbol table info available.
+#28 0x00007ffff6e89ea7 in start_thread (arg=<optimized out>) at pthread_create.c:477
+        ret = <optimized out>
+        pd = <optimized out>
+        unwind_buf = {cancel_jmp_buf = {{jmp_buf = {140736330716928, -2664302304790573240, 140737488345790, 140737488345791, 140736330715072, 8396800, 2664172564019154760, 2664322258082598728}, mask_was_saved = 0}}, priv = {pad = {0x0, 0x0, 0x0, 0x0}, data = {prev = 0x0, cleanup = 0x0, canceltype = 0}}}
+        not_first_call = 0
+#29 0x00007ffff6db7def in clone () at ../sysdeps/unix/sysv/linux/x86_64/clone.S:95
+No locals.
+
+Thread 12 (Thread 0x7fffbb7fe700 (LWP 2567674) "core_live"):
+#0  futex_wait_cancelable (private=0, expected=0, futex_word=0x7fffcbf7a674) at ../sysdeps/nptl/futex-internal.h:186
+        __ret = -512
+        oldtype = 0
+        err = <optimized out>
+        oldtype = <optimized out>
+        err = <optimized out>
+        __ret = <optimized out>
+        resultvar = <optimized out>
+        __arg4 = <optimized out>
+        __arg3 = <optimized out>
+        __arg2 = <optimized out>
+        __arg1 = <optimized out>
+        _a4 = <optimized out>
+        _a3 = <optimized out>
+        _a2 = <optimized out>
+        _a1 = <optimized out>
+#1  __pthread_cond_wait_common (abstime=0x0, clockid=0, mutex=0x7fffcbf7a610, cond=0x7fffcbf7a648) at pthread_cond_wait.c:508
+        spin = 0
+        buffer = {__routine = 0x7ffff6e90540 <__condvar_cleanup_waiting>, __arg = 0x7fffbb7fddb0, __canceltype = 18659359, __prev = 0x0}
+        cbuffer = {wseq = 8244791, cond = 0x7fffcbf7a648, mutex = 0x7fffcbf7a610, private = 0}
+        err = <optimized out>
+        g = 3145719184
+        flags = <optimized out>
+        g1_start = <optimized out>
+        maxspin = 0
+        signals = <optimized out>
+        result = 0
+        wseq = 8244791
+        seq = 4122395
+        private = 0
+        maxspin = <optimized out>
+        err = <optimized out>
+        result = <optimized out>
+        wseq = <optimized out>
+        g = <optimized out>
+        seq = <optimized out>
+        flags = <optimized out>
+        private = <optimized out>
+        signals = <optimized out>
+        done = <optimized out>
+        g1_start = <optimized out>
+        spin = <optimized out>
+        buffer = {__routine = <optimized out>, __arg = <optimized out>, __canceltype = <optimized out>, __prev = <optimized out>}
+        cbuffer = {wseq = <optimized out>, cond = <optimized out>, mutex = <optimized out>, private = <optimized out>}
+        s = <optimized out>
+#2  __pthread_cond_wait (cond=0x7fffcbf7a648, mutex=0x7fffcbf7a610) at pthread_cond_wait.c:638
+No locals.
+#3  0x00007ffff7ed143d in ACE_Condition<ACE_Thread_Mutex>::wait(ACE_Thread_Mutex&, ACE_Time_Value const*) () from /lib/x86_64-linux-gnu/libACE-6.5.12.so
+No symbol table info available.
+#4  0x00007ffff7eb3f92 in ACE_Activation_Queue::dequeue(ACE_Time_Value*) () from /lib/x86_64-linux-gnu/libACE-6.5.12.so
+No symbol table info available.
+#5  0x0000555555ccf155 in DelayExecutor::svc (this=0x7fffcbf93c00) at /server/src/dsc_live/src/shared/DelayExecutor.cpp:78
+        rq = <optimized out>
+#6  0x00007ffff7f47de5 in ACE_Task_Base::svc_run(void*) () from /lib/x86_64-linux-gnu/libACE-6.5.12.so
+No symbol table info available.
+#7  0x00007ffff7f48bfd in ACE_Thread_Adapter::invoke() () from /lib/x86_64-linux-gnu/libACE-6.5.12.so
+No symbol table info available.
+#8  0x00007ffff6e89ea7 in start_thread (arg=<optimized out>) at pthread_create.c:477
+        ret = <optimized out>
+        pd = <optimized out>
+        unwind_buf = {cancel_jmp_buf = {{jmp_buf = {140736339109632, -2664302304790573240, 140737488345790, 140737488345791, 140736339107776, 8396800, 2664171463970656072, 2664322258082598728}, mask_was_saved = 0}}, priv = {pad = {0x0, 0x0, 0x0, 0x0}, data = {prev = 0x0, cleanup = 0x0, canceltype = 0}}}
+        not_first_call = 0
+#9  0x00007ffff6db7def in clone () at ../sysdeps/unix/sysv/linux/x86_64/clone.S:95
+No locals.
+
+Thread 11 (Thread 0x7fffbbfff700 (LWP 2567673) "core_live"):
+#0  futex_wait_cancelable (private=0, expected=0, futex_word=0x7fffcbf7a674) at ../sysdeps/nptl/futex-internal.h:186
+        __ret = -512
+        oldtype = 0
+        err = <optimized out>
+        oldtype = <optimized out>
+        err = <optimized out>
+        __ret = <optimized out>
+        resultvar = <optimized out>
+        __arg4 = <optimized out>
+        __arg3 = <optimized out>
+        __arg2 = <optimized out>
+        __arg1 = <optimized out>
+        _a4 = <optimized out>
+        _a3 = <optimized out>
+        _a2 = <optimized out>
+        _a1 = <optimized out>
+#1  __pthread_cond_wait_common (abstime=0x0, clockid=0, mutex=0x7fffcbf7a610, cond=0x7fffcbf7a648) at pthread_cond_wait.c:508
+        spin = 0
+        buffer = {__routine = 0x7ffff6e90540 <__condvar_cleanup_waiting>, __arg = 0x7fffbbffedb0, __canceltype = 17844256, __prev = 0x0}
+        cbuffer = {wseq = 8244789, cond = 0x7fffcbf7a648, mutex = 0x7fffcbf7a610, private = 0}
+        err = <optimized out>
+        g = 3154111888
+        flags = <optimized out>
+        g1_start = <optimized out>
+        maxspin = 0
+        signals = <optimized out>
+        result = 0
+        wseq = 8244789
+        seq = 4122394
+        private = 0
+        maxspin = <optimized out>
+        err = <optimized out>
+        result = <optimized out>
+        wseq = <optimized out>
+        g = <optimized out>
+        seq = <optimized out>
+        flags = <optimized out>
+        private = <optimized out>
+        signals = <optimized out>
+        done = <optimized out>
+        g1_start = <optimized out>
+        spin = <optimized out>
+        buffer = {__routine = <optimized out>, __arg = <optimized out>, __canceltype = <optimized out>, __prev = <optimized out>}
+        cbuffer = {wseq = <optimized out>, cond = <optimized out>, mutex = <optimized out>, private = <optimized out>}
+        s = <optimized out>
+#2  __pthread_cond_wait (cond=0x7fffcbf7a648, mutex=0x7fffcbf7a610) at pthread_cond_wait.c:638
+No locals.
+#3  0x00007ffff7ed143d in ACE_Condition<ACE_Thread_Mutex>::wait(ACE_Thread_Mutex&, ACE_Time_Value const*) () from /lib/x86_64-linux-gnu/libACE-6.5.12.so
+No symbol table info available.
+#4  0x00007ffff7eb3f92 in ACE_Activation_Queue::dequeue(ACE_Time_Value*) () from /lib/x86_64-linux-gnu/libACE-6.5.12.so
+No symbol table info available.
+#5  0x0000555555ccf155 in DelayExecutor::svc (this=0x7fffcbf93c00) at /server/src/dsc_live/src/shared/DelayExecutor.cpp:78
+        rq = <optimized out>
+#6  0x00007ffff7f47de5 in ACE_Task_Base::svc_run(void*) () from /lib/x86_64-linux-gnu/libACE-6.5.12.so
+No symbol table info available.
+#7  0x00007ffff7f48bfd in ACE_Thread_Adapter::invoke() () from /lib/x86_64-linux-gnu/libACE-6.5.12.so
+No symbol table info available.
+#8  0x00007ffff6e89ea7 in start_thread (arg=<optimized out>) at pthread_create.c:477
+        ret = <optimized out>
+        pd = <optimized out>
+        unwind_buf = {cancel_jmp_buf = {{jmp_buf = {140736347502336, -2664302304790573240, 140737488345790, 140737488345791, 140736347500480, 8396800, 2664170363922157384, 2664322258082598728}, mask_was_saved = 0}}, priv = {pad = {0x0, 0x0, 0x0, 0x0}, data = {prev = 0x0, cleanup = 0x0, canceltype = 0}}}
+        not_first_call = 0
+#9  0x00007ffff6db7def in clone () at ../sysdeps/unix/sysv/linux/x86_64/clone.S:95
+No locals.
+
+Thread 10 (Thread 0x7fffc8e50700 (LWP 2567672) "core_live"):
+#0  0x00005555559d4f2b in Spell::IsAliveUnitPresentInTargetList (this=this@entry=0x7ffe87506480) at /server/src/dsc_live/src/game/Spell.cpp:1372
+        needAliveTargetMask = <optimized out>
+#1  0x00005555559f5f16 in Spell::update (this=0x7ffe87506480, difftime=100) at /server/src/dsc_live/src/game/Spell.cpp:3403
+No locals.
+#2  0x00005555559f6537 in SpellEvent::Execute (this=0x7ffe91fbffd0, e_time=43047413, p_time=<optimized out>) at /server/src/dsc_live/src/game/Spell.cpp:6787
+No locals.
+#3  0x0000555555cdb6bc in EventProcessor::Update (this=this@entry=0x7fff36de71d0, p_time=p_time@entry=100) at /server/src/dsc_live/src/framework/Utilities/EventProcessor.cpp:51
+        Event = 0x7ffe91fbffd0
+        i = Python Exception <class 'gdb.error'> value has been optimized out: 
+
+#4  0x0000555555adda58 in Unit::UpdateEvents (time=100, update_diff=100, this=this@entry=0x7fff36de7040) at /server/src/dsc_live/src/game/Unit.cpp:440
+No locals.
+#5  Unit::Update (this=this@entry=0x7fff36de7040, update_diff=update_diff@entry=100, p_time=p_time@entry=100) at /server/src/dsc_live/src/game/Unit.cpp:449
+        base_att = <optimized out>
+        off_att = <optimized out>
+        ranged_att = <optimized out>
+#6  0x0000555555c1213a in Creature::Update (this=0x7fff36de7040, update_diff=100, diff=100) at /server/src/dsc_live/src/game/Creature.cpp:575
+No locals.
+#7  0x000055555583f951 in WorldObject::UpdateHelper::Update (time_diff=100, this=<synthetic pointer>) at /server/src/dsc_live/src/game/Object.h:390
+No locals.
+#8  Hellground::ObjectUpdater::Visit (m=..., this=0x7fffc8e4fd70) at /server/src/dsc_live/src/game/GridNotifiersImpl.h:152
+        helper = {m_obj = <optimized out>}
+        it = 0x7fff36de7040
+        updateList = std::__cxx11::list = {[0] = 0x7fff442d6080, [1] = 0x7fff36e0c100, [2] = 0x7fff36e0f040, [3] = 0x7fff36e0d0c0, [4] = 0x7fff36de7040}
+        maxListSize = <optimized out>
+        updateList = std::__cxx11::listPython Exception <class 'gdb.error'> value has been optimized out: 
+
+        maxListSize = <optimized out>
+        iter = {_Ptr = <optimized out>}
+        it = Python Exception <class 'gdb.error'> value has been optimized out: 
+
+        helper = {m_obj = <optimized out>}
+#9  VisitorHelper<Hellground::ObjectUpdater, Creature> (c=..., v=...) at /server/src/dsc_live/src/framework/GameSystem/TypeContainerVisitor.h:49
+No locals.
+#10 VisitorHelper<Hellground::ObjectUpdater, Creature, TypeList<DynamicObject, TypeList<Corpse, TypeNull> > > (c=..., v=...) at /server/src/dsc_live/src/framework/GameSystem/TypeContainerVisitor.h:55
+No locals.
+#11 VisitorHelper<Hellground::ObjectUpdater, GameObject, TypeList<Creature, TypeList<DynamicObject, TypeList<Corpse, TypeNull> > > > (c=..., v=...) at /server/src/dsc_live/src/framework/GameSystem/TypeContainerVisitor.h:56
+No locals.
+#12 VisitorHelper<Hellground::ObjectUpdater, TypeList<GameObject, TypeList<Creature, TypeList<DynamicObject, TypeList<Corpse, TypeNull> > > > > (c=..., v=...) at /server/src/dsc_live/src/framework/GameSystem/TypeContainerVisitor.h:62
+No locals.
+#13 TypeContainerVisitor<Hellground::ObjectUpdater, TypeMapContainer<TypeList<GameObject, TypeList<Creature, TypeList<DynamicObject, TypeList<Corpse, TypeNull> > > > > >::Visit (c=..., this=<synthetic pointer>) at /server/src/dsc_live/src/framework/GameSystem/TypeContainerVisitor.h:73
+No locals.
+#14 Grid<Player, TypeList<Player, TypeList<Creature, TypeList<Corpse, TypeList<Camera, TypeNull> > > >, TypeList<GameObject, TypeList<Creature, TypeList<DynamicObject, TypeList<Corpse, TypeNull> > > > >::Visit<Hellground::ObjectUpdater> (visitor=<synthetic pointer>..., this=0x7fff371b8988) at /server/src/dsc_live/src/framework/GameSystem/Grid.h:92
+No locals.
+#15 NGrid<16u, Player, TypeList<Player, TypeList<Creature, TypeList<Corpse, TypeList<Camera, TypeNull> > > >, TypeList<GameObject, TypeList<Creature, TypeList<DynamicObject, TypeList<Corpse, TypeNull> > > > >::Visit<Hellground::ObjectUpdater, TypeList<GameObject, TypeList<Creature, TypeList<DynamicObject, TypeList<Corpse, TypeNull> > > > > (visitor=<synthetic pointer>..., y=<synthetic pointer>: 3, x=<synthetic pointer>: <optimized out>, this=<optimized out>) at /server/src/dsc_live/src/framework/GameSystem/NGrid.h:147
+No locals.
+#16 Map::Visit<Hellground::ObjectUpdater, TypeMapContainer<TypeList<GameObject, TypeList<Creature, TypeList<DynamicObject, TypeList<Corpse, TypeNull> > > > > > (visitor=<synthetic pointer>..., cell=..., this=0x7fffd4d402c0) at /server/src/dsc_live/src/game/Map.h:482
+        x = <optimized out>
+        y = <optimized out>
+        cell_x = <optimized out>
+        cell_y = 3
+        x = <optimized out>
+        y = <optimized out>
+        cell_x = <optimized out>
+        cell_y = <optimized out>
+#17 Map::Update (this=0x7fffd4d402c0, t_diff=<optimized out>) at /server/src/dsc_live/src/game/Map.cpp:618
+        pair = {x_coord = <optimized out>, y_coord = 595}
+        cell = {data = {Part = {grid_x = 33, grid_y = 37, cell_x = 1, cell_y = 3, nocreate = 1, reserved = 0}, All = 17570145}}
+        cell_id = 609809
+        y = 595
+        x = 529
+        obj = <optimized out>
+        area = {low_bound = {x_coord = 526, y_coord = 594}, high_bound = {x_coord = 531, y_coord = 599}}
+        debug_map_id = 530
+        diff = {ownerName = "", _startTime = 43929586, _diffTresholdForFile = 0}
+        updater = {i_timeDiff = 100}
+        grid_object_update = {i_visitor = <optimized out>}
+        world_object_update = {i_visitor = <optimized out>}
+        lowestY = 96
+        highestY = 810
+#18 0x0000555555853886 in MapUpdateRequest::call (this=0x7ffdd81e8df0) at /server/src/dsc_live/src/game/MapUpdater.cpp:76
+No locals.
+#19 0x0000555555ccf141 in DelayExecutor::svc (this=0x7fffcbf93c00) at /server/src/dsc_live/src/shared/DelayExecutor.cpp:83
+        rq = 0x7ffdd81e8df0
+#20 0x00007ffff7f47de5 in ACE_Task_Base::svc_run(void*) () from /lib/x86_64-linux-gnu/libACE-6.5.12.so
+No symbol table info available.
+#21 0x00007ffff7f48bfd in ACE_Thread_Adapter::invoke() () from /lib/x86_64-linux-gnu/libACE-6.5.12.so
+No symbol table info available.
+#22 0x00007ffff6e89ea7 in start_thread (arg=<optimized out>) at pthread_create.c:477
+        ret = <optimized out>
+        pd = <optimized out>
+        unwind_buf = {cancel_jmp_buf = {{jmp_buf = {140736563840768, -2664302304790573240, 140737488345790, 140737488345791, 140736563838912, 8396800, 2664423311189217096, 2664322258082598728}, mask_was_saved = 0}}, priv = {pad = {0x0, 0x0, 0x0, 0x0}, data = {prev = 0x0, cleanup = 0x0, canceltype = 0}}}
+        not_first_call = 0
+#23 0x00007ffff6db7def in clone () at ../sysdeps/unix/sysv/linux/x86_64/clone.S:95
+No locals.
+
+Thread 9 (Thread 0x7fffc9651700 (LWP 2567671) "core_live"):
+#0  futex_wait_cancelable (private=0, expected=0, futex_word=0x7fffcbf7a674) at ../sysdeps/nptl/futex-internal.h:186
+        __ret = -512
+        oldtype = 0
+        err = <optimized out>
+        oldtype = <optimized out>
+        err = <optimized out>
+        __ret = <optimized out>
+        resultvar = <optimized out>
+        __arg4 = <optimized out>
+        __arg3 = <optimized out>
+        __arg2 = <optimized out>
+        __arg1 = <optimized out>
+        _a4 = <optimized out>
+        _a3 = <optimized out>
+        _a2 = <optimized out>
+        _a1 = <optimized out>
+#1  __pthread_cond_wait_common (abstime=0x0, clockid=0, mutex=0x7fffcbf7a610, cond=0x7fffcbf7a648) at pthread_cond_wait.c:508
+        spin = 0
+        buffer = {__routine = 0x7ffff6e90540 <__condvar_cleanup_waiting>, __arg = 0x7fffc9650db0, __canceltype = 16791583, __prev = 0x0}
+        cbuffer = {wseq = 8244787, cond = 0x7fffcbf7a648, mutex = 0x7fffcbf7a610, private = 0}
+        err = <optimized out>
+        g = 3378843024
+        flags = <optimized out>
+        g1_start = <optimized out>
+        maxspin = 0
+        signals = <optimized out>
+        result = 0
+        wseq = 8244787
+        seq = 4122393
+        private = 0
+        maxspin = <optimized out>
+        err = <optimized out>
+        result = <optimized out>
+        wseq = <optimized out>
+        g = <optimized out>
+        seq = <optimized out>
+        flags = <optimized out>
+        private = <optimized out>
+        signals = <optimized out>
+        done = <optimized out>
+        g1_start = <optimized out>
+        spin = <optimized out>
+        buffer = {__routine = <optimized out>, __arg = <optimized out>, __canceltype = <optimized out>, __prev = <optimized out>}
+        cbuffer = {wseq = <optimized out>, cond = <optimized out>, mutex = <optimized out>, private = <optimized out>}
+        s = <optimized out>
+#2  __pthread_cond_wait (cond=0x7fffcbf7a648, mutex=0x7fffcbf7a610) at pthread_cond_wait.c:638
+No locals.
+#3  0x00007ffff7ed143d in ACE_Condition<ACE_Thread_Mutex>::wait(ACE_Thread_Mutex&, ACE_Time_Value const*) () from /lib/x86_64-linux-gnu/libACE-6.5.12.so
+No symbol table info available.
+#4  0x00007ffff7eb3f92 in ACE_Activation_Queue::dequeue(ACE_Time_Value*) () from /lib/x86_64-linux-gnu/libACE-6.5.12.so
+No symbol table info available.
+#5  0x0000555555ccf155 in DelayExecutor::svc (this=0x7fffcbf93c00) at /server/src/dsc_live/src/shared/DelayExecutor.cpp:78
+        rq = <optimized out>
+#6  0x00007ffff7f47de5 in ACE_Task_Base::svc_run(void*) () from /lib/x86_64-linux-gnu/libACE-6.5.12.so
+No symbol table info available.
+#7  0x00007ffff7f48bfd in ACE_Thread_Adapter::invoke() () from /lib/x86_64-linux-gnu/libACE-6.5.12.so
+No symbol table info available.
+#8  0x00007ffff6e89ea7 in start_thread (arg=<optimized out>) at pthread_create.c:477
+        ret = <optimized out>
+        pd = <optimized out>
+        unwind_buf = {cancel_jmp_buf = {{jmp_buf = {140736572233472, -2664302304790573240, 140737488345790, 140737488345791, 140736572231616, 8396800, 2664422206845751112, 2664322258082598728}, mask_was_saved = 0}}, priv = {pad = {0x0, 0x0, 0x0, 0x0}, data = {prev = 0x0, cleanup = 0x0, canceltype = 0}}}
+        not_first_call = 0
+#9  0x00007ffff6db7def in clone () at ../sysdeps/unix/sysv/linux/x86_64/clone.S:95
+No locals.
+
+Thread 8 (Thread 0x7fffc9e52700 (LWP 2567670) "core_live"):
+#0  futex_wait_cancelable (private=0, expected=0, futex_word=0x7fffcbf7a674) at ../sysdeps/nptl/futex-internal.h:186
+        __ret = -512
+        oldtype = 0
+        err = <optimized out>
+        oldtype = <optimized out>
+        err = <optimized out>
+        __ret = <optimized out>
+        resultvar = <optimized out>
+        __arg4 = <optimized out>
+        __arg3 = <optimized out>
+        __arg2 = <optimized out>
+        __arg1 = <optimized out>
+        _a4 = <optimized out>
+        _a3 = <optimized out>
+        _a2 = <optimized out>
+        _a1 = <optimized out>
+#1  __pthread_cond_wait_common (abstime=0x0, clockid=0, mutex=0x7fffcbf7a610, cond=0x7fffcbf7a648) at pthread_cond_wait.c:508
+        spin = 0
+        buffer = {__routine = 0x7ffff6e90540 <__condvar_cleanup_waiting>, __arg = 0x7fffc9e51db0, __canceltype = -872858672, __prev = 0x0}
+        cbuffer = {wseq = 8244793, cond = 0x7fffcbf7a648, mutex = 0x7fffcbf7a610, private = 0}
+        err = <optimized out>
+        g = 3387235728
+        flags = <optimized out>
+        g1_start = <optimized out>
+        maxspin = 0
+        signals = <optimized out>
+        result = 0
+        wseq = 8244793
+        seq = 4122396
+        private = 0
+        maxspin = <optimized out>
+        err = <optimized out>
+        result = <optimized out>
+        wseq = <optimized out>
+        g = <optimized out>
+        seq = <optimized out>
+        flags = <optimized out>
+        private = <optimized out>
+        signals = <optimized out>
+        done = <optimized out>
+        g1_start = <optimized out>
+        spin = <optimized out>
+        buffer = {__routine = <optimized out>, __arg = <optimized out>, __canceltype = <optimized out>, __prev = <optimized out>}
+        cbuffer = {wseq = <optimized out>, cond = <optimized out>, mutex = <optimized out>, private = <optimized out>}
+        s = <optimized out>
+#2  __pthread_cond_wait (cond=0x7fffcbf7a648, mutex=0x7fffcbf7a610) at pthread_cond_wait.c:638
+No locals.
+#3  0x00007ffff7ed143d in ACE_Condition<ACE_Thread_Mutex>::wait(ACE_Thread_Mutex&, ACE_Time_Value const*) () from /lib/x86_64-linux-gnu/libACE-6.5.12.so
+No symbol table info available.
+#4  0x00007ffff7eb3f92 in ACE_Activation_Queue::dequeue(ACE_Time_Value*) () from /lib/x86_64-linux-gnu/libACE-6.5.12.so
+No symbol table info available.
+#5  0x0000555555ccf155 in DelayExecutor::svc (this=0x7fffcbf93c00) at /server/src/dsc_live/src/shared/DelayExecutor.cpp:78
+        rq = <optimized out>
+#6  0x00007ffff7f47de5 in ACE_Task_Base::svc_run(void*) () from /lib/x86_64-linux-gnu/libACE-6.5.12.so
+No symbol table info available.
+#7  0x00007ffff7f48bfd in ACE_Thread_Adapter::invoke() () from /lib/x86_64-linux-gnu/libACE-6.5.12.so
+No symbol table info available.
+#8  0x00007ffff6e89ea7 in start_thread (arg=<optimized out>) at pthread_create.c:477
+        ret = <optimized out>
+        pd = <optimized out>
+        unwind_buf = {cancel_jmp_buf = {{jmp_buf = {140736580626176, -2664302304790573240, 140737488345790, 140737488345791, 140736580624320, 8396800, 2664421106797252424, 2664322258082598728}, mask_was_saved = 0}}, priv = {pad = {0x0, 0x0, 0x0, 0x0}, data = {prev = 0x0, cleanup = 0x0, canceltype = 0}}}
+        not_first_call = 0
+#9  0x00007ffff6db7def in clone () at ../sysdeps/unix/sysv/linux/x86_64/clone.S:95
+No locals.
+
+Thread 7 (Thread 0x7fffca653700 (LWP 2567669) "core_live"):
+#0  futex_wait_cancelable (private=0, expected=0, futex_word=0x7fffcbf7a674) at ../sysdeps/nptl/futex-internal.h:186
+        __ret = -512
+        oldtype = 0
+        err = <optimized out>
+        oldtype = <optimized out>
+        err = <optimized out>
+        __ret = <optimized out>
+        resultvar = <optimized out>
+        __arg4 = <optimized out>
+        __arg3 = <optimized out>
+        __arg2 = <optimized out>
+        __arg1 = <optimized out>
+        _a4 = <optimized out>
+        _a3 = <optimized out>
+        _a2 = <optimized out>
+        _a1 = <optimized out>
+#1  __pthread_cond_wait_common (abstime=0x0, clockid=0, mutex=0x7fffcbf7a610, cond=0x7fffcbf7a648) at pthread_cond_wait.c:508
+        spin = 0
+        buffer = {__routine = 0x7ffff6e90540 <__condvar_cleanup_waiting>, __arg = 0x7fffca652db0, __canceltype = -872858672, __prev = 0x0}
+        cbuffer = {wseq = 8244795, cond = 0x7fffcbf7a648, mutex = 0x7fffcbf7a610, private = 0}
+        err = <optimized out>
+        g = 3395628432
+        flags = <optimized out>
+        g1_start = <optimized out>
+        maxspin = 0
+        signals = <optimized out>
+        result = 0
+        wseq = 8244795
+        seq = 4122397
+        private = 0
+        maxspin = <optimized out>
+        err = <optimized out>
+        result = <optimized out>
+        wseq = <optimized out>
+        g = <optimized out>
+        seq = <optimized out>
+        flags = <optimized out>
+        private = <optimized out>
+        signals = <optimized out>
+        done = <optimized out>
+        g1_start = <optimized out>
+        spin = <optimized out>
+        buffer = {__routine = <optimized out>, __arg = <optimized out>, __canceltype = <optimized out>, __prev = <optimized out>}
+        cbuffer = {wseq = <optimized out>, cond = <optimized out>, mutex = <optimized out>, private = <optimized out>}
+        s = <optimized out>
+#2  __pthread_cond_wait (cond=0x7fffcbf7a648, mutex=0x7fffcbf7a610) at pthread_cond_wait.c:638
+No locals.
+#3  0x00007ffff7ed143d in ACE_Condition<ACE_Thread_Mutex>::wait(ACE_Thread_Mutex&, ACE_Time_Value const*) () from /lib/x86_64-linux-gnu/libACE-6.5.12.so
+No symbol table info available.
+#4  0x00007ffff7eb3f92 in ACE_Activation_Queue::dequeue(ACE_Time_Value*) () from /lib/x86_64-linux-gnu/libACE-6.5.12.so
+No symbol table info available.
+#5  0x0000555555ccf155 in DelayExecutor::svc (this=0x7fffcbf93c00) at /server/src/dsc_live/src/shared/DelayExecutor.cpp:78
+        rq = <optimized out>
+#6  0x00007ffff7f47de5 in ACE_Task_Base::svc_run(void*) () from /lib/x86_64-linux-gnu/libACE-6.5.12.so
+No symbol table info available.
+#7  0x00007ffff7f48bfd in ACE_Thread_Adapter::invoke() () from /lib/x86_64-linux-gnu/libACE-6.5.12.so
+No symbol table info available.
+#8  0x00007ffff6e89ea7 in start_thread (arg=<optimized out>) at pthread_create.c:477
+        ret = <optimized out>
+        pd = <optimized out>
+        unwind_buf = {cancel_jmp_buf = {{jmp_buf = {140736589018880, -2664302304790573240, 140737488345790, 140737488345791, 140736589017024, 8396800, 2664420006748753736, 2664322258082598728}, mask_was_saved = 0}}, priv = {pad = {0x0, 0x0, 0x0, 0x0}, data = {prev = 0x0, cleanup = 0x0, canceltype = 0}}}
+        not_first_call = 0
+#9  0x00007ffff6db7def in clone () at ../sysdeps/unix/sysv/linux/x86_64/clone.S:95
+No locals.
+
+Thread 6 (Thread 0x7fffcae54700 (LWP 2567668) "core_live"):
+#0  futex_wait_cancelable (private=0, expected=0, futex_word=0x7fffcbf7a674) at ../sysdeps/nptl/futex-internal.h:186
+        __ret = -512
+        oldtype = 0
+        err = <optimized out>
+        oldtype = <optimized out>
+        err = <optimized out>
+        __ret = <optimized out>
+        resultvar = <optimized out>
+        __arg4 = <optimized out>
+        __arg3 = <optimized out>
+        __arg2 = <optimized out>
+        __arg1 = <optimized out>
+        _a4 = <optimized out>
+        _a3 = <optimized out>
+        _a2 = <optimized out>
+        _a1 = <optimized out>
+#1  __pthread_cond_wait_common (abstime=0x0, clockid=0, mutex=0x7fffcbf7a610, cond=0x7fffcbf7a648) at pthread_cond_wait.c:508
+        spin = 0
+        buffer = {__routine = 0x7ffff6e90540 <__condvar_cleanup_waiting>, __arg = 0x7fffcae53db0, __canceltype = 18106404, __prev = 0x0}
+        cbuffer = {wseq = 8244785, cond = 0x7fffcbf7a648, mutex = 0x7fffcbf7a610, private = 0}
+        err = <optimized out>
+        g = 3404021136
+        flags = <optimized out>
+        g1_start = <optimized out>
+        maxspin = 0
+        signals = <optimized out>
+        result = 0
+        wseq = 8244785
+        seq = 4122392
+        private = 0
+        maxspin = <optimized out>
+        err = <optimized out>
+        result = <optimized out>
+        wseq = <optimized out>
+        g = <optimized out>
+        seq = <optimized out>
+        flags = <optimized out>
+        private = <optimized out>
+        signals = <optimized out>
+        done = <optimized out>
+        g1_start = <optimized out>
+        spin = <optimized out>
+        buffer = {__routine = <optimized out>, __arg = <optimized out>, __canceltype = <optimized out>, __prev = <optimized out>}
+        cbuffer = {wseq = <optimized out>, cond = <optimized out>, mutex = <optimized out>, private = <optimized out>}
+        s = <optimized out>
+#2  __pthread_cond_wait (cond=0x7fffcbf7a648, mutex=0x7fffcbf7a610) at pthread_cond_wait.c:638
+No locals.
+#3  0x00007ffff7ed143d in ACE_Condition<ACE_Thread_Mutex>::wait(ACE_Thread_Mutex&, ACE_Time_Value const*) () from /lib/x86_64-linux-gnu/libACE-6.5.12.so
+No symbol table info available.
+#4  0x00007ffff7eb3f92 in ACE_Activation_Queue::dequeue(ACE_Time_Value*) () from /lib/x86_64-linux-gnu/libACE-6.5.12.so
+No symbol table info available.
+#5  0x0000555555ccf155 in DelayExecutor::svc (this=0x7fffcbf93c00) at /server/src/dsc_live/src/shared/DelayExecutor.cpp:78
+        rq = <optimized out>
+#6  0x00007ffff7f47de5 in ACE_Task_Base::svc_run(void*) () from /lib/x86_64-linux-gnu/libACE-6.5.12.so
+No symbol table info available.
+#7  0x00007ffff7f48bfd in ACE_Thread_Adapter::invoke() () from /lib/x86_64-linux-gnu/libACE-6.5.12.so
+No symbol table info available.
+#8  0x00007ffff6e89ea7 in start_thread (arg=<optimized out>) at pthread_create.c:477
+        ret = <optimized out>
+        pd = <optimized out>
+        unwind_buf = {cancel_jmp_buf = {{jmp_buf = {140736597411584, -2664302304790573240, 140737488345790, 140737488345791, 140736597409728, 8396800, 2664418906700255048, 2664322258082598728}, mask_was_saved = 0}}, priv = {pad = {0x0, 0x0, 0x0, 0x0}, data = {prev = 0x0, cleanup = 0x0, canceltype = 0}}}
+        not_first_call = 0
+#9  0x00007ffff6db7def in clone () at ../sysdeps/unix/sysv/linux/x86_64/clone.S:95
+No locals.
+
+Thread 5 (Thread 0x7ffff53b1700 (LWP 2567313) "core_live"):
+#0  0x00007ffff6d7fc61 in __GI___clock_nanosleep (clock_id=clock_id@entry=0, flags=flags@entry=0, req=req@entry=0x7ffff53b0e60, rem=rem@entry=0x0) at ../sysdeps/unix/sysv/linux/clock_nanosleep.c:48
+        sc_cancel_oldtype = 0
+        sc_ret = <optimized out>
+        r = <optimized out>
+#1  0x00007ffff6d85443 in __GI___nanosleep (requested_time=requested_time@entry=0x7ffff53b0e60, remaining=remaining@entry=0x0) at nanosleep.c:27
+        ret = <optimized out>
+#2  0x0000555555cd40b8 in ACE_OS::sleep (tv=...) at /usr/include/ace/OS_NS_unistd.inl:1007
+        rqtp = {tv_sec = 0, tv_nsec = 10000000}
+#3  ACE_Based::Thread::Sleep (msecs=msecs@entry=10) at /server/src/dsc_live/src/shared/Threading.cpp:234
+No locals.
+#4  0x0000555555ccaee8 in SqlDelayThread::run (this=0x7ffff6973dc0) at /server/src/dsc_live/src/shared/Database/SqlDelayThread.cpp:54
+        loopSleepms = 10
+        pingEveryLoop = 3000
+        lastPing = 43925266
+        loopCounter = <optimized out>
+#5  0x0000555555cd3b2a in ACE_Based::Thread::ThreadTask (param=0x7ffff6973dc0) at /server/src/dsc_live/src/shared/Threading.cpp:186
+        _task = 0x7ffff6973dc0
+#6  0x00007ffff6e89ea7 in start_thread (arg=<optimized out>) at pthread_create.c:477
+        ret = <optimized out>
+        pd = <optimized out>
+        unwind_buf = {cancel_jmp_buf = {{jmp_buf = {140737307678464, -2664302304790573240, 140737488346254, 140737488346255, 140737307676608, 8396800, 2664324882886823752, 2664322258082598728}, mask_was_saved = 0}}, priv = {pad = {0x0, 0x0, 0x0, 0x0}, data = {prev = 0x0, cleanup = 0x0, canceltype = 0}}}
+        not_first_call = 0
+#7  0x00007ffff6db7def in clone () at ../sysdeps/unix/sysv/linux/x86_64/clone.S:95
+No locals.
+
+Thread 4 (Thread 0x7ffff5bb2700 (LWP 2567311) "core_live"):
+#0  0x00007ffff6d7fc61 in __GI___clock_nanosleep (clock_id=clock_id@entry=0, flags=flags@entry=0, req=req@entry=0x7ffff5bb1e60, rem=rem@entry=0x0) at ../sysdeps/unix/sysv/linux/clock_nanosleep.c:48
+        sc_cancel_oldtype = 0
+        sc_ret = <optimized out>
+        r = <optimized out>
+#1  0x00007ffff6d85443 in __GI___nanosleep (requested_time=requested_time@entry=0x7ffff5bb1e60, remaining=remaining@entry=0x0) at nanosleep.c:27
+        ret = <optimized out>
+#2  0x0000555555cd40b8 in ACE_OS::sleep (tv=...) at /usr/include/ace/OS_NS_unistd.inl:1007
+        rqtp = {tv_sec = 0, tv_nsec = 10000000}
+#3  ACE_Based::Thread::Sleep (msecs=msecs@entry=10) at /server/src/dsc_live/src/shared/Threading.cpp:234
+No locals.
+#4  0x0000555555ccaf8d in SqlDelayThread::run (this=0x7ffff6973e80) at /server/src/dsc_live/src/shared/Database/SqlDelayThread.cpp:54
+        loopSleepms = 10
+        pingEveryLoop = 3000
+        lastPing = 43925266
+        loopCounter = <optimized out>
+#5  0x0000555555cd3b2a in ACE_Based::Thread::ThreadTask (param=0x7ffff6973e80) at /server/src/dsc_live/src/shared/Threading.cpp:186
+        _task = 0x7ffff6973e80
+#6  0x00007ffff6e89ea7 in start_thread (arg=<optimized out>) at pthread_create.c:477
+        ret = <optimized out>
+        pd = <optimized out>
+        unwind_buf = {cancel_jmp_buf = {{jmp_buf = {140737316071168, -2664302304790573240, 140737488346254, 140737488346255, 140737316069312, 8396800, 2664323782838325064, 2664322258082598728}, mask_was_saved = 0}}, priv = {pad = {0x0, 0x0, 0x0, 0x0}, data = {prev = 0x0, cleanup = 0x0, canceltype = 0}}}
+        not_first_call = 0
+#7  0x00007ffff6db7def in clone () at ../sysdeps/unix/sysv/linux/x86_64/clone.S:95
+No locals.
+
+Thread 3 (Thread 0x7ffff63c7700 (LWP 2567310) "core_live"):
+#0  0x00007ffff6d7fc61 in __GI___clock_nanosleep (clock_id=clock_id@entry=0, flags=flags@entry=0, req=req@entry=0x7ffff63c6e60, rem=rem@entry=0x0) at ../sysdeps/unix/sysv/linux/clock_nanosleep.c:48
+        sc_cancel_oldtype = 0
+        sc_ret = <optimized out>
+        r = <optimized out>
+#1  0x00007ffff6d85443 in __GI___nanosleep (requested_time=requested_time@entry=0x7ffff63c6e60, remaining=remaining@entry=0x0) at nanosleep.c:27
+        ret = <optimized out>
+#2  0x0000555555cd40b8 in ACE_OS::sleep (tv=...) at /usr/include/ace/OS_NS_unistd.inl:1007
+        rqtp = {tv_sec = 0, tv_nsec = 10000000}
+#3  ACE_Based::Thread::Sleep (msecs=msecs@entry=10) at /server/src/dsc_live/src/shared/Threading.cpp:234
+No locals.
+#4  0x0000555555ccaf4f in SqlDelayThread::run (this=0x7ffff6973f40) at /server/src/dsc_live/src/shared/Database/SqlDelayThread.cpp:54
+        loopSleepms = 10
+        pingEveryLoop = 3000
+        lastPing = 43925266
+        loopCounter = <optimized out>
+#5  0x0000555555cd3b2a in ACE_Based::Thread::ThreadTask (param=0x7ffff6973f40) at /server/src/dsc_live/src/shared/Threading.cpp:186
+        _task = 0x7ffff6973f40
+#6  0x00007ffff6e89ea7 in start_thread (arg=<optimized out>) at pthread_create.c:477
+        ret = <optimized out>
+        pd = <optimized out>
+        unwind_buf = {cancel_jmp_buf = {{jmp_buf = {140737324545792, -2664302304790573240, 140737488346254, 140737488346255, 140737324543936, 93825002722832, 2664322641987637064, 2664322258082598728}, mask_was_saved = 0}}, priv = {pad = {0x0, 0x0, 0x0, 0x0}, data = {prev = 0x0, cleanup = 0x0, canceltype = 0}}}
+        not_first_call = 0
+#7  0x00007ffff6db7def in clone () at ../sysdeps/unix/sysv/linux/x86_64/clone.S:95
+No locals.
+
+Thread 1 (Thread 0x7ffff6a1eb80 (LWP 2567270) "core_live"):
+#0  __pthread_clockjoin_ex (threadid=140736305538816, thread_return=0x0, clockid=<optimized out>, abstime=<optimized out>, block=<optimized out>) at pthread_join_common.c:145
+        __oldtype = 0
+        __err = <optimized out>
+        tid = 2567678
+        _buffer = {__routine = 0x7ffff6e8b250 <cleanup>, __arg = 0x7fffb97fad28, __canceltype = 0, __prev = 0x0}
+        pd = 0x7fffb97fa700
+        self = <optimized out>
+        result = 0
+        pd_result = <optimized out>
+#1  0x00007ffff7f4d0ca in ACE_Thread_Manager::wait_task(ACE_Task_Base*) () from /lib/x86_64-linux-gnu/libACE-6.5.12.so
+No symbol table info available.
+#2  0x0000555555b3d874 in ReactorRunnable::Wait (this=<optimized out>) at /server/src/dsc_live/src/game/WorldSocketMgr.cpp:105
+No locals.
+#3  WorldSocketMgr::Wait (this=0x7fffcbf4b3a8) at /server/src/dsc_live/src/game/WorldSocketMgr.cpp:314
+        i = 0
+        num_threads = 2
+#4  0x00005555556c9fa3 in Master::Run (this=0x7ffff69b3e18) at /server/src/dsc_live/src/hellgroundcore/Master.cpp:277
+        pidfile = ""
+        action = {__sigaction_handler = {sa_handler = 0x5555556c91b0 <Master::_OnSignal(int)>, sa_sigaction = 0x5555556c91b0 <Master::_OnSignal(int)>}, sa_mask = {__val = {0 <repeats 16 times>}}, sa_flags = 0, sa_restorer = 0x7fffffffe050}
+        world_thread = {m_iThreadId = 140736322324224, m_hThreadHandle = 140736322324224, m_task = 0x7fffcbc68590, static m_ThreadStorage = {<ACE_Copy_Disabled> = {<No data fields>}, _vptr.ACE_TSS = 0x555555f03c58 <vtable for ACE_TSS<ACE_Based::Thread>+16>, keylock_ = {lock_ = {__data = {__lock = 0, __count = 0, __owner = 0, __nusers = 0, __kind = 0, __spins = 0, __elision = 0, __list = {__prev = 0x0, __next = 0x0}}, __size = '\000' <repeats 39 times>, __align = 0}, removed_ = false}, once_ = false, key_ = 0}, static m_TpEnum = {m_priority = {0, 0, 0, 0, 0, 0, 0}}}
+        realCurrTime = <optimized out>
+        realPrevTime = <optimized out>
+        freeze_thread = 0x0
+        freeze_delay = 0
+        wsport = 8085
+        bind_ip = "0.0.0.0"
+#5  0x00005555556be154 in main (argc=<optimized out>, argv=0x7fffffffe328) at /server/src/dsc_live/src/hellgroundcore/Main.cpp:239
+        cfg_file = <optimized out>
+        options = 0x555555da06eb ":a:c:s:p:i:"
+        process = <optimized out>
+        process_id = <optimized out>
+        cmd_opts = {argc_ = 3, argv_ = 0x7fffffffe328, optind = 3, opterr = 0, optarg = 0x0, optstring_ = 0x7ffff69af5b0, long_only_ = 0, has_colon_ = 1, last_option_ = 0x7ffff69af580, nextchar_ = 0x0, optopt_ = 99, ordering_ = 2, nonopt_start_ = 3, nonopt_end_ = 3, long_option_ = 0x0, long_opts_ = {<ACE_Array_Base<ACE_Get_Opt::ACE_Get_Opt_Long_Option*>> = {max_size_ = 1, cur_size_ = 1, array_ = 0x7ffff69a3ff0, allocator_ = 0x7ffff7fbb758}, <No data fields>}}
+        serviceDaemonMode = <optimized out>
+        option = <optimized out>
+        vmapProcesses = 4
+        vmapCluster = false
+        confVersion = <optimized out>

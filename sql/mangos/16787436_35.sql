@@ -1,0 +1,1 @@
+UPDATE creature_loot_template SET ChanceOrQuestChance = 20 WHERE entry = 10678 AND item = 13920;

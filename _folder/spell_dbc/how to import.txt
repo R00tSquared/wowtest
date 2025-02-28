@@ -1,0 +1,289 @@
+CREATE TABLE `spell_template_dbcimport` (
+  `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
+  `Category` int(11) unsigned NOT NULL DEFAULT 0,
+  `Dispel` int(11) unsigned NOT NULL DEFAULT 0,
+  `Mechanic` int(11) unsigned NOT NULL DEFAULT 0,
+  `Attributes` int(11) unsigned NOT NULL DEFAULT 0,
+  `AttributesEx` int(11) unsigned NOT NULL DEFAULT 0,
+  `AttributesEx2` int(11) unsigned NOT NULL DEFAULT 0,
+  `AttributesEx3` int(11) unsigned NOT NULL DEFAULT 0,
+  `AttributesEx4` int(11) unsigned NOT NULL DEFAULT 0,
+  `AttributesEx5` int(11) unsigned NOT NULL DEFAULT 0,
+  `AttributesEx6` int(11) unsigned NOT NULL DEFAULT 0,
+  `Stances` int(11) unsigned NOT NULL DEFAULT 0,
+  `StancesNot` int(11) unsigned NOT NULL DEFAULT 0,
+  `Targets` int(11) unsigned NOT NULL DEFAULT 0,
+  `TargetCreatureType` int(11) unsigned NOT NULL DEFAULT 0,
+  `RequiresSpellFocus` int(11) unsigned NOT NULL DEFAULT 0,
+  `FacingCasterFlags` int(11) unsigned NOT NULL DEFAULT 0,
+  `CasterAuraState` int(11) unsigned NOT NULL DEFAULT 0,
+  `TargetAuraState` int(11) unsigned NOT NULL DEFAULT 0,
+  `CasterAuraStateNot` int(11) unsigned NOT NULL DEFAULT 0,
+  `TargetAuraStateNot` int(11) unsigned NOT NULL DEFAULT 0,
+  `CastingTimeIndex` int(11) unsigned NOT NULL DEFAULT 0,
+  `RecoveryTime` int(11) unsigned NOT NULL DEFAULT 0,
+  `CategoryRecoveryTime` int(11) unsigned NOT NULL DEFAULT 0,
+  `InterruptFlags` int(11) unsigned NOT NULL DEFAULT 0,
+  `AuraInterruptFlags` int(11) unsigned NOT NULL DEFAULT 0,
+  `ChannelInterruptFlags` int(11) unsigned NOT NULL DEFAULT 0,
+  `procFlags` int(11) unsigned NOT NULL DEFAULT 0,
+  `procChance` int(11) unsigned NOT NULL DEFAULT 0,
+  `procCharges` int(11) unsigned NOT NULL DEFAULT 0,
+  `maxLevel` int(11) unsigned NOT NULL DEFAULT 0,
+  `baseLevel` int(11) unsigned NOT NULL DEFAULT 0,
+  `spellLevel` int(11) unsigned NOT NULL DEFAULT 0,
+  `DurationIndex` int(11) unsigned NOT NULL DEFAULT 0,
+  `powerType` int(11) unsigned NOT NULL DEFAULT 0,
+  `manaCost` int(11) unsigned NOT NULL DEFAULT 0,
+  `manaCostPerlevel` int(11) unsigned NOT NULL DEFAULT 0,
+  `manaPerSecond` int(11) unsigned NOT NULL DEFAULT 0,
+  `manaPerSecondPerLevel` int(11) unsigned NOT NULL DEFAULT 0,
+  `rangeIndex` int(11) unsigned NOT NULL DEFAULT 0,
+  `speed` float NOT NULL DEFAULT 0,
+  `StackAmount` int(11) unsigned NOT NULL DEFAULT 0,
+  `Totem1` int(11) unsigned NOT NULL DEFAULT 0,
+  `Totem2` int(11) unsigned NOT NULL DEFAULT 0,
+  `Reagent1` int(11) NOT NULL DEFAULT 0,
+  `Reagent2` int(11) NOT NULL DEFAULT 0,
+  `Reagent3` int(11) NOT NULL DEFAULT 0,
+  `Reagent4` int(11) NOT NULL DEFAULT 0,
+  `Reagent5` int(11) NOT NULL DEFAULT 0,
+  `Reagent6` int(11) NOT NULL DEFAULT 0,
+  `Reagent7` int(11) NOT NULL DEFAULT 0,
+  `Reagent8` int(11) NOT NULL DEFAULT 0,
+  `ReagentCount1` int(11) NOT NULL DEFAULT 0,
+  `ReagentCount2` int(11) NOT NULL DEFAULT 0,
+  `ReagentCount3` int(11) NOT NULL DEFAULT 0,
+  `ReagentCount4` int(11) NOT NULL DEFAULT 0,
+  `ReagentCount5` int(11) NOT NULL DEFAULT 0,
+  `ReagentCount6` int(11) NOT NULL DEFAULT 0,
+  `ReagentCount7` int(11) NOT NULL DEFAULT 0,
+  `ReagentCount8` int(11) NOT NULL DEFAULT 0,
+  `EquippedItemClass` int(11) NOT NULL DEFAULT 0,
+  `EquippedItemSubClassMask` int(11) NOT NULL DEFAULT 0,
+  `EquippedItemInventoryTypeMask` int(11) NOT NULL DEFAULT 0,
+  `Effect1` int(11) unsigned NOT NULL DEFAULT 0,
+  `Effect2` int(11) unsigned NOT NULL DEFAULT 0,
+  `Effect3` int(11) unsigned NOT NULL DEFAULT 0,
+  `EffectDieSides1` int(11) NOT NULL DEFAULT 0,
+  `EffectDieSides2` int(11) NOT NULL DEFAULT 0,
+  `EffectDieSides3` int(11) NOT NULL DEFAULT 0,
+  `EffectBaseDice1` int(11) unsigned NOT NULL DEFAULT 0,
+  `EffectBaseDice2` int(11) unsigned NOT NULL DEFAULT 0,
+  `EffectBaseDice3` int(11) unsigned NOT NULL DEFAULT 0,
+  `EffectDicePerLevel1` float NOT NULL DEFAULT 0,
+  `EffectDicePerLevel2` float NOT NULL DEFAULT 0,
+  `EffectDicePerLevel3` float NOT NULL DEFAULT 0,
+  `EffectRealPointsPerLevel1` float NOT NULL DEFAULT 0,
+  `EffectRealPointsPerLevel2` float NOT NULL DEFAULT 0,
+  `EffectRealPointsPerLevel3` float NOT NULL DEFAULT 0,
+  `EffectBasePoints1` int(11) NOT NULL DEFAULT 0,
+  `EffectBasePoints2` int(11) NOT NULL DEFAULT 0,
+  `EffectBasePoints3` int(11) NOT NULL DEFAULT 0,
+  `EffectMechanic1` int(11) unsigned NOT NULL DEFAULT 0,
+  `EffectMechanic2` int(11) unsigned NOT NULL DEFAULT 0,
+  `EffectMechanic3` int(11) unsigned NOT NULL DEFAULT 0,
+  `EffectImplicitTargetA1` int(11) unsigned NOT NULL DEFAULT 0,
+  `EffectImplicitTargetA2` int(11) unsigned NOT NULL DEFAULT 0,
+  `EffectImplicitTargetA3` int(11) unsigned NOT NULL DEFAULT 0,
+  `EffectImplicitTargetB1` int(11) unsigned NOT NULL DEFAULT 0,
+  `EffectImplicitTargetB2` int(11) unsigned NOT NULL DEFAULT 0,
+  `EffectImplicitTargetB3` int(11) unsigned NOT NULL DEFAULT 0,
+  `EffectRadiusIndex1` int(11) unsigned NOT NULL DEFAULT 0,
+  `EffectRadiusIndex2` int(11) unsigned NOT NULL DEFAULT 0,
+  `EffectRadiusIndex3` int(11) unsigned NOT NULL DEFAULT 0,
+  `EffectApplyAuraName1` int(11) unsigned NOT NULL DEFAULT 0,
+  `EffectApplyAuraName2` int(11) unsigned NOT NULL DEFAULT 0,
+  `EffectApplyAuraName3` int(11) unsigned NOT NULL DEFAULT 0,
+  `EffectAmplitude1` int(11) unsigned NOT NULL DEFAULT 0,
+  `EffectAmplitude2` int(11) unsigned NOT NULL DEFAULT 0,
+  `EffectAmplitude3` int(11) unsigned NOT NULL DEFAULT 0,
+  `EffectMultipleValue1` float NOT NULL DEFAULT 0,
+  `EffectMultipleValue2` float NOT NULL DEFAULT 0,
+  `EffectMultipleValue3` float NOT NULL DEFAULT 0,
+  `EffectChainTarget1` int(11) unsigned NOT NULL DEFAULT 0,
+  `EffectChainTarget2` int(11) unsigned NOT NULL DEFAULT 0,
+  `EffectChainTarget3` int(11) unsigned NOT NULL DEFAULT 0,
+  `EffectItemType1` int(11) unsigned NOT NULL DEFAULT 0,
+  `EffectItemType2` int(11) unsigned NOT NULL DEFAULT 0,
+  `EffectItemType3` int(11) unsigned NOT NULL DEFAULT 0,
+  `EffectMiscValue1` int(11) NOT NULL DEFAULT 0,
+  `EffectMiscValue2` int(11) NOT NULL DEFAULT 0,
+  `EffectMiscValue3` int(11) NOT NULL DEFAULT 0,
+  `EffectMiscValueB1` int(11) NOT NULL DEFAULT 0,
+  `EffectMiscValueB2` int(11) NOT NULL DEFAULT 0,
+  `EffectMiscValueB3` int(11) NOT NULL DEFAULT 0,
+  `EffectTriggerSpell1` int(11) unsigned NOT NULL DEFAULT 0,
+  `EffectTriggerSpell2` int(11) unsigned NOT NULL DEFAULT 0,
+  `EffectTriggerSpell3` int(11) unsigned NOT NULL DEFAULT 0,
+  `EffectPointsPerComboPoint1` float NOT NULL DEFAULT 0,
+  `EffectPointsPerComboPoint2` float NOT NULL DEFAULT 0,
+  `EffectPointsPerComboPoint3` float NOT NULL DEFAULT 0,
+  `SpellVisual` int(11) unsigned NOT NULL DEFAULT 0,
+  `SpellIconID` int(11) unsigned NOT NULL DEFAULT 0,
+  `activeIconID` int(11) unsigned NOT NULL DEFAULT 0,
+  `SpellName` text DEFAULT NULL,
+  `SpellName2` text DEFAULT NULL,
+  `SpellName3` text DEFAULT NULL,
+  `SpellName4` text DEFAULT NULL,
+  `SpellName5` text DEFAULT NULL,
+  `SpellName6` text DEFAULT NULL,
+  `SpellName7` text DEFAULT NULL,
+  `SpellName8` text DEFAULT NULL,
+  `SpellName9` text DEFAULT NULL,
+  `SpellName10` text DEFAULT NULL,
+  `SpellName11` text DEFAULT NULL,
+  `SpellName12` text DEFAULT NULL,
+  `SpellName13` text DEFAULT NULL,
+  `SpellName14` text DEFAULT NULL,
+  `SpellName15` text DEFAULT NULL,
+  `SpellName16` text DEFAULT NULL,
+  `Rank` text DEFAULT NULL,
+  `Rank2` text DEFAULT NULL,
+  `Rank3` text DEFAULT NULL,
+  `Rank4` text DEFAULT NULL,
+  `Rank5` text DEFAULT NULL,
+  `Rank6` text DEFAULT NULL,
+  `Rank7` text DEFAULT NULL,
+  `Rank8` text DEFAULT NULL,
+  `Rank9` text DEFAULT NULL,
+  `Rank10` text DEFAULT NULL,
+  `Rank11` text DEFAULT NULL,
+  `Rank12` text DEFAULT NULL,
+  `Rank13` text DEFAULT NULL,
+  `Rank14` text DEFAULT NULL,
+  `Rank15` text DEFAULT NULL,
+  `Rank16` text DEFAULT NULL,
+  `ToolTipFlags` int(11) unsigned NOT NULL DEFAULT 0,
+  `ManaCostPercentage` int(11) unsigned NOT NULL DEFAULT 0,
+  `StartRecoveryCategory` int(11) unsigned NOT NULL DEFAULT 0,
+  `StartRecoveryTime` int(11) unsigned NOT NULL DEFAULT 0,
+  `MaxTargetLevel` int(11) unsigned NOT NULL DEFAULT 0,
+  `SpellFamilyName` int(11) unsigned NOT NULL DEFAULT 0,
+  `SpellFamilyFlags` bigint(20) NOT NULL DEFAULT 0,
+  `MaxAffectedTargets` int(11) unsigned NOT NULL DEFAULT 0,
+  `DmgClass` int(11) unsigned NOT NULL DEFAULT 0,
+  `PreventionType` int(11) unsigned NOT NULL DEFAULT 0,
+  `DmgMultiplier1` float NOT NULL DEFAULT 0,
+  `DmgMultiplier2` float NOT NULL DEFAULT 0,
+  `DmgMultiplier3` float NOT NULL DEFAULT 0,
+  `AttributesCu` int(11) unsigned NOT NULL DEFAULT 0,
+  `TotemCategory1` int(11) unsigned NOT NULL DEFAULT 0,
+  `TotemCategory2` int(11) unsigned NOT NULL DEFAULT 0,
+  `AreaId` int(11) unsigned NOT NULL DEFAULT 0,
+  `SchoolMask` int(11) unsigned NOT NULL DEFAULT 0,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=55419 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+
++++ back to rev 3803b8ac5519aba6f3ce5f531171a07d6bd040f8
++++ add code
+
+auto replaceSingleQuotes = [](const char* input) -> std::string {
+    std::string result;
+
+    for (const char* c = input; *c != '\0'; ++c) {
+        if (*c == '\'') {
+            result += "\\\'";
+        }
+        else {
+            result += *c;
+        }
+    }
+
+    return result;
+};
+
+const char* filename = "output.txt";
+
+for (uint32 i = 1; i < sSpellStore.GetNumRows(); ++i)
+{        
+    SpellEntry* s = (SpellEntry*)sSpellStore.LookupEntry(i);
+
+    if (!s)
+        continue;
+
+    std::string name = replaceSingleQuotes(s->SpellName[0]);
+    std::string rank = replaceSingleQuotes(s->Rank[0]);
+
+    std::stringstream ss;
+    ss << "INSERT INTO spellData SELECT '" << s->Id << "','" << s->Category << "','" << s->Dispel << "','" << s->Mechanic << "','" << s->Attributes << "','" << s->AttributesEx << "','" << s->AttributesEx2 << "','" << s->AttributesEx3 << "','" << s->AttributesEx4 << "','" << s->AttributesEx5 << "','" << s->AttributesEx6 << "','" << s->Stances << "','" << s->StancesNot << "','" << s->Targets << "','" << s->TargetCreatureType << "','" << s->RequiresSpellFocus << "','" << s->FacingCasterFlags << "','" << s->CasterAuraState << "','" << s->TargetAuraState << "','" << s->CasterAuraStateNot << "','" << s->TargetAuraStateNot << "','" << s->CastingTimeIndex << "','" << s->RecoveryTime << "','" << s->CategoryRecoveryTime << "','" << s->InterruptFlags << "','" << s->AuraInterruptFlags << "','" << s->ChannelInterruptFlags << "','" << s->procFlags << "','" << s->procChance << "','" << s->procCharges << "','" << s->maxLevel << "','" << s->baseLevel << "','" << s->spellLevel << "','" << s->DurationIndex << "','" << s->powerType << "','" << s->manaCost << "','" << s->manaCostPerlevel << "','" << s->manaPerSecond << "','" << s->manaPerSecondPerLevel << "','" << s->rangeIndex << "','" << s->speed << "','" << s->StackAmount << "','" << s->Totem[0] << "','" << s->Totem[1] << "','" << s->Reagent[0] << "','" << s->Reagent[1] << "','" << s->Reagent[2] << "','" << s->Reagent[3] << "','" << s->Reagent[4] << "','" << s->Reagent[5] << "','" << s->Reagent[6] << "','" << s->Reagent[7] << "','" << s->ReagentCount[0] << "','" << s->ReagentCount[1] << "','" << s->ReagentCount[2] << "','" << s->ReagentCount[3] << "','" << s->ReagentCount[4] << "','" << s->ReagentCount[5] << "','" << s->ReagentCount[6] << "','" << s->ReagentCount[7] << "','" << s->EquippedItemClass << "','" << s->EquippedItemSubClassMask << "','" << s->EquippedItemInventoryTypeMask << "','" << s->Effect[0] << "','" << s->Effect[1] << "','" << s->Effect[2] << "','" << s->EffectDieSides[0] << "','" << s->EffectDieSides[1] << "','" << s->EffectDieSides[2] << "','" << s->EffectBaseDice[0] << "','" << s->EffectBaseDice[1] << "','" << s->EffectBaseDice[2] << "','" << s->EffectDicePerLevel[0] << "','" << s->EffectDicePerLevel[1] << "','" << s->EffectDicePerLevel[2] << "','" << s->EffectRealPointsPerLevel[0] << "','" << s->EffectRealPointsPerLevel[1] << "','" << s->EffectRealPointsPerLevel[2] << "','" << s->EffectBasePoints[0] << "','" << s->EffectBasePoints[1] << "','" << s->EffectBasePoints[2] << "','" << s->EffectMechanic[0] << "','" << s->EffectMechanic[1] << "','" << s->EffectMechanic[2] << "','" << s->EffectImplicitTargetA[0] << "','" << s->EffectImplicitTargetA[1] << "','" << s->EffectImplicitTargetA[2] << "','" << s->EffectImplicitTargetB[0] << "','" << s->EffectImplicitTargetB[1] << "','" << s->EffectImplicitTargetB[2] << "','" << s->EffectRadiusIndex[0] << "','" << s->EffectRadiusIndex[1] << "','" << s->EffectRadiusIndex[2] << "','" << s->EffectApplyAuraName[0] << "','" << s->EffectApplyAuraName[1] << "','" << s->EffectApplyAuraName[2] << "','" << s->EffectAmplitude[0] << "','" << s->EffectAmplitude[1] << "','" << s->EffectAmplitude[2] << "','" << s->EffectMultipleValue[0] << "','" << s->EffectMultipleValue[1] << "','" << s->EffectMultipleValue[2] << "','" << s->EffectChainTarget[0] << "','" << s->EffectChainTarget[1] << "','" << s->EffectChainTarget[2] << "','" << s->EffectItemType[0] << "','" << s->EffectItemType[1] << "','" << s->EffectItemType[2] << "','" << s->EffectMiscValue[0] << "','" << s->EffectMiscValue[1] << "','" << s->EffectMiscValue[2] << "','" << s->EffectMiscValueB[0] << "','" << s->EffectMiscValueB[1] << "','" << s->EffectMiscValueB[2] << "','" << s->EffectTriggerSpell[0] << "','" << s->EffectTriggerSpell[1] << "','" << s->EffectTriggerSpell[2] << "','" << s->EffectPointsPerComboPoint[0] << "','" << s->EffectPointsPerComboPoint[1] << "','" << s->EffectPointsPerComboPoint[2] << "','" << s->SpellVisual << "','" << s->SpellIconID << "','" << s->activeIconID << "','" << name << "','" << rank << "','" << s->ToolTipFlags << "','" << s->ManaCostPercentage << "','" << s->StartRecoveryCategory << "','" << s->StartRecoveryTime << "','" << s->MaxTargetLevel << "','" << s->SpellFamilyName << "','" << s->SpellFamilyFlags << "','" << s->MaxAffectedTargets << "','" << s->DmgClass << "','" << s->PreventionType << "','" << s->DmgMultiplier[0] << "','" << s->DmgMultiplier[1] << "','" << s->DmgMultiplier[2] << "','" << s->AttributesCu << "','" << s->TotemCategory[0] << "','" << s->TotemCategory[1] << "','" << s->AreaId << "','" << s->SchoolMask << "';";
+
+    FILE* outputFile = std::fopen(filename, "a");
+
+    if (outputFile != nullptr) {
+        std::fprintf(outputFile, "%s\n", ss.str());
+        std::fclose(outputFile);
+    }
+    else {
+        return;
+    }
+}
+
+
+
+alter table spell_template drop column `SpellName2`;
+alter table spell_template drop column `SpellName3`;
+alter table spell_template drop column `SpellName4`;
+alter table spell_template drop column `SpellName5`;
+alter table spell_template drop column `SpellName6`;
+alter table spell_template drop column `SpellName7`;
+alter table spell_template drop column `SpellName8`;
+alter table spell_template drop column `SpellName9`;
+alter table spell_template drop column `SpellName10`;
+alter table spell_template drop column `SpellName11`;
+alter table spell_template drop column `SpellName12`;
+alter table spell_template drop column `SpellName13`;
+alter table spell_template drop column `SpellName14`;
+alter table spell_template drop column `SpellName15`;
+alter table spell_template drop column `SpellName16`;
+
+alter table spell_template drop column `Rank2`;
+alter table spell_template drop column `Rank3`;
+alter table spell_template drop column `Rank4`;
+alter table spell_template drop column `Rank5`;
+alter table spell_template drop column `Rank6`;
+alter table spell_template drop column `Rank7`;
+alter table spell_template drop column `Rank8`;
+alter table spell_template drop column `Rank9`;
+alter table spell_template drop column `Rank10`;
+alter table spell_template drop column `Rank11`;
+alter table spell_template drop column `Rank12`;
+alter table spell_template drop column `Rank13`;
+alter table spell_template drop column `Rank14`;
+alter table spell_template drop column `Rank15`;
+alter table spell_template drop column `Rank16`;
+
+
+
+alter table spell_template add column `SpellName2` text DEFAULT NULL after SpellName;
+alter table spell_template add column `SpellName3` text DEFAULT NULL after SpellName2;
+alter table spell_template add column `SpellName4` text DEFAULT NULL after SpellName3;
+alter table spell_template add column `SpellName5` text DEFAULT NULL after SpellName4;
+alter table spell_template add column `SpellName6` text DEFAULT NULL after SpellName5;
+alter table spell_template add column `SpellName7` text DEFAULT NULL after SpellName6;
+alter table spell_template add column `SpellName8` text DEFAULT NULL after SpellName7;
+alter table spell_template add column `SpellName9` text DEFAULT NULL after SpellName8;
+alter table spell_template add column `SpellName10` text DEFAULT NULL after SpellName9;
+alter table spell_template add column `SpellName11` text DEFAULT NULL after SpellName10;
+alter table spell_template add column `SpellName12` text DEFAULT NULL after SpellName11;
+alter table spell_template add column `SpellName13` text DEFAULT NULL after SpellName12;
+alter table spell_template add column `SpellName14` text DEFAULT NULL after SpellName13;
+alter table spell_template add column `SpellName15` text DEFAULT NULL after SpellName14;
+alter table spell_template add column `SpellName16` text DEFAULT NULL after SpellName15;
+
+alter table spell_template add column `Rank2` text DEFAULT NULL after Rank;
+alter table spell_template add column `Rank3` text DEFAULT NULL after Rank2;
+alter table spell_template add column `Rank4` text DEFAULT NULL after Rank3;
+alter table spell_template add column `Rank5` text DEFAULT NULL after Rank4;
+alter table spell_template add column `Rank6` text DEFAULT NULL after Rank5;
+alter table spell_template add column `Rank7` text DEFAULT NULL after Rank6;
+alter table spell_template add column `Rank8` text DEFAULT NULL after Rank7;
+alter table spell_template add column `Rank9` text DEFAULT NULL after Rank8;
+alter table spell_template add column `Rank10` text DEFAULT NULL after Rank9;
+alter table spell_template add column `Rank11` text DEFAULT NULL after Rank10;
+alter table spell_template add column `Rank12` text DEFAULT NULL after Rank11;
+alter table spell_template add column `Rank13` text DEFAULT NULL after Rank12;
+alter table spell_template add column `Rank14` text DEFAULT NULL after Rank13;
+alter table spell_template add column `Rank15` text DEFAULT NULL after Rank14;
+alter table spell_template add column `Rank16` text DEFAULT NULL after Rank15;

@@ -1,0 +1,4 @@
+# creature position
+update creature set position_x=-1926.24, position_y=5475.53, position_z=-12.3448, orientation=2.11185 where guid=70238;
+
+			

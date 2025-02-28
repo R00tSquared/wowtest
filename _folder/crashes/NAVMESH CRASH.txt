@@ -1,0 +1,2 @@
+https://github.com/recastnavigation/recastnavigation/issues/138
+https://github.com/TrinityCore/TrinityCore/commit/a68f19af5638f67778ab57b9ee9883c370362f2b
